@@ -1,7 +1,7 @@
 # Edu Burg ERP
 ### ERP with social media
 
-## Live Site: [https://edu-burg.herokuapp.com/?fbclid=IwAR0A7naqqKFFsXKFOub8fj09YgRm1A2sXieSA7XuuEJFDwlFqeYXjlOxUA8](https://edu-burg.herokuapp.com/?fbclid=IwAR0A7naqqKFFsXKFOub8fj09YgRm1A2sXieSA7XuuEJFDwlFqeYXjlOxUA8)
+## Live Site: [https://edu-burg.herokuapp.com/](https://edu-burg.herokuapp.com/)
 
 
 ## How to run the project
