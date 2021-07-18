@@ -1,17 +1,16 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-var cors = require('cors')
-const app = express()
-const port = 5000
+import express from 'express'
+import dotenv from 'dotenv'
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(cors())
+dotenv.config()
+
+const app = express()
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port,()=>{
-    console.log("Server is running!")
-});
+const PORT = process.env.port || 5000
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}!`)
+})
