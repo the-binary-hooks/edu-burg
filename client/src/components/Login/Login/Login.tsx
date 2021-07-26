@@ -7,11 +7,12 @@ import { useForm } from "react-hook-form";
 // Router
 import { Link, useHistory, useLocation } from "react-router-dom";
 // CSS
-import "./Login.css";
+import "../auth.css";
 // Font Awesome
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Form data interface
 interface IFormData {
     email: string;
     password: string;
