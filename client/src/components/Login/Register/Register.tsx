@@ -1,7 +1,7 @@
 // React
 import { useEffect, useState } from "react";
 // React Bootstrap
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 // React Hook form
 import { useForm } from "react-hook-form";
 // Router
@@ -11,6 +11,11 @@ import "../Login/Login.css";
 // Font awesome
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+interface IFormData {
+    email: string;
+    password: string;
+}
 
 const Register = () => {
     // Error state
@@ -26,8 +31,8 @@ const Register = () => {
     } = useForm();
 
     // Routing Variables
-    let history = useHistory();
-    let location = useLocation();
+    let history: any = useHistory();
+    let location: any = useLocation();
     let { from } = location.state || { from: { pathname: "/dashboard" } };
 
     // If the user is already logged in, doesn't make sense to show him/her the register page again
@@ -35,9 +40,9 @@ const Register = () => {
         if (localStorage.getItem("authToken")) {
             history.replace(from);
         }
-    }, []);
+    }, [from, history]);
     // Handle form submit
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: IFormData) => {
         // If passwords mismatch
         if (password !== confirmPassword) {
             // set password fields empty

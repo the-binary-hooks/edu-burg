@@ -12,13 +12,18 @@ import "./Login.css";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+interface IFormData {
+    email: string;
+    password: string;
+}
+
 const Login = () => {
     // Error State
     const [err, setErr] = useState("");
 
     // Routing vars
-    let history = useHistory();
-    let location = useLocation();
+    let history: any = useHistory();
+    let location: any = useLocation();
     let { from } = location.state || { from: { pathname: "/dashboard" } };
 
     // If the user is already logged in, doesn't make sense to show him/her the login page again
@@ -26,7 +31,7 @@ const Login = () => {
         if (localStorage.getItem("authToken")) {
             history.replace(from);
         }
-    }, []);
+    }, [from, history]);
 
     // React Hook form vars
     const {
@@ -36,7 +41,7 @@ const Login = () => {
     } = useForm();
 
     // Handle submit
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: IFormData) => {
         // Send request to get JWT token
         fetch("", {
             method: "POST",
@@ -120,7 +125,6 @@ const Login = () => {
                             </p>
                         </div>
                     </Form>
-                    \F
                 </div>
             </Container>
         </div>

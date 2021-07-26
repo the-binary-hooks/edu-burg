@@ -1,6 +1,12 @@
 import { Redirect, Route } from "react-router-dom";
+import { ReactNode } from "react-router/node_modules/@types/react";
 
-const PrivateRoute = ({ children, ...rest }) => {
+interface IProps {
+    children?: ReactNode;
+    path: string;
+}
+
+const PrivateRoute = ({ children, ...rest }: IProps) => {
     const token = localStorage.getItem("authToken");
     // Auth.isAuthenticated();
     return (
