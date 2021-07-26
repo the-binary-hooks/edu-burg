@@ -6,7 +6,6 @@ import Register from "./components/Login/Register/Register";
 function App() {
     return (
         <Router>
-            <h1> ERP </h1>
             <Switch>
                 <PrivateRoute path="/home">
                     <h1>Home</h1>

@@ -68,64 +68,57 @@ const Login = () => {
     return (
         <div className="login-page">
             <Container className="login-container">
-                <div className="login-container-div">
-                    <h4 className="underlineHeading">Sign In</h4>
-                    <FontAwesomeIcon icon={faTimes} size="1x" />
+                <h4>Sign In</h4>
+                <FontAwesomeIcon icon={faTimes} size="1x" />
+                <br />
+                <br />
+                {err && <span className="error">{err}</span>}
+                <Form onSubmit={handleSubmit(onSubmit)}>
+                    <Form.Group>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="e.g. johndoe@gmail.com"
+                            {...register("email", {
+                                required: true,
+                                pattern:
+                                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            })}
+                        />
+                        {errors.email && (
+                            <span className="error">
+                                This field is required
+                            </span>
+                        )}
+                    </Form.Group>
                     <br />
-                    <br />
-                    {err && <span className="error">{err}</span>}
-                    <Form
-                        onSubmit={handleSubmit(onSubmit)}
-                        className="login-form"
-                    >
-                        <Form.Group>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control
-                                type="email"
-                                placeholder="e.g. johndoe@gmail.com"
-                                {...register("email", {
-                                    required: true,
-                                    pattern:
-                                        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                })}
-                            />
-                            {errors.email && (
-                                <span className="error">
-                                    This field is required
-                                </span>
-                            )}
-                        </Form.Group>
-
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Your Password"
-                                {...register("password", {
-                                    required: true,
-                                    // pattern:
-                                    //     /^(?=.\d)(?=.[a-z])(?=.*[A-Z]).{6,20}$/,
-                                })}
-                            />
-                            {errors.password && (
-                                <span className="error">
-                                    This field is required
-                                </span>
-                            )}
-                        </Form.Group>
-                        <Button type="submit" className="submit-button">
-                            Login
-                        </Button>
-                        <div className="accountDiv">
-                            <p>
-                                Don't have an account?{" "}
-                                <Link className="react-link" to="/register">
-                                    Sign Up
-                                </Link>
-                            </p>
-                        </div>
-                    </Form>
-                </div>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Your Password"
+                            {...register("password", {
+                                required: true,
+                            })}
+                        />
+                        {errors.password && (
+                            <span className="error">
+                                This field is required
+                            </span>
+                        )}
+                    </Form.Group>
+                    <Button type="submit" className="submit-button">
+                        Login
+                    </Button>
+                    <div className="accountDiv">
+                        <p>
+                            Don't have an account?{" "}
+                            <Link className="react-link" to="/register">
+                                Sign Up
+                            </Link>
+                        </p>
+                    </div>
+                </Form>
             </Container>
         </div>
     );
