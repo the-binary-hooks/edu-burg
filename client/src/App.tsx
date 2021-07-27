@@ -1,6 +1,9 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+// Components
+import Home from "./components/Home/Home/Home";
+
 // Common Dashboard Components
 import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
 import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
@@ -52,6 +55,9 @@ const App = () => {
                 </Route>
                 <Route path="/course/:id">
                     <Course />
+                </Route>
+                <Route path="/">
+                    <Home />
                 </Route>
             </Switch>
         </Router>
