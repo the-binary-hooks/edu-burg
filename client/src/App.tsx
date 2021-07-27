@@ -1,6 +1,6 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
+// import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
 
 // Authentication components
 import Login from "./components/Authentication/Login/Login";
@@ -8,7 +8,7 @@ import PrivateRoute from "./components/Authentication/PrivateRoute/PrivateRoute"
 import Register from "./components/Authentication/Register/Register";
 // Components
 import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
-
+import Home from "./components/Home/Home/Home";
 import "./App.css";
 import CoursesCreated from "./components/TeacherDashboard/CoursesCreated/CoursesCreated";
 import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
@@ -40,7 +40,7 @@ const App = () => {
                     <TeacherProfile />
                 </Route>
                 <Route path="/">
-                    <Sidebar />
+                    <Home/>
                 </Route>
             </Switch>
         </Router>
