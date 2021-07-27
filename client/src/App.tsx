@@ -1,6 +1,6 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Sidebar from "./components/Home/Sidebar/Sidebar";
+import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
 
 // Authentication components
 import Login from "./components/Authentication/Login/Login";
