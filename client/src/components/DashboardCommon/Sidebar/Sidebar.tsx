@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 const Sidebar = () => {
     return (
-        <Col md={2}>
+        <Col md={2} className="column">
             <div className="sidebar d-flex flex-column justify-content-between py-5">
                 <ul className="list-unstyled">
                     <li>

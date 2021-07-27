@@ -4,7 +4,7 @@ import CourseStudent from "./CourseStudent/CourseStudent";
 
 const Course = () => {
     return (
-        <Container className="sidebar-content-container">
+        <Container fluid>
             <Row>
                 <Sidebar />
                 <Col md={10} style={{ textAlign: "center" }}>

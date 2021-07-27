@@ -5,7 +5,7 @@ import "./Home.css";
 
 const Home = () => {
     return (
-        <Container className="sidebar-content-container">
+        <Container fluid>
             <div className="row">
                 <Sidebar />
                 <div className="col-md-10">

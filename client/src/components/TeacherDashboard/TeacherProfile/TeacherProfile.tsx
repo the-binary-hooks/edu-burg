@@ -6,7 +6,7 @@ import "./TeacherProfile.css";
 
 const TeacherProfile = () => {
     return (
-        <Container className="sidebar-content-container">
+        <Container fluid>
             <Row>
                 <Sidebar />
                 <Col md={10} style={{ textAlign: "center" }}>
@@ -53,9 +53,7 @@ const TeacherProfile = () => {
                     <h6>Rate this Teacher</h6>
                     <Form.Control type="text" placeholder="5.00" />
                     <div className="rating-button">
-                        <Button className="brand-button w-25">
-                            Submit
-                        </Button>
+                        <Button className="brand-button w-25">Submit</Button>
                     </div>
                 </Col>
             </Row>

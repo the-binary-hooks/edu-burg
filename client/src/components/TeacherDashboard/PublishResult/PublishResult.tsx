@@ -47,10 +47,10 @@ const PublishResult = () => {
         }
     };
     return (
-        <Container className="sidebar-content-container">
+        <Container fluid>
             <Row>
                 <Sidebar />
-                <Col md={10} className="p-5 blue-text fw-bold">
+                <Col md={10} className="p-5 blue-text fw-bold column">
                     <h3 className="brand-text">Publish Student Result</h3>
                     <br />
                     <Form>

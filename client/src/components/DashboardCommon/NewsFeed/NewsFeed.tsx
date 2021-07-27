@@ -6,10 +6,10 @@ import Sidebar from "../Sidebar/Sidebar";
 
 const NewsFeed = () => {
     return (
-        <Container className="sidebar-content-container">
+        <Container fluid>
             <Row>
                 <Sidebar />
-                <Col md={3}>
+                <Col md={3} className="column">
                     <SearchPosts />
                 </Col>
                 <Col md={7}>

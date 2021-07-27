@@ -5,7 +5,7 @@ import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 const CoursesCreated = () => {
     const history = useHistory();
     return (
-        <Container className="sidebar-content-container">
+        <Container fluid>
             <Row>
                 <Sidebar />
                 <Col md={10}>

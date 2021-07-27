@@ -1,0 +1,10 @@
+.chat-header {
+    box-shadow: 5px 5px 10px gray;
+    background: #111827;
+    color: white;
+    /* Stick to top */
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    padding: 2%;
+}

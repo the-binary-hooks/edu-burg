@@ -7,12 +7,6 @@
     margin: 5% 0;
 }
 
-/* Wrap the page which uses the sidebar with a <Container></Container> tag and use this as the class name of it */
-.sidebar-content-container {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
 /* Common text color to be used across the app  */
 .brand-text {
     color: #10b981;
@@ -36,4 +30,8 @@
     box-shadow: 5px 5px 10px gray;
     border-radius: 50%;
     margin-bottom: 5%;
+}
+
+.column {
+    padding: 0 !important;
 }
