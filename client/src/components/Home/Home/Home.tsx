@@ -1,4 +1,3 @@
-import React from "react";
 import { Container } from "react-bootstrap";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import HomeInfoBlock from "../HomeInfoBlock/HomeInfoBlock";
