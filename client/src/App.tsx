@@ -11,6 +11,7 @@ import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
 
 import "./App.css";
 import CoursesCreated from "./components/TeacherDashboard/CoursesCreated/CoursesCreated";
+import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
 
 const App = () => {
     return (
@@ -30,6 +31,9 @@ const App = () => {
                 </Route>
                 <Route path="/coursesCreated">
                     <CoursesCreated />
+                </Route>
+                <Route path="/publishResult">
+                    <PublishResult />
                 </Route>
                 <Route path="/">
                     <Sidebar />
