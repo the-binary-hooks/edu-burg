@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 .sidebar {
     background: #111827;
+    /* Stick to top */
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
     /* Get Scrolling Facility */
     overflow-y: scroll;
     height: 100vh;

@@ -108,7 +108,10 @@ const Login = () => {
                             </span>
                         )}
                     </Form.Group>
-                    <Button type="submit" className="submit-button">
+                    <Button
+                        type="submit"
+                        className="submit-button brand-button"
+                    >
                         Login
                     </Button>
                     <div className="accountDiv">

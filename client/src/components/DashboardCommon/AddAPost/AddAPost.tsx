@@ -11,7 +11,7 @@ const AddAPost = () => {
                 </Col>
                 <Col md={9}>
                     <Form.Control type="text" placeholder="Write Something" />
-                    <Button className="post-button">Post</Button>
+                    <Button className="post-button brand-button">Post</Button>
                 </Col>
             </Row>
         </div>

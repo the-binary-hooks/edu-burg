@@ -21,7 +21,7 @@ const Posts = () => {
                         little bit longer.
                     </Card.Text>
                 </Card.Body>
-                <Button className="post-button">Like</Button>
+                <Button className="post-button brand-button">Like</Button>
                 <Form.Control type="text" placeholder="Write A Comment" />
                 <Card className="comment">
                     <Row>
@@ -42,7 +42,9 @@ const Posts = () => {
                     </Card.Body>
                     <Row>
                         <Col>
-                            <Button className="comment-button">Like</Button>
+                            <Button className="comment-button brand-button">
+                                Like
+                            </Button>
                         </Col>
                         <Col>
                             <Form.Control type="text" placeholder="Reply" />

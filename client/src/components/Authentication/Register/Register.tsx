@@ -169,7 +169,10 @@ const Register = () => {
                         )}
                     </Form.Group>
                     <br />
-                    <Button type="submit" className="submit-button">
+                    <Button
+                        type="submit"
+                        className="submit-button brand-button"
+                    >
                         Register
                     </Button>
                     <div className="accountDiv">
