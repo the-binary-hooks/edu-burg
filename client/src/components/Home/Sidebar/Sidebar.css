@@ -1,25 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-.sidebar{
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.sidebar {
     background: #111827;
-    position: fixed;
+    /* Stick to top */
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    /* Get Scrolling Facility */
+    overflow-y: scroll;
+    height: 100vh;
 }
-.sidebar li{
+
+.sidebar li {
     margin-bottom: 2em;
-    text-align:center;
-    padding:10px 5px;
+    text-align: center;
+    padding: 10px 5px;
 }
-.sidebar li img{
-    width:102px;
-    height:102px;
-    display:block;
-    margin:auto;
-    border-radius:50%;
+
+.sidebar li img {
+    width: 102px;
+    height: 102px;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
 }
+
 .sidebar li:hover {
-    background:#253048;
+    background: #253048;
 }
+
 .sidebar li a {
-    text-decoration:none;
-    font-size:30px;
-    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
 }

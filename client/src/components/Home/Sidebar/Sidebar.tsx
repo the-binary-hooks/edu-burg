@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 const Sidebar = () => {
     return (
-        <div
-            className="sidebar d-flex flex-column justify-content-between col-md-2 py-5"
-            style={{ height: "100vh" }}
-        >
+        <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5">
             <ul className="list-unstyled">
                 <li>
                     <Link to="/" className="text-white">
@@ -13,6 +10,7 @@ const Sidebar = () => {
                             src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
                             alt="admin"
                         />
+                        <br />
                         <span>
                             <strong>Admin</strong>
                         </span>
