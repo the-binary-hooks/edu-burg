@@ -1,5 +1,6 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Sidebar from "./components/Home/Sidebar/Sidebar";
 
 // Authentication components
 import Login from "./components/Authentication/Login/Login";
@@ -25,6 +26,8 @@ const App = () => {
                 </Route>
                 <Route path="/newsFeed">
                     <NewsFeed />
+                <Route path="/">
+                    <Sidebar/>
                 </Route>
             </Switch>
         </Router>
