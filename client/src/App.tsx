@@ -1,5 +1,6 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Sidebar from "./components/Home/Sidebar/Sidebar";
 
 // Authentication components
 import Login from "./components/Login/Login/Login";
@@ -18,6 +19,9 @@ function App() {
                 </Route>
                 <Route path="/register">
                     <Register />
+                </Route>
+                <Route path="/">
+                    <Sidebar/>
                 </Route>
             </Switch>
         </Router>
