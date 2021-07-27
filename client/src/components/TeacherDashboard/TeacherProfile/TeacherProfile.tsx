@@ -1,5 +1,8 @@
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
+import "./TeacherProfile.css";
 
 const TeacherProfile = () => {
     return (
@@ -18,6 +21,9 @@ const TeacherProfile = () => {
                             Senior Professor of Physics in the University of
                             Bangladesh
                         </p>
+                        <Button className="brand-button">
+                            <FontAwesomeIcon icon={faPlus} /> Follow
+                        </Button>
                     </Container>
 
                     <Table responsive="sm">
@@ -43,10 +49,14 @@ const TeacherProfile = () => {
                         </tbody>
                     </Table>
                     <br />
+                    <br />
                     <h6>Rate this Teacher</h6>
                     <Form.Control type="text" placeholder="5.00" />
-                    <br />
-                    <Button className="brand-button">Submit</Button>
+                    <div className="rating-button">
+                        <Button className="brand-button w-25">
+                            Submit
+                        </Button>
+                    </div>
                 </Col>
             </Row>
         </Container>

@@ -13,6 +13,7 @@ import "./App.css";
 import CoursesCreated from "./components/TeacherDashboard/CoursesCreated/CoursesCreated";
 import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
 import TeacherProfile from "./components/TeacherDashboard/TeacherProfile/TeacherProfile";
+import Course from "./components/TeacherDashboard/Course/Course";
 
 const App = () => {
     return (
@@ -38,6 +39,9 @@ const App = () => {
                 </Route>
                 <Route path="/teacherProfile">
                     <TeacherProfile />
+                </Route>
+                <Route path="/course/:id">
+                    <Course />
                 </Route>
                 <Route path="/">
                     <Sidebar />
