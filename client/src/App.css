@@ -3,6 +3,7 @@
     border: none !important;
     width: 100%;
     height: 40px;
+    margin: 5% 0;
 }
 
 .sidebar-content-container {
@@ -22,4 +23,11 @@
     box-shadow: 5px 5px 10px gray;
     padding: 5%;
     margin-bottom: 10%;
+}
+
+.profile-pic {
+    width: 20%;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 50%;
+    margin-bottom: 5%;
 }

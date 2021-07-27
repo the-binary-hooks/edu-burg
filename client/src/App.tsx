@@ -12,6 +12,7 @@ import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
 import "./App.css";
 import CoursesCreated from "./components/TeacherDashboard/CoursesCreated/CoursesCreated";
 import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
+import TeacherProfile from "./components/TeacherDashboard/TeacherProfile/TeacherProfile";
 
 const App = () => {
     return (
@@ -34,6 +35,9 @@ const App = () => {
                 </Route>
                 <Route path="/publishResult">
                     <PublishResult />
+                </Route>
+                <Route path="/teacherProfile">
+                    <TeacherProfile />
                 </Route>
                 <Route path="/">
                     <Sidebar />
