@@ -26,8 +26,9 @@ const App = () => {
                 </Route>
                 <Route path="/newsFeed">
                     <NewsFeed />
+                </Route>
                 <Route path="/">
-                    <Sidebar/>
+                    <Sidebar />
                 </Route>
             </Switch>
         </Router>
