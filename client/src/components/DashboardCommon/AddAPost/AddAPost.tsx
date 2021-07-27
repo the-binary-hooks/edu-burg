@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import "./AddAPost.css";
 

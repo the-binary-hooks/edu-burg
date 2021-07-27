@@ -1,10 +1,15 @@
+// React
 import { useState } from "react";
+// Font Awesome
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// React Bootstrap
 import { Button, Form } from "react-bootstrap";
+// Style Sheet
 import "./SearchPost.css";
 
 const SearchPosts = () => {
+    // Initial State of the search string
     const [searchStr, setSearchStr] = useState("");
     return (
         <div className="container">

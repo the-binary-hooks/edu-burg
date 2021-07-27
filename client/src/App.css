@@ -1,3 +1,4 @@
+/* Common Button to be used across the app  */
 .brand-button {
     background-color: #10b981 !important;
     border: none !important;
@@ -6,25 +7,30 @@
     margin: 5% 0;
 }
 
+/* Wrap the page which uses the sidebar with a <Container></Container> tag and use this as the class name of it */
 .sidebar-content-container {
     margin: 0 !important;
     padding: 0 !important;
 }
 
+/* Common text color to be used across the app  */
 .brand-text {
     color: #10b981;
 }
 
+/* Common text color to be used across the app  */
 .blue-text {
     color: #253048;
 }
 
+/* Use this to make your bootstrap card look more beautiful */
 .card {
     box-shadow: 5px 5px 10px gray;
     padding: 5%;
     margin-bottom: 10%;
 }
 
+/* Use this for the profile picture in the profile page of the dashboards */
 .profile-pic {
     width: 20%;
     box-shadow: 5px 5px 10px gray;
