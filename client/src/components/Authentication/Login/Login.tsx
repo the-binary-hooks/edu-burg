@@ -67,7 +67,7 @@ const Login = () => {
             });
     };
     return (
-        <div className="login-page">
+        <div className="brand-text login-page">
             <Container className="login-container">
                 <h4>Sign In</h4>
                 <FontAwesomeIcon icon={faTimes} size="1x" />
@@ -117,7 +117,10 @@ const Login = () => {
                     <div className="accountDiv">
                         <p>
                             Don't have an account?{" "}
-                            <Link className="react-link" to="/register">
+                            <Link
+                                className="react-link brand-text"
+                                to="/register"
+                            >
                                 Sign Up
                             </Link>
                         </p>

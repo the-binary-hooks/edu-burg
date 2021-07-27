@@ -10,6 +10,7 @@ import Register from "./components/Authentication/Register/Register";
 import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
 
 import "./App.css";
+import CoursesCreated from "./components/TeacherDashboard/CoursesCreated/CoursesCreated";
 
 const App = () => {
     return (
@@ -26,6 +27,9 @@ const App = () => {
                 </Route>
                 <Route path="/newsFeed">
                     <NewsFeed />
+                </Route>
+                <Route path="/coursesCreated">
+                    <CoursesCreated />
                 </Route>
                 <Route path="/">
                     <Sidebar />

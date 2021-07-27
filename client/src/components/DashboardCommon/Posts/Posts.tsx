@@ -4,7 +4,7 @@ import "./Posts.css";
 const Posts = () => {
     return (
         <>
-            <Card className="post">
+            <Card className="card">
                 <Row>
                     <Col md={2}>
                         <div className="profile-img">John</div>

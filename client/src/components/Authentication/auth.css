@@ -1,6 +1,5 @@
 .login-page {
     padding: 10% 10%;
-    color: #10b981;
     background-color: #111827;
     font-family: "Abril Fatface", cursive;
 }
@@ -46,6 +45,5 @@
 }
 
 .react-link {
-    color: #10b981;
     text-decoration: none;
 }

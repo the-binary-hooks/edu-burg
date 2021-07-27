@@ -84,7 +84,7 @@ const Register = () => {
     };
 
     return (
-        <div className="login-page">
+        <div className="login-page brand-text">
             <Container className="login-container">
                 <h4>Sign Up</h4>
                 <FontAwesomeIcon icon={faTimes} size="1x" />
@@ -178,7 +178,7 @@ const Register = () => {
                     <div className="accountDiv">
                         <p>
                             Already have an account?{" "}
-                            <Link className="react-link" to="/login">
+                            <Link className="react-link brand-text" to="/login">
                                 Login
                             </Link>
                         </p>
