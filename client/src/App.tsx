@@ -2,11 +2,15 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Authentication components
-import Login from "./components/Login/Login/Login";
-import PrivateRoute from "./components/Login/PrivateRoute/PrivateRoute";
-import Register from "./components/Login/Register/Register";
+import Login from "./components/Authentication/Login/Login";
+import PrivateRoute from "./components/Authentication/PrivateRoute/PrivateRoute";
+import Register from "./components/Authentication/Register/Register";
+// Components
+import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
 
-function App() {
+import "./App.css";
+
+const App = () => {
     return (
         <Router>
             <Switch>
@@ -19,9 +23,12 @@ function App() {
                 <Route path="/register">
                     <Register />
                 </Route>
+                <Route path="/newsFeed">
+                    <NewsFeed />
+                </Route>
             </Switch>
         </Router>
     );
-}
+};
 
 export default App;

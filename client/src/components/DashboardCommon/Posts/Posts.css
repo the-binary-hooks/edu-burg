@@ -1,0 +1,13 @@
+.post {
+    box-shadow: 5px 5px 10px gray;
+    padding: 5%;
+}
+
+.comment {
+    margin: 5% 0%;
+    padding: 2%;
+}
+
+.comment-button {
+    width: 80%;
+}

@@ -1,0 +1,15 @@
+.profile-img {
+    background-color: brown;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.container {
+    margin: 2%;
+}
+
+.post-button {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
