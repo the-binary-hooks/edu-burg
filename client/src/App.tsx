@@ -1,6 +1,6 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
+// import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
 
 // Authentication components
 import Login from "./components/Authentication/Login/Login";
@@ -10,6 +10,7 @@ import Register from "./components/Authentication/Register/Register";
 import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
 
 import "./App.css";
+import Home from "./components/Home/Home/Home";
 
 const App = () => {
     return (
@@ -28,7 +29,7 @@ const App = () => {
                     <NewsFeed />
                 </Route>
                 <Route path="/">
-                    <Sidebar />
+                    <Home/>
                 </Route>
             </Switch>
         </Router>
