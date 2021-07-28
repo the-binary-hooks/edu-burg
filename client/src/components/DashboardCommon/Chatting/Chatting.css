@@ -35,22 +35,26 @@
     color: #10b981;
 }
 
-.incoming-message {
-    background-color: #10b981;
+.incoming-message,
+.sent-message {
     color: white;
     font-weight: 500;
     margin: 2%;
     padding: 2%;
     border-radius: 10px;
-    width: max-content;
+    max-width: 300px;
+    overflow-x: auto;
+}
+
+.incoming-message {
+    background-color: #10b981;
 }
 
 .sent-message {
-    background-color: #10b981;
-    color: white;
-    font-weight: 500;
-    margin: 2%;
-    padding: 2%;
-    border-radius: 10px;
-    width: max-content;
+    background-color:rgb(0, 174, 255);
+    margin-left: 70%;
+}
+
+.main-chat {
+    margin-bottom: 100px;
 }

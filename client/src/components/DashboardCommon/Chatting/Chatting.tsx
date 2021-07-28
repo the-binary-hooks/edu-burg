@@ -1,6 +1,6 @@
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Chatting.css";
 
@@ -10,7 +10,7 @@ const Chatting = () => {
             <Row>
                 <Sidebar />
                 <Col md={10} className="column">
-                    <div style={{ height: "100vh" }}>
+                    <div className="main-chat">
                         <div className="chat-header">
                             <h5>Rui Pattricio</h5>
                             <small>Last seen today at 12.00 pm</small>
@@ -19,34 +19,49 @@ const Chatting = () => {
                             <div className="incoming-message">
                                 Hello, how are you?
                             </div>
-                            <div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
-                                <div className="sent-message">
-                                    Oh! Fine! What about you?
-                                </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="incoming-message">
+                                Nice! How was your holidays?
+                            </div>
+                            <div className="sent-message">
+                                Awesome! We went to Spain to enjoy them.
+                            </div>
+                            <div className="incoming-message">
+                                I love Spanish foods!
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                            </div>
+                            <div className="sent-message">
+                                Oh! Fine! What about you?
+                                jfffffffffffffffaldjfladjf
+                                dajjd;lfasssssssssssssssssssssjk4wtu8iafdjlzkvcjlcjlkjkl;
                             </div>
                         </div>
                         <div className="chat-footer">
