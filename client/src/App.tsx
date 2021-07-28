@@ -23,6 +23,7 @@ import Course from "./components/TeacherDashboard/Course/Course";
 import "./App.css";
 import Chatting from "./components/DashboardCommon/Chatting/Chatting";
 import AllChats from "./components/DashboardCommon/AllChats/AllChats";
+import Followers from "./components/DashboardCommon/Followers/Followers";
 
 const App = () => {
     return (
@@ -60,6 +61,9 @@ const App = () => {
                 </Route>
                 <Route path="/allChats">
                     <AllChats />
+                </Route>
+                <Route path="/followers-following">
+                    <Followers />
                 </Route>
                 <Route path="/course/:id">
                     <Course />
