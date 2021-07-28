@@ -1,10 +1,56 @@
-.chat-header {
+.chat-header,
+.chat-footer {
     box-shadow: 5px 5px 10px gray;
     background: #111827;
     color: white;
+    width: 100%;
+    padding: 1%;
+}
+
+.chat-header {
     /* Stick to top */
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
+}
+
+.chat-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.message-input {
+    margin-right: 40px;
+    width: 75% !important;
+    display: inline !important;
+}
+
+.send-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+.send-icon:hover {
+    color: #10b981;
+}
+
+.incoming-message {
+    background-color: #10b981;
+    color: white;
+    font-weight: 500;
+    margin: 2%;
     padding: 2%;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.sent-message {
+    background-color: #10b981;
+    color: white;
+    font-weight: 500;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 10px;
+    width: max-content;
 }
