@@ -1,0 +1,16 @@
+.chat-container {
+    width: 50%;
+    margin-left: 25%;
+}
+
+.chat {
+    background-color: #10b981;
+    color: white;
+    font-weight: 500;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 5px;
+    display: flex;
+    gap: 5%;
+    place-items: center;
+}

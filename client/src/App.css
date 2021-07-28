@@ -35,3 +35,15 @@
 .column {
     padding: 0 !important;
 }
+
+.react-link:-webkit-any-link {
+    text-decoration: none;
+}
+
+.react-link:hover {
+    text-decoration: none;
+}
+
+.react-link {
+    text-decoration: none;
+}
