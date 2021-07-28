@@ -1,7 +1,48 @@
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
+
 const Sidebar = () => {
+    const role = sessionStorage.getItem("role");
+    const dashboardLinks =
+        role === "student"
+            ? [
+                  "Home",
+                  "Profile",
+                  "Semester Result",
+                  "Followers",
+                  "Courses",
+                  "You Posts",
+                  "Chatting",
+                  "Payment history",
+
+                  "News Feed",
+                  "Submit Assignments",
+              ]
+            : role === "teacher"
+            ? [
+                  "Home",
+                  "Profile",
+                  "Followers",
+                  "Courses",
+                  "Your Posts",
+                  "Chatting",
+                  "Publish Result",
+                  "News Feed",
+              ]
+            : [
+                  "Home",
+                  "Add a teacher",
+                  "Admission",
+                  "Add A Course",
+                  "Add Departments",
+                  "News Feed",
+                  "Make Admin",
+                  "Student Reviews",
+                  "Add A Post",
+                  "Chatting",
+              ];
+
     return (
         <Col md={2} className="column">
             <div className="sidebar d-flex flex-column justify-content-between py-5">
@@ -14,55 +55,23 @@ const Sidebar = () => {
                             />
                             <br />
                             <span>
-                                <strong>Admin</strong>
+                                <strong>{role}</strong>
                             </span>
                         </Link>
                     </li>
+                    {dashboardLinks.map((link, index) => (
+                        <li key={index}>
+                            <Link to="/dashboard" className="text-white">
+                                <span>{link}</span>
+                            </Link>
+                        </li>
+                    ))}
                     <li>
-                        <Link to="/dashboard" className="text-white">
-                            <span>Home</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/NewsFeed" className="text-white">
-                            <span>Newsfeed</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/admission" className="text-white">
-                            <span>Admission</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/addTeacher" className="text-white">
-                            <span>Add Teacher</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/addcourse" className="text-white">
-                            <span>Add Course</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/dashboard/addDepartments"
-                            className="text-white"
-                        >
-                            <span>Add Departments</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/lists" className="text-white">
-                            <span>Lists</span>
+                        <Link to="/" className="text-white">
+                            <span>Sign Out</span>
                         </Link>
                     </li>
                 </ul>
-                <div>
-                    <Link to="/" className="text-white">
-                        {" "}
-                        <span>Signout</span>
-                    </Link>
-                </div>
             </div>
         </Col>
     );

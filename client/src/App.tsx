@@ -24,8 +24,12 @@ import "./App.css";
 import Chatting from "./components/DashboardCommon/Chatting/Chatting";
 import AllChats from "./components/DashboardCommon/AllChats/AllChats";
 import Followers from "./components/DashboardCommon/Followers/Followers";
+import { useEffect } from "react";
 
 const App = () => {
+    useEffect(() => {
+        sessionStorage.setItem("role", "admin");
+    });
     return (
         <Router>
             <Switch>
