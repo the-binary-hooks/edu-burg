@@ -21,6 +21,7 @@ import Course from "./components/TeacherDashboard/Course/Course";
 
 // StyleSheet
 import "./App.css";
+import AddCourse from "./components/Home/AddCourse/AddCourse";
 
 const App = () => {
     return (
@@ -55,6 +56,9 @@ const App = () => {
                 </Route>
                 <Route path="/course/:id">
                     <Course />
+                </Route>
+                <Route path="/addCourse">
+                    <AddCourse />
                 </Route>
                 <Route path="/">
                     <Home />
