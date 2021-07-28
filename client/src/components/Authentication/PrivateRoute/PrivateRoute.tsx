@@ -1,6 +1,6 @@
 import { Redirect, Route } from "react-router-dom";
 // Children prop type -- typeScript
-import { ReactNode } from "react-router/node_modules/@types/react";
+import { ReactNode } from "react";
 
 // Props interface -- typescript
 interface IProps {
