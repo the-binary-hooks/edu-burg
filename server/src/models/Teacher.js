@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const UserSchema = new mongoose.Schema({
-    username: {
+const TeacherSchema = new mongoose.Schema({
+    teacherName: {
         type: String,
         // required: [true, "Please provide a username."],
     },
@@ -14,10 +14,12 @@ const UserSchema = new mongoose.Schema({
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             "Please provide a valid email.",
         ],
+        required: [true, "Email is required."],
     },
     password: {
         type: String,
         select: false,
+        required: [true, "Password is required."],
     },
     phone: {
         type: Number,
@@ -25,12 +27,11 @@ const UserSchema = new mongoose.Schema({
             /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
             "Please provide a valid phone number.",
         ],
+        required: [true, "Password is required."],
     },
-    resetPasswordToken: String,
-    resetPasswordExpire: Date,
 });
 
-UserSchema.pre("save", async function (next) {
+TeacherSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next();
     }
@@ -40,27 +41,11 @@ UserSchema.pre("save", async function (next) {
     next();
 });
 
-UserSchema.methods.matchPasswords = async function (password) {
-    return await bcrypt.compare(password, this.password);
-};
-
-UserSchema.methods.getSignedToken = function () {
+TeacherSchema.methods.getSignedToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRE,
     });
 };
 
-UserSchema.methods.getResetPasswordToken = function () {
-    const resetToken = crypto.randomBytes(20).toString("hex");
-
-    this.resetPasswordToken = crypto
-        .createHash("sha256")
-        .update(resetToken)
-        .digest("hex");
-
-    this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
-    return resetToken;
-};
-
-const User = mongoose.model("User", UserSchema);
-export default User;
+const Teacher = mongoose.model("Teacher", TeacherSchema);
+export default Teacher;

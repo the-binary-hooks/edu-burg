@@ -1,42 +1,42 @@
-import User from "../models/User.js";
+import Teacher from "../models/Teacher.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
-export const register = async (req, res, next) => {
-    const { username, email, password, phone } = req.body;
-    let user;
+export const addATeacher = async (req, res, next) => {
+    const { teacherName, email, password, phone } = req.body;
+    let teacher;
     if (email) {
-        user = await User.findOne({ email });
-        if (user) {
-            sendToken(user, 200, res);
+        teacher = await Teacher.findOne({ email });
+        if (teacher) {
+            sendToken(teacher, 200, res);
         }
     } else if (phone) {
-        user = await User.findOne({ phone });
-        if (user) sendToken(user, 200, res);
+        teacher = await Teacher.findOne({ phone });
+        if (teacher) sendToken(teacher, 200, res);
     }
-    if (!user) {
+    if (!teacher) {
         try {
             if (!email) {
-                const user = await User.create({
-                    username,
+                const teacher = await Teacher.create({
+                    teacherName,
                     phone,
                 });
-                sendToken(user, 200, res);
+                sendToken(teacher, 200, res);
             } else if (!phone) {
-                const user = await User.create({
-                    username,
+                const teacher = await Teacher.create({
+                    teacherName,
                     email,
                     password,
                 });
-                sendToken(user, 200, res);
+                sendToken(teacher, 200, res);
             } else {
-                const user = await User.create({
-                    username,
+                const teacher = await Teacher.create({
+                    teacherName,
                     email,
                     password,
                     phone,
                 });
 
-                sendToken(user, 200, res);
+                sendToken(teacher, 200, res);
             }
         } catch (err) {
             next(err);
@@ -57,16 +57,16 @@ export const login = async (req, res, next) => {
     }
 
     try {
-        let user;
+        let teacher;
         if (email && password) {
-            user = await User.findOne({ email }).select("+password");
+            teacher = await Teacher.findOne({ email }).select("+password");
 
-            if (user) sendToken(user, 200, res);
+            if (teacher) sendToken(teacher, 200, res);
         } else {
-            user = await User.findOne({ phone });
-            if (user) sendToken(user, 200, res);
+            teacher = await Teacher.findOne({ phone });
+            if (teacher) sendToken(teacher, 200, res);
         }
-        if (!user) {
+        if (!teacher) {
             return next(new ErrorResponse("Invalid Credentials", 401));
         }
     } catch (err) {
@@ -77,8 +77,8 @@ export const login = async (req, res, next) => {
     }
 };
 
-const sendToken = (user, statusCode, res) => {
-    const token = user.getSignedToken();
+const sendToken = (teacher, statusCode, res) => {
+    const token = teacher.getSignedToken();
     res.status(statusCode).json({ success: true, token });
 };
 

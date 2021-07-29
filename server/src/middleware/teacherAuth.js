@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import Teacher from "../models/Teacher.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
 export const protect = async (req, res, next) => {
@@ -21,13 +21,13 @@ export const protect = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        const user = await User.findById(decoded.id);
+        const teacher = await Teacher.findById(decoded.id);
 
-        if (!user) {
-            return next(new ErrorResponse("No user found with this id", 404));
+        if (!teacher) {
+            return next(new ErrorResponse("No teacher found with this id", 404));
         }
 
-        req.user = user;
+        req.teacher = teacher;
 
         next();
     } catch (error) {
