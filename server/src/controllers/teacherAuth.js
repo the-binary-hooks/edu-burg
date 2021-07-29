@@ -13,30 +13,19 @@ export const addATeacher = async (req, res, next) => {
 };
 
 export const login = async (req, res, next) => {
-    const { email, password, phone } = req.body;
+    const { id, password } = req.body;
 
-    if (!phone && (!email || !password)) {
+    if (!id || !password) {
         return next(
-            new ErrorResponse(
-                "Please provide an email and password or phone number.",
-                400
-            )
+            new ErrorResponse("Please provide the id and password", 400)
         );
     }
 
     try {
         let teacher;
-        if (email && password) {
-            teacher = await Teacher.findOne({ email }).select("+password");
-
-            if (teacher) sendToken(teacher, 200, res);
-        } else {
-            teacher = await Teacher.findOne({ phone });
-            if (teacher) sendToken(teacher, 200, res);
-        }
-        if (!teacher) {
-            return next(new ErrorResponse("Invalid Credentials", 401));
-        }
+        teacher = await Teacher.findOne({ id }).select("+password");
+        if (teacher) sendToken(teacher, 200, res);
+        return next(new ErrorResponse("Invalid Credentials", 401));
     } catch (err) {
         res.status(500).json({
             success: false,
@@ -51,15 +40,3 @@ const sendToken = (teacher, statusCode, res) => {
 };
 
 export default [];
-
-// {
-//     "id": "5600",
-//     "teacherName": "John Doe",
-//     "email": "johndoe@gmail.com",
-//     "password": "John1987",
-//     "phone": "99988888899",
-//     "bio": "Senior Professor of Physics in the University of Bangladesh",
-//     "department": "Physics",
-//     "gender": "male",
-//     "picture": "https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
-// }
