@@ -15,17 +15,20 @@ dotenv.config();
 // Connect DB
 const connectDB = async () => {
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.uabc2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`, {
-            auth: { authSource: "admin" },
-            user: "binaryHook10",
-            pass: "LfVQfkn0TGmdZbwx",
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            useUnifiedTopology: true,
-            useFindAndModify: true,
-        });
+        await mongoose.connect(
+            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.uabc2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+            {
+                auth: { authSource: "admin" },
+                user: process.env.DB_USER,
+                pass: process.env.DB_PASS,
+                useNewUrlParser: true,
+                useCreateIndex: true,
+                useUnifiedTopology: true,
+                useFindAndModify: true,
+            }
+        );
     } catch (err) {
-        console.log(err);
+        next(err);
     }
 
     console.log("MongoDB connected");
@@ -41,6 +44,8 @@ app.use(express.json());
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+
+app.use("/api/teacher", teacherRouter)
 
 app.use("/api/private", privateRouter);
 

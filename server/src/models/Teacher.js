@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import Course from "./Course.js";
 import Post from "./Post.js";
 import Chat from "./Chat.js";
-import Department from "./Department.js";
 
 const TeacherSchema = new mongoose.Schema({
     id: {
