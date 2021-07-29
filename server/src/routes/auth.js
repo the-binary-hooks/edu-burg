@@ -1,6 +1,5 @@
 import express from "express";
 import { login } from "../controllers/teacherAuth.js";
-import { addATeacher } from "../controllers/teacherAuth.js";
 
 let router = express.Router();
 

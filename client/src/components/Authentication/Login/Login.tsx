@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Form data interface
 interface IFormData {
-    email: string;
+    id: string;
     password: string;
 }
 
@@ -44,7 +44,7 @@ const Login = () => {
     // Handle submit
     const onSubmit = async (data: IFormData) => {
         // Send request to get JWT token
-        fetch("", {
+        fetch("http://localhost:5000/api/teacher/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -66,6 +66,7 @@ const Login = () => {
                 }
             });
     };
+
     return (
         <div className="brand-text login-page">
             <Container className="login-container">
@@ -76,17 +77,17 @@ const Login = () => {
                 {err && <span className="error">{err}</span>}
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group>
-                        <Form.Label>Email</Form.Label>
+                        <Form.Label>Your Registration ID</Form.Label>
                         <Form.Control
-                            type="email"
-                            placeholder="e.g. johndoe@gmail.com"
-                            {...register("email", {
+                            type="text"
+                            placeholder="0000"
+                            {...register("id", {
                                 required: true,
                                 pattern:
                                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             })}
                         />
-                        {errors.email && (
+                        {errors.id && (
                             <span className="error">
                                 This field is required
                             </span>
