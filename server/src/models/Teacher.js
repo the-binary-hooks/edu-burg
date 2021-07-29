@@ -1,12 +1,20 @@
-import crypto from "crypto";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Course from "./Course.js";
+import Post from "./Post.js";
+import Chat from "./Chat.js";
+import Department from "./Department.js";
 
 const TeacherSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: [true, "Id is required"],
+        unique: true,
+    },
     teacherName: {
         type: String,
-        // required: [true, "Please provide a username."],
+        required: [true, "Please provide the teacher name"],
     },
     email: {
         type: String,
@@ -14,12 +22,13 @@ const TeacherSchema = new mongoose.Schema({
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             "Please provide a valid email.",
         ],
-        required: [true, "Email is required."],
+        unique: true,
+        required: [true, "Email is required"],
     },
     password: {
         type: String,
         select: false,
-        required: [true, "Password is required."],
+        required: [true, "Password is required"],
     },
     phone: {
         type: Number,
@@ -27,7 +36,43 @@ const TeacherSchema = new mongoose.Schema({
             /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g,
             "Please provide a valid phone number.",
         ],
-        required: [true, "Password is required."],
+        unique: true,
+        required: [true, "Phone is required"],
+    },
+    bio: {
+        type: String,
+    },
+    courses: {
+        type: { links: [Course] },
+        default: [],
+    },
+    followers: {
+        type: { links: [] },
+        default: [],
+    },
+    following: {
+        type: { links: [] },
+        default: [],
+    },
+    posts: {
+        type: { links: [Post] },
+        default: [],
+    },
+    chats: {
+        type: { links: [Chat] },
+        default: [],
+    },
+    department: {
+        type: String,
+        required: [true, "Department is required"],
+    },
+    gender: {
+        type: String,
+        enum: ["female", "male"],
+    },
+    picture: {
+        type: String,
+        required: [true, "Picture is required"],
     },
 });
 

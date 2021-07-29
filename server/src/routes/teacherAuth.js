@@ -3,6 +3,6 @@ import { addATeacher } from "../controllers/teacherAuth.js";
 
 let router = express.Router();
 
-router.route("/").post(addATeacher);
+router.route("/add").post(addATeacher);
 
 export default router;

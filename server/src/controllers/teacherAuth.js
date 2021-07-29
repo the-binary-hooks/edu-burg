@@ -2,46 +2,14 @@ import Teacher from "../models/Teacher.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
 export const addATeacher = async (req, res, next) => {
-    const { teacherName, email, password, phone } = req.body;
-    let teacher;
-    if (email) {
-        teacher = await Teacher.findOne({ email });
-        if (teacher) {
+    const teacher = await new Teacher(req.body);
+    teacher.save((err) => {
+        if (err) {
+            next(err);
+        } else {
             sendToken(teacher, 200, res);
         }
-    } else if (phone) {
-        teacher = await Teacher.findOne({ phone });
-        if (teacher) sendToken(teacher, 200, res);
-    }
-    if (!teacher) {
-        try {
-            if (!email) {
-                const teacher = await Teacher.create({
-                    teacherName,
-                    phone,
-                });
-                sendToken(teacher, 200, res);
-            } else if (!phone) {
-                const teacher = await Teacher.create({
-                    teacherName,
-                    email,
-                    password,
-                });
-                sendToken(teacher, 200, res);
-            } else {
-                const teacher = await Teacher.create({
-                    teacherName,
-                    email,
-                    password,
-                    phone,
-                });
-
-                sendToken(teacher, 200, res);
-            }
-        } catch (err) {
-            next(err);
-        }
-    }
+    });
 };
 
 export const login = async (req, res, next) => {
@@ -83,3 +51,15 @@ const sendToken = (teacher, statusCode, res) => {
 };
 
 export default [];
+
+// {
+//     "id": "5600",
+//     "teacherName": "John Doe",
+//     "email": "johndoe@gmail.com",
+//     "password": "John1987",
+//     "phone": "99988888899",
+//     "bio": "Senior Professor of Physics in the University of Bangladesh",
+//     "department": "Physics",
+//     "gender": "male",
+//     "picture": "https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
+// }
