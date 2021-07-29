@@ -41,10 +41,11 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
+    console.log(errors);
     // Handle submit
     const onSubmit = async (data: IFormData) => {
         // Send request to get JWT token
-        fetch("http://localhost:5000/api/teacher/add", {
+        fetch("http://localhost:5000/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -61,6 +62,7 @@ const Login = () => {
                 } else {
                     // Save token in the local storage
                     localStorage.setItem("authToken", data.token);
+                    localStorage.setItem("role", data.role);
                     // Redirect user in the requested route
                     history.replace(from);
                 }
@@ -79,12 +81,10 @@ const Login = () => {
                     <Form.Group>
                         <Form.Label>Your Registration ID</Form.Label>
                         <Form.Control
-                            type="text"
+                            type="number"
                             placeholder="0000"
                             {...register("id", {
                                 required: true,
-                                pattern:
-                                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                             })}
                         />
                         {errors.id && (

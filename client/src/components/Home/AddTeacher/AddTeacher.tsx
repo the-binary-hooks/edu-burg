@@ -194,6 +194,7 @@ const AddTeacher = () => {
                                     </label>
                                 </div>
                             </div>
+                            <p>{error}</p>
                             <div className="form-group mb-3">
                                 <input
                                     type="file"

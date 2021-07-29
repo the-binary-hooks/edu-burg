@@ -32,7 +32,7 @@ import MakeAdmin from "./components/Home/MakeAdmin/MakeAdmin";
 
 const App = () => {
     useEffect(() => {
-        sessionStorage.setItem("role", "admin");
+        localStorage.setItem("role", "admin");
     });
     return (
         <Router>
@@ -87,6 +87,9 @@ const App = () => {
                 </Route>
                 <Route path="/makeAdmin">
                     <MakeAdmin />
+                </Route>
+                <Route path="/addCourse">
+                    <AddCourse />
                 </Route>
                 <Route path="/">
                     <Home />

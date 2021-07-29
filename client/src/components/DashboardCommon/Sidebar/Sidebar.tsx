@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = () => {
-    const role = sessionStorage.getItem("role");
+    const role = localStorage.getItem("role");
     const dashboardLinks =
         role === "student"
             ? [
