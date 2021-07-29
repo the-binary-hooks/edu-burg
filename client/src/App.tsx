@@ -26,6 +26,9 @@ import Chatting from "./components/DashboardCommon/Chatting/Chatting";
 import AllChats from "./components/DashboardCommon/AllChats/AllChats";
 import Followers from "./components/DashboardCommon/Followers/Followers";
 import { useEffect } from "react";
+import AddTeacher from "./components/Home/AddTeacher/AddTeacher";
+import Admission from "./components/Home/Admission/Admission";
+import MakeAdmin from "./components/Home/MakeAdmin/MakeAdmin";
 
 const App = () => {
     useEffect(() => {
@@ -75,6 +78,15 @@ const App = () => {
                 </Route>
                 <Route path="/addCourse">
                     <AddCourse />
+                </Route>
+                <Route path="/addTeacher">
+                    <AddTeacher />
+                </Route>
+                <Route path="/admission">
+                    <Admission />
+                </Route>
+                <Route path="/makeAdmin">
+                    <MakeAdmin />
                 </Route>
                 <Route path="/">
                     <Home />

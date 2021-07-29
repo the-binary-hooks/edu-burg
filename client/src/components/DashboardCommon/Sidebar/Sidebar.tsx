@@ -15,7 +15,6 @@ const Sidebar = () => {
                   "You Posts",
                   "Chatting",
                   "Payment history",
-
                   "News Feed",
                   "Submit Assignments",
               ]
