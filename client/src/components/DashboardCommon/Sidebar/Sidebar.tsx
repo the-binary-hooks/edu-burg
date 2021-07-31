@@ -12,8 +12,8 @@ const Sidebar = () => {
                   "Semester Result",
                   "Followers",
                   "Courses",
-                  "You Posts",
-                  "Chatting",
+                  "Your Posts",
+                  "Chats",
                   "Payment history",
                   "News Feed",
                   "Submit Assignments",
@@ -25,7 +25,7 @@ const Sidebar = () => {
                   "Followers",
                   "Courses",
                   "Your Posts",
-                  "Chatting",
+                  "Chats",
                   "Publish Result",
                   "News Feed",
               ]
@@ -38,8 +38,8 @@ const Sidebar = () => {
                   "News Feed",
                   "Make Admin",
                   "Student Reviews",
-                  "Add A Post",
-                  "Chatting",
+                  "Your Posts",
+                  "Chats",
               ];
 
     return (
@@ -60,7 +60,10 @@ const Sidebar = () => {
                     </li>
                     {dashboardLinks.map((link, index) => (
                         <li key={index}>
-                            <Link to="/dashboard" className="text-white">
+                            <Link
+                                to={`/${link.toLowerCase().replace(/ /g, "-")}`}
+                                className="text-white"
+                            >
                                 <span>{link}</span>
                             </Link>
                         </li>

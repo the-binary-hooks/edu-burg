@@ -2,7 +2,7 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
-const CoursesCreated = () => {
+const CoursesAssigned = () => {
     const history = useHistory();
     return (
         <Container fluid>
@@ -43,4 +43,4 @@ const CoursesCreated = () => {
     );
 };
 
-export default CoursesCreated;
+export default CoursesAssigned;

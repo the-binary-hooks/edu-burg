@@ -1,99 +1,93 @@
 // React router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// Components
-import Home from "./components/Home/Home/Home";
-import AddCourse from "./components/Home/AddCourse/AddCourse";
-
-// Common Dashboard Components
-import Sidebar from "./components/DashboardCommon/Sidebar/Sidebar";
-import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
-
 // Authentication components
 import Login from "./components/Authentication/Login/Login";
 import PrivateRoute from "./components/Authentication/PrivateRoute/PrivateRoute";
-import Register from "./components/Authentication/Register/Register";
+
+// Common Dashboard Components
+import Home from "./components/Home/Home/Home";
+import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
+import Chatting from "./components/DashboardCommon/Chatting/Chatting";
+import AllChats from "./components/DashboardCommon/AllChats/AllChats";
+import Followers from "./components/DashboardCommon/Followers/Followers";
+
+// Admin Dashboard Components
+import AddCourse from "./components/Home/AddCourse/AddCourse";
+import AddTeacher from "./components/Home/AddTeacher/AddTeacher";
+import Admission from "./components/Home/Admission/Admission";
+import MakeAdmin from "./components/Home/MakeAdmin/MakeAdmin";
+import StudentReview from "./components/Home/StudentReview/StudentReview";
 
 // Teacher Dashboard Components
-import CoursesCreated from "./components/TeacherDashboard/CoursesCreated/CoursesCreated";
+import CoursesAssigned from "./components/TeacherDashboard/CoursesAssigned/CoursesAssigned";
 import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
 import TeacherProfile from "./components/TeacherDashboard/TeacherProfile/TeacherProfile";
 import Course from "./components/TeacherDashboard/Course/Course";
 
 // StyleSheet
 import "./App.css";
-import Chatting from "./components/DashboardCommon/Chatting/Chatting";
-import AllChats from "./components/DashboardCommon/AllChats/AllChats";
-import Followers from "./components/DashboardCommon/Followers/Followers";
-import { useEffect } from "react";
-import AddTeacher from "./components/Home/AddTeacher/AddTeacher";
-import Admission from "./components/Home/Admission/Admission";
-import MakeAdmin from "./components/Home/MakeAdmin/MakeAdmin";
 
 const App = () => {
-    useEffect(() => {
-        localStorage.setItem("role", "admin");
-    });
     return (
         <Router>
             <Switch>
-                <PrivateRoute path="/dashboard">
-                    <h1>Dashboard Home</h1>
+                <PrivateRoute exact path="/">
+                    <Home />
                 </PrivateRoute>
                 {/* Authentication */}
                 <Route path="/login">
                     <Login />
                 </Route>
-                <Route path="/register">
-                    <Register />
-                </Route>
-                {/* Dashboard Common */}
-                <Route path="/newsFeed">
-                    <NewsFeed />
-                </Route>
-                <Route path="/sidebar">
-                    <Sidebar />
-                </Route>
-                {/* Teacher Dashboard */}
-                <Route path="/coursesCreated">
-                    <CoursesCreated />
-                </Route>
-                <Route path="/publishResult">
-                    <PublishResult />
-                </Route>
-                <Route path="/teacherProfile">
-                    <TeacherProfile />
-                </Route>
-                <Route path="/chat/:id">
-                    <Chatting />
-                </Route>
-                <Route path="/allChats">
-                    <AllChats />
-                </Route>
-                <Route path="/followers-following">
-                    <Followers />
-                </Route>
-                <Route path="/course/:id">
-                    <Course />
-                </Route>
-                <Route path="/addCourse">
-                    <AddCourse />
-                </Route>
-                <Route path="/addTeacher">
-                    <AddTeacher />
-                </Route>
-                <Route path="/admission">
-                    <Admission />
-                </Route>
-                <Route path="/makeAdmin">
-                    <MakeAdmin />
-                </Route>
-                <Route path="/addCourse">
-                    <AddCourse />
-                </Route>
-                <Route path="/">
+                <PrivateRoute path="/home">
                     <Home />
-                </Route>
+                </PrivateRoute>
+                {/* Dashboard Common */}
+                <PrivateRoute path="/news-feed">
+                    <NewsFeed />
+                </PrivateRoute>
+                {/* Dashboard Common */}
+                <PrivateRoute path="/chat/:id">
+                    <Chatting />
+                </PrivateRoute>
+                <PrivateRoute path="/chats">
+                    <AllChats />
+                </PrivateRoute>
+                <PrivateRoute path="/followers">
+                    <Followers />
+                </PrivateRoute>
+                <PrivateRoute path="/course/:id">
+                    <Course />
+                </PrivateRoute>
+                {/* Teacher Dashboard */}
+                <PrivateRoute path="/courses">
+                    <CoursesAssigned />
+                </PrivateRoute>
+                <PrivateRoute path="/publish-result">
+                    <PublishResult />
+                </PrivateRoute>
+                <PrivateRoute path="/profile">
+                    <TeacherProfile />
+                </PrivateRoute>
+                {/* Admin Dashboard */}
+                <PrivateRoute path="/add-a-Course">
+                    <AddCourse />
+                </PrivateRoute>
+                <PrivateRoute path="/add-a-teacher">
+                    <AddTeacher />
+                </PrivateRoute>
+                <PrivateRoute path="/admission">
+                    <Admission />
+                </PrivateRoute>
+                <PrivateRoute path="/make-admin">
+                    <MakeAdmin />
+                </PrivateRoute>
+                <PrivateRoute path="/your-posts">
+                    <NewsFeed />
+                </PrivateRoute>
+                <PrivateRoute path="/student-reviews">
+                    <StudentReview />
+                </PrivateRoute>
             </Switch>
         </Router>
     );

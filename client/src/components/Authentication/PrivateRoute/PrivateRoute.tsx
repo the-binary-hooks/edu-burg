@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 interface IProps {
     children?: ReactNode;
     path: string;
+    exact?: boolean;
 }
 
 const PrivateRoute = ({ children, ...rest }: IProps) => {
