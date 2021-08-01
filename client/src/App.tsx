@@ -40,6 +40,9 @@ const App = () => {
                 <Route path="/login">
                     <Login />
                 </Route>
+                <Route path="/register">
+                    <Register />
+                </Route>
                 {/* Dashboard Common */}
                 <PrivateRoute path="/news-feed">
                     <NewsFeed />
