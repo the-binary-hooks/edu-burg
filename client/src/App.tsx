@@ -27,6 +27,7 @@ import Course from "./components/TeacherDashboard/Course/Course";
 
 // StyleSheet
 import "./App.css";
+import Register from "./components/Authentication/Register/Register";
 
 const App = () => {
     return (

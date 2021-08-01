@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
+import Chart from "../Chart/Chart";
 import HomeInfoBlock from "../HomeInfoBlock/HomeInfoBlock";
 import "./Home.css";
 
@@ -15,6 +16,7 @@ const Home = () => {
                         <HomeInfoBlock />
                         <HomeInfoBlock />
                     </div>
+                    <Chart/>
                 </div>
             </div>
         </Container>
