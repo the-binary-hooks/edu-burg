@@ -55,7 +55,7 @@ export const addAStudent = async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            sendResponse("student", student, 200, res);
+            sendResponse(student.studentName, "student", student, 200, res);
         }
     });
 };

@@ -23,7 +23,7 @@ export const addAAdmin = async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            sendResponse("admin", admin, 200, res);
+            sendResponse(admin.adminName, "admin", admin, 200, res);
         }
     });
 };

@@ -42,6 +42,11 @@ const StudentSchema = new mongoose.Schema({
     bio: {
         type: String,
     },
+    status: {
+        type: String,
+        default: "active",
+        enum: ["active", "inactive"],
+    },
     semester: {
         type: String,
         required: [true, "Semester is required"],

@@ -33,7 +33,7 @@ export const addATeacher = async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            sendResponse("teacher", teacher, 200, res);
+            sendResponse(teacher.teacherName, "teacher", teacher, 200, res);
         }
     });
 };
