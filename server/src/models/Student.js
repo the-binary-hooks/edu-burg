@@ -5,16 +5,16 @@ import jwt from "jsonwebtoken";
 // MongoDB data type ObjectId
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-// Schema for Teachers
-const TeacherSchema = new mongoose.Schema({
+// Schema for Students
+const StudentSchema = new mongoose.Schema({
     id: {
         type: String,
         required: [true, "Id is required"],
         unique: true,
     },
-    teacherName: {
+    studentName: {
         type: String,
-        required: [true, "Please provide the teacher name"],
+        required: [true, "Please provide the student name"],
     },
     email: {
         type: String,
@@ -42,9 +42,72 @@ const TeacherSchema = new mongoose.Schema({
     bio: {
         type: String,
     },
-    rating: {
+    semester: {
+        type: String,
+        required: [true, "Semester is required"],
+    },
+    session: {
+        type: String,
+        required: [true, "Session is required"],
+    },
+    program: {
+        type: String,
+        required: [true, "Program is required"],
+    },
+    FathersName: {
+        type: String,
+        required: [true, "Father's name is required"],
+    },
+    MothersName: {
+        type: String,
+        required: [true, "Mother's name is required"],
+    },
+    FathersMobileNumber: {
         type: Number,
-        default: 0.0,
+        required: [true, "Father's mobile number is required"],
+    },
+    dateOfBirth: {
+        type: Date,
+        // required: [true, "Date of birth is required"],
+        default: Date.now(),
+    },
+    permanentAddress: {
+        type: String,
+        required: [true, "Permanent address is required"],
+    },
+    presentAddress: {
+        type: String,
+        required: [true, "Present address is required"],
+    },
+    semesterResults: [
+        {
+            studentId: { type: ObjectId },
+            cgpa: { type: Number },
+            resultImage: { type: String },
+            comment: { type: String },
+        },
+    ],
+    payments: [{ type: String }],
+    assignments: [{ type: String }],
+    sscOLevelDakhilInfo: {
+        type: {
+            board: String,
+            rollNo: String,
+            registrationNo: String,
+            passingYear: String,
+            GPA: Number,
+        },
+        required: [true, "SSC/O-Level/Dakhil information is required"],
+    },
+    hscALevelAlimDiplomaInfo: {
+        type: {
+            board: String,
+            rollNo: String,
+            registrationNo: String,
+            passingYear: String,
+            GPA: Number,
+        },
+        required: [true, "HSC/A-Level/Alim/Diploma information is required"],
     },
     courses: [
         {
@@ -55,13 +118,13 @@ const TeacherSchema = new mongoose.Schema({
     followers: [
         {
             type: ObjectId,
-            ref: "Teacher" | "Student" | "Admin",
+            ref: "Student" | "Teacher" | "Admin",
         },
     ],
     following: [
         {
             type: ObjectId,
-            ref: "Teacher" | "Student" | "Admin",
+            ref: "Student" | "Teacher" | "Admin",
         },
     ],
     posts: [
@@ -98,7 +161,7 @@ const TeacherSchema = new mongoose.Schema({
 });
 
 // Save password
-TeacherSchema.pre("save", async function (next) {
+StudentSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next();
     }
@@ -109,12 +172,12 @@ TeacherSchema.pre("save", async function (next) {
 });
 
 // Get Token
-TeacherSchema.methods.getSignedToken = function () {
+StudentSchema.methods.getSignedToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRE,
     });
 };
 
-// Teacher Model
-const Teacher = mongoose.model("Teacher", TeacherSchema);
-export default Teacher;
+// Student Model
+const Student = mongoose.model("Student", StudentSchema);
+export default Student;

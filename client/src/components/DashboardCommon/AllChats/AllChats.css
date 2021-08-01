@@ -14,3 +14,11 @@
     gap: 5%;
     place-items: center;
 }
+
+@media (max-width: 760px) {
+    .chat-container {
+        width: 100%;
+        margin-left: 2%;
+        margin-bottom: 5%;
+    }
+}

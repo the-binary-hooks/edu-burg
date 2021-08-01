@@ -1,6 +1,7 @@
 import { Col, Container, Row, Table } from "react-bootstrap";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import CourseStudent from "./CourseStudent/CourseStudent";
+import "./Course.css";
 
 const Course = () => {
     return (
@@ -11,7 +12,7 @@ const Course = () => {
                     <img
                         src="https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
                         alt="profilePic"
-                        className="m-5"
+                        className="md:m-5"
                     />
                     <h2 className="brand-text">Web Development</h2>
                     <p>
@@ -47,7 +48,9 @@ const Course = () => {
                     <Table responsive="sm">
                         <thead>
                             <tr className="brand-text">
-                                <th>Student Name</th>
+                                <th>
+                                    Student Name
+                                </th>
                                 <th>Semester</th>
                                 <th>CGPA</th>
                                 <th>Assignments Done</th>

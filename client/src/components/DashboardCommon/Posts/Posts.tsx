@@ -5,13 +5,13 @@ const Posts = () => {
     return (
         <Card className="card">
             <Row>
-                <Col md={2}>
+                <div className="col-4 col-md-2">
                     <div className="profile-img">John</div>
-                </Col>
-                <Col md={9}>
+                </div>
+                <div className="col-8 col-sm-6">
                     <h4>John Doe</h4>
                     <small>18 July 2021</small>
-                </Col>
+                </div>
             </Row>
             <Card.Body>
                 <Card.Text>
@@ -24,13 +24,13 @@ const Posts = () => {
             <Form.Control type="text" placeholder="Write A Comment" />
             <Card className="comment">
                 <Row>
-                    <Col md={2}>
+                    <div className="col-4 col-md-2">
                         <div className="profile-img">John</div>
-                    </Col>
-                    <Col md={9}>
+                    </div>
+                    <div className="col-8 col-sm-6">
                         <h4>John Doe</h4>
                         <small>18 July 2021</small>
-                    </Col>
+                    </div>
                 </Row>
                 <Card.Body>
                     <Card.Text>

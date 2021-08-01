@@ -5,13 +5,14 @@ const AddAPost = () => {
     return (
         <div className="container">
             <Row>
-                <Col md={1}>
+                <div className="col-3">
                     <div className="profile-img">John</div>
-                </Col>
-                <Col md={9}>
+                </div>
+                <div className="col-9">
                     <Form.Control type="text" placeholder="Write Something" />
                     <Button className="post-button brand-button">Post</Button>
-                </Col>
+                    <br />
+                </div>
             </Row>
         </div>
     );

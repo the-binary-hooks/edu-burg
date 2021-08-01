@@ -1,8 +1,9 @@
 import express from "express";
-import { login } from "../controllers/teacherAuth.js";
+import { login } from "../controllers/auth.js";
 
 let router = express.Router();
 
+// Path => http://localhost:5000/api/auth/login
 router.route("/login").post(login);
 
 export default router;

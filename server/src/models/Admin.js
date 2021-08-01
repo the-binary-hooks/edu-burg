@@ -5,16 +5,16 @@ import jwt from "jsonwebtoken";
 // MongoDB data type ObjectId
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-// Schema for Teachers
-const TeacherSchema = new mongoose.Schema({
+// Schema for Administrator users
+const AdminSchema = new mongoose.Schema({
     id: {
         type: String,
         required: [true, "Id is required"],
         unique: true,
     },
-    teacherName: {
+    adminName: {
         type: String,
-        required: [true, "Please provide the teacher name"],
+        required: [true, "Please provide the admin name"],
     },
     email: {
         type: String,
@@ -42,26 +42,16 @@ const TeacherSchema = new mongoose.Schema({
     bio: {
         type: String,
     },
-    rating: {
-        type: Number,
-        default: 0.0,
-    },
-    courses: [
-        {
-            type: ObjectId,
-            ref: "Course",
-        },
-    ],
     followers: [
         {
             type: ObjectId,
-            ref: "Teacher" | "Student" | "Admin",
+            ref: "Student" | "Teacher" | "Admin",
         },
     ],
     following: [
         {
             type: ObjectId,
-            ref: "Teacher" | "Student" | "Admin",
+            ref: "Student" | "Teacher" | "Admin",
         },
     ],
     posts: [
@@ -82,11 +72,6 @@ const TeacherSchema = new mongoose.Schema({
             ref: "Chat",
         },
     ],
-    department: {
-        type: ObjectId,
-        ref: "Department",
-        default: "CSE",
-    },
     gender: {
         type: String,
         enum: ["female", "male"],
@@ -98,7 +83,7 @@ const TeacherSchema = new mongoose.Schema({
 });
 
 // Save password
-TeacherSchema.pre("save", async function (next) {
+AdminSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next();
     }
@@ -109,12 +94,12 @@ TeacherSchema.pre("save", async function (next) {
 });
 
 // Get Token
-TeacherSchema.methods.getSignedToken = function () {
+AdminSchema.methods.getSignedToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRE,
     });
 };
 
-// Teacher Model
-const Teacher = mongoose.model("Teacher", TeacherSchema);
-export default Teacher;
+// Admin Model
+const Admin = mongoose.model("Admin", AdminSchema);
+export default Admin;

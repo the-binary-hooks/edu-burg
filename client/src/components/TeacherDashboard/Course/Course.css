@@ -1,0 +1,5 @@
+@media (max-width: 760px) {
+    .dropdown-select {
+        width: 230% !important;
+    }
+}

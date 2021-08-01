@@ -177,7 +177,7 @@ const Register = () => {
                     </Button>
                     <div className="accountDiv">
                         <p>
-                            Already have an account?{" "}
+                            Already have an account?
                             <Link className="react-link brand-text" to="/login">
                                 Login
                             </Link>

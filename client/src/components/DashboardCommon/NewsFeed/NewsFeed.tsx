@@ -10,10 +10,13 @@ const NewsFeed = () => {
             <Row>
                 <Sidebar />
                 <Col md={3} className="column">
+                    <br />
                     <SearchPosts />
+                    <br />
                 </Col>
                 <Col md={7}>
                     <AddAPost />
+                    <br />
                     <Posts />
                 </Col>
             </Row>

@@ -13,6 +13,7 @@ const Followers = () => {
                     <Container>
                         <div>
                             <div className="text-center mb-5">
+                                <br />
                                 <h3 className="brand-text">Followers</h3>
                             </div>
                             <div className="follower-container">
@@ -32,7 +33,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -55,7 +59,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -78,7 +85,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -101,7 +111,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -109,8 +122,9 @@ const Followers = () => {
                             </div>
                             <Button className="brand-button">Show More</Button>
                         </div>
+                        <br />
                         <div>
-                            <div className="text-center mb-5">
+                            <div className="text-center mb-3">
                                 <h3 className="brand-text">Following</h3>
                             </div>
                             <div className="follower-container">
@@ -123,14 +137,15 @@ const Followers = () => {
                                         />
                                         <div>
                                             <h5>Rui Pattricio</h5>
-                                            <small>
-                                                Senior Software Engineer
-                                            </small>
+                                            <small>Senior Software Engin</small>
                                         </div>
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -153,7 +168,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -176,7 +194,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>
@@ -199,7 +220,10 @@ const Followers = () => {
                                     </Col>
                                     <Col md={2}>
                                         <Button className="brand-button follow-button">
-                                            <FontAwesomeIcon icon={faPlus} />{" "}
+                                            <FontAwesomeIcon
+                                                icon={faPlus}
+                                                className="mx-2"
+                                            />
                                             Follow
                                         </Button>
                                     </Col>

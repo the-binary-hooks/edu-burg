@@ -1,7 +1,8 @@
 import Teacher from "../models/Teacher.js";
-import ErrorResponse from "../utils/errorResponse.js";
+import { sendResponse } from "../utils/sendResponse.js";
 
 export const addATeacher = async (req, res, next) => {
+    // Read data from request body
     const {
         id,
         teacherName,
@@ -12,6 +13,7 @@ export const addATeacher = async (req, res, next) => {
         gender,
         picture,
     } = req.body;
+
     const teacherInfo = {
         id,
         teacherName,
@@ -22,42 +24,16 @@ export const addATeacher = async (req, res, next) => {
         gender,
         picture,
     };
-    console.log(teacherInfo)
+
+    // Create an instance of the Model Teacher
     const teacher = await new Teacher(teacherInfo);
+
+    // Save the teacher to the teacher collection
     teacher.save((err) => {
         if (err) {
             next(err);
         } else {
-            sendToken("teacher", teacher, 200, res);
+            sendResponse("teacher", teacher, 200, res);
         }
     });
 };
-
-export const login = async (req, res, next) => {
-    const { id, password } = req.body;
-
-    if (!id || !password) {
-        return next(
-            new ErrorResponse("Please provide the id and password", 400)
-        );
-    }
-
-    try {
-        let teacher;
-        teacher = await Teacher.findOne({ id }).select("+password");
-        if (teacher) sendToken("teacher", teacher, 200, res);
-        return next(new ErrorResponse("Invalid Credentials", 401));
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            error: err.message,
-        });
-    }
-};
-
-const sendToken = (role, teacher, statusCode, res) => {
-    const token = teacher.getSignedToken();
-    res.status(statusCode).json({ success: true, token, role });
-};
-
-export default [];

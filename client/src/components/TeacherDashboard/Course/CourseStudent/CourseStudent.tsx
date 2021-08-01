@@ -15,7 +15,7 @@ const CourseStudent = () => {
                 <Button className="brand-button">Assignments</Button>
             </td>
             <td>
-                <Form.Select aria-label="Present">
+                <Form.Select aria-label="Present" className="dropdown-select">
                     <option value="1">Present</option>
                     <option value="2">Absent</option>
                 </Form.Select>

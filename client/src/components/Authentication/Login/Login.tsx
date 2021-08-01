@@ -63,6 +63,7 @@ const Login = () => {
                     // Save token in the local storage
                     localStorage.setItem("authToken", data.token);
                     localStorage.setItem("role", data.role);
+                    localStorage.setItem("name", data.name);
                     // Redirect user in the requested route
                     history.replace(from);
                 }
@@ -117,7 +118,7 @@ const Login = () => {
                     </Button>
                     <div className="accountDiv">
                         <p>
-                            Don't have an account?{" "}
+                            Don't have an account?
                             <Link
                                 className="react-link brand-text"
                                 to="/register"

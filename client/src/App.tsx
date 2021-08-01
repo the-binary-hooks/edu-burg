@@ -39,14 +39,13 @@ const App = () => {
                 <Route path="/login">
                     <Login />
                 </Route>
-                <PrivateRoute path="/home">
-                    <Home />
-                </PrivateRoute>
                 {/* Dashboard Common */}
                 <PrivateRoute path="/news-feed">
                     <NewsFeed />
                 </PrivateRoute>
-                {/* Dashboard Common */}
+                <PrivateRoute path="/home">
+                    <Home />
+                </PrivateRoute>
                 <PrivateRoute path="/chat/:id">
                     <Chatting />
                 </PrivateRoute>
@@ -73,9 +72,9 @@ const App = () => {
                 <PrivateRoute path="/add-a-Course">
                     <AddCourse />
                 </PrivateRoute>
-                <PrivateRoute path="/add-a-teacher">
+                <Route path="/add-a-teacher">
                     <AddTeacher />
-                </PrivateRoute>
+                </Route>
                 <PrivateRoute path="/admission">
                     <Admission />
                 </PrivateRoute>

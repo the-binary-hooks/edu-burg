@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-.sidebar {
+.sidebar,
+.menu {
     background: #111827;
+}
+
+.sidebar {
     /* Stick to top */
     position: -webkit-sticky; /* Safari */
     position: sticky;
@@ -10,13 +14,29 @@
     height: 100vh;
 }
 
-.sidebar li {
+.barIcon {
+    margin-left: 75px;
+}
+
+.barIcon:hover {
+    cursor: pointer;
+    transform: scale(120%);
+}
+
+.menu-link-list {
+    padding: 0;
+}
+
+.sidebar li,
+.menu li {
     margin-bottom: 2em;
     text-align: center;
     padding: 10px 5px;
+    list-style-type: none;
 }
 
-.sidebar li img {
+.sidebar li img,
+.menu li img {
     width: 102px;
     height: 102px;
     display: block;
@@ -24,12 +44,15 @@
     border-radius: 50%;
 }
 
-.sidebar li:hover {
+.sidebar li:hover,
+.menu li:hover {
     background: #253048;
 }
 
-.sidebar li a {
-    text-decoration: none;
+.sidebar li a,
+.menu li a {
+    color: white;
+    text-decoration: none !important;
     font-size: 20px;
     font-family: "Roboto", sans-serif;
 }

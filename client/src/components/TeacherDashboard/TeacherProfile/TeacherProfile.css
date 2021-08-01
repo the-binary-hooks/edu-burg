@@ -2,3 +2,9 @@
     margin-top: -30px;
     text-align: left;
 }
+
+@media (max-width: 760px) {
+    .rating-button {
+        margin-top: 0px;
+    }
+}

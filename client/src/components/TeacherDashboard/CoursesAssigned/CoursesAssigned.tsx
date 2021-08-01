@@ -9,6 +9,7 @@ const CoursesAssigned = () => {
             <Row>
                 <Sidebar />
                 <Col md={10}>
+                    <br />
                     <h1 className="brand-text">Your Courses</h1>
                     <br />
                     <Row>

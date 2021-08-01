@@ -17,10 +17,12 @@ const TeacherProfile = () => {
                             className="profile-pic"
                         />
                         <h4 className="brand-text">John Doe</h4>
+                        <h6>Department: CSE</h6>
                         <p>
                             Senior Professor of Physics in the University of
                             Bangladesh
                         </p>
+                        <small>john.doe@gmail.com</small>
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>
