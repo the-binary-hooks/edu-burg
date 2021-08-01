@@ -27,7 +27,6 @@ import Course from "./components/TeacherDashboard/Course/Course";
 
 // StyleSheet
 import "./App.css";
-import Register from "./components/Authentication/Register/Register";
 
 const App = () => {
     return (
@@ -39,9 +38,6 @@ const App = () => {
                 {/* Authentication */}
                 <Route path="/login">
                     <Login />
-                </Route>
-                <Route path="/register">
-                    <Register />
                 </Route>
                 {/* Dashboard Common */}
                 <PrivateRoute path="/news-feed">

@@ -149,17 +149,6 @@ const Login = () => {
                     >
                         Login
                     </Button>
-                    <div className="accountDiv">
-                        <p>
-                            Don't have an account?
-                            <Link
-                                className="react-link brand-text"
-                                to="/register"
-                            >
-                                Sign Up
-                            </Link>
-                        </p>
-                    </div>
                 </Form>
             </Container>
         </div>
