@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import "./Sidebar.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCross } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
     // Initial value of if the dropdown is open
@@ -55,33 +55,36 @@ const Sidebar = () => {
     // Role
     const role = localStorage.getItem("role");
 
-    // // Fetch data
-    // useEffect(() => {
-    //     const fetchPrivateData = async () => {
-    //         // Config to send to the server
-    //         const config = {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         };
-    //         try {
-    //             const { data } = await axios.get(
-    //                 "http://localhost:5000/api/private",
-    //                 config
-    //             );
-    //             setPrivateData(data.data);
-    //         } catch (err) {
-    //             // Error means the token in the local storage is not valid
-    //             localStorage.removeItem("authToken");
-    //             alert("You are not authorized please login");
-    //         }
-    //     };
-    //     if (localStorage.getItem("authToken")) fetchPrivateData();
-    //     else {
-    //         alert("Please Login to get Private data");
-    //     }
-    // }, [token]);
+    // Fetch data
+    useEffect(() => {
+        const fetchPrivateData = async () => {
+            // Config to send to the server
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            try {
+                const { data } = await axios.get(
+                    "http://localhost:5000/api/private",
+                    config
+                );
+                setPrivateData(data.data);
+            } catch (err) {
+                // Error means the token in the local storage is not valid
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("role");
+                history.replace("/login");
+            }
+        };
+        if (localStorage.getItem("authToken")) fetchPrivateData();
+        else {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("role");
+            history.replace("/login");
+        }
+    }, [token, history]);
 
     // Logout
     const handleLogout = () => {
@@ -128,7 +131,6 @@ const Sidebar = () => {
                   "Submit Assignments",
               ];
 
-    console.log(isOpen);
     return (
         <Col md={2} className="column">
             <div
@@ -161,14 +163,14 @@ const Sidebar = () => {
                     <div className="col-4">
                         {isOpen ? (
                             <FontAwesomeIcon
-                                icon={faBars}
+                                icon={faTimes}
                                 color="white"
                                 className="barIcon"
                                 size="2x"
                             />
                         ) : (
                             <FontAwesomeIcon
-                                icon={faCross}
+                                icon={faBars}
                                 color="white"
                                 className="barIcon"
                                 size="2x"
@@ -176,7 +178,7 @@ const Sidebar = () => {
                         )}
                     </div>
                 </Row>
-                {isOpen && (
+                {isOpen && privateData && (
                     <ul className="menu-link-list">
                         {dashboardLinks.map((link, index) => (
                             <li key={index}>
@@ -204,39 +206,45 @@ const Sidebar = () => {
                         : "sidebar d-flex flex-column justify-content-between py-5"
                 }
             >
-                <ul className="list-unstyled">
-                    <li>
-                        <Link to="/" className="text-white">
-                            <img
-                                src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
-                                alt="admin"
-                            />
-                            <br />
-                            <span>
-                                <strong>{localStorage.getItem("name")}</strong>
-                            </span>
-                        </Link>
-                    </li>
-                    {dashboardLinks.map((link, index) => (
-                        <li key={index}>
-                            <Link
-                                to={`/${link.toLowerCase().replace(/ /g, "-")}`}
-                                className="text-white"
-                            >
-                                <span>{link}</span>
+                {privateData && (
+                    <ul className="list-unstyled">
+                        <li>
+                            <Link to="/" className="text-white">
+                                <img
+                                    src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
+                                    alt="admin"
+                                />
+                                <br />
+                                <span>
+                                    <strong>
+                                        {localStorage.getItem("name")}
+                                    </strong>
+                                </span>
                             </Link>
                         </li>
-                    ))}
-                    <li>
-                        <Link
-                            to="/login"
-                            className="text-white"
-                            onClick={handleLogout}
-                        >
-                            <span>Sign Out</span>
-                        </Link>
-                    </li>
-                </ul>
+                        {dashboardLinks.map((link, index) => (
+                            <li key={index}>
+                                <Link
+                                    to={`/${link
+                                        .toLowerCase()
+                                        .replace(/ /g, "-")}`}
+                                    className="text-white"
+                                >
+                                    <span>{link}</span>
+                                </Link>
+                            </li>
+                        ))}
+                        <li>
+                            <Link
+                                to="/login"
+                                className="text-white"
+                                onClick={handleLogout}
+                            >
+                                <span>Sign Out</span>
+                            </Link>
+                        </li>
+                    </ul>
+                )}
             </div>
         </Col>
     );

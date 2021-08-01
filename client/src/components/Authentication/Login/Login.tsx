@@ -25,7 +25,7 @@ const Login = () => {
     // Routing vars
     let history: any = useHistory();
     let location: any = useLocation();
-    let { from } = location.state || { from: { pathname: "/dashboard" } };
+    let { from } = location.state || { from: { pathname: "/home" } };
 
     // If the user is already logged in, doesn't make sense to show him/her the login page again
     useEffect(() => {
@@ -41,7 +41,6 @@ const Login = () => {
         formState: { errors },
     } = useForm();
 
-    console.log(errors);
     // Handle submit
     const onSubmit = async (data: IFormData) => {
         // Send request to get JWT token

@@ -46,6 +46,11 @@ const TeacherSchema = new mongoose.Schema({
         type: Number,
         default: 0.0,
     },
+    status: {
+        type: String,
+        default: "active",
+        enum: ["active", "inactive"],
+    },
     courses: [
         {
             type: ObjectId,

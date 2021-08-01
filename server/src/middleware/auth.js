@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 import Teacher from "../models/Teacher.js";
+import Student from "../models/Student.js";
+import Admin from "../models/Admin.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
 export const protect = async (req, res, next) => {
@@ -28,7 +30,7 @@ export const protect = async (req, res, next) => {
                 const admin = await Admin.findById(decoded.id);
                 if (!admin) {
                     return next(
-                        new ErrorResponse("No teacher found with this id", 404)
+                        new ErrorResponse("No user found with this id", 404)
                     );
                 } else {
                     req.user = admin;
