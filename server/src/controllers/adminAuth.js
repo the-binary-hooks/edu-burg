@@ -15,6 +15,14 @@ export const addAAdmin = async (req, res, next) => {
         picture,
     };
 
+    const addInfo = {
+        adminName,
+        role: "admin",
+        email,
+        gender,
+        picture,
+    };
+
     // Create an instance of the Model Admin
     const admin = await new Admin(adminInfo);
 
@@ -23,7 +31,7 @@ export const addAAdmin = async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            sendResponse(admin.adminName, "admin", admin, 200, res);
+            sendResponse(addInfo, admin, 200, res);
         }
     });
 };

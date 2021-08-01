@@ -47,6 +47,20 @@ export const addAStudent = async (req, res, next) => {
         picture,
     };
 
+    const addInfo = {
+        studentName,
+        role: "student",
+        email,
+        department,
+        semester,
+        session,
+        program,
+        FathersName,
+        MothersName,
+        gender,
+        picture,
+    };
+
     // Create an instance of the Model Student
     const student = await new Student(studentInfo);
 
@@ -55,7 +69,7 @@ export const addAStudent = async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            sendResponse(student.studentName, "student", student, 200, res);
+            sendResponse(addInfo, student, 200, res);
         }
     });
 };
