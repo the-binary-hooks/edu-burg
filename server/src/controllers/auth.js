@@ -19,27 +19,73 @@ export const login = async (req, res, next) => {
         let student;
         let teacher;
         let admin;
-        let user;
-        let userRole;
+        let addInfo;
 
         // Find teacher with the id and password sent
         //  from the teacher collection
         teacher = await Teacher.findOne({ id }).select("+password");
-        if (teacher)
-            sendResponse(teacher.teacherName, "teacher", teacher, 200, res);
-        else {
+
+        if (teacher) {
+            const { teacherName, email, department, gender, picture } = teacher;
+            addInfo = {
+                teacherName,
+                role: "teacher",
+                status,
+                email,
+                department,
+                gender,
+                picture,
+            };
+            sendResponse(addInfo, teacher, 200, res);
+        } else {
             // If no teacher is found, find student with the id and password sent
             // from the student collection
             student = await Student.findOne({ id }).select("+password");
-            if (student)
-                sendResponse(student.studentName, "student", student, 200, res);
-            else {
+            if (student) {
+                const {
+                    studentName,
+                    email,
+                    department,
+                    semester,
+                    session,
+                    program,
+                    FathersName,
+                    MothersName,
+                    gender,
+                    picture,
+                } = student;
+                addInfo = {
+                    studentName,
+                    role: "student",
+                    status,
+                    email,
+                    department,
+                    semester,
+                    session,
+                    program,
+                    FathersName,
+                    MothersName,
+                    gender,
+                    picture,
+                };
+
+                sendResponse(addInfo, student, 200, res);
+            } else {
                 // If no teacher or student is found, find admin with the id and password sent
                 // from the admin collection
                 admin = await Admin.findOne({ id }).select("+password");
-                if (admin)
-                    sendResponse(admin.adminName, "admin", admin, 200, res);
-                else {
+                if (admin) {
+                    const { adminName, email, gender, picture } = admin;
+                    addInfo = {
+                        adminName,
+                        role: "admin",
+                        email,
+                        gender,
+                        picture,
+                    };
+
+                    sendResponse(addInfo, admin, 200, res);
+                } else {
                     // If no user is found in all the three type of collections,
                     // credentials are invalid
                     return next(new ErrorResponse("Invalid Credentials", 401));

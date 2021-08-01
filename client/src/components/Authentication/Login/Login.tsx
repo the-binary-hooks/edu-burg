@@ -61,8 +61,42 @@ const Login = () => {
                 } else {
                     // Save token in the local storage
                     localStorage.setItem("authToken", data.token);
-                    localStorage.setItem("role", data.role);
-                    localStorage.setItem("name", data.name);
+                    const { role, email, gender, picture } = data.addInfo;
+                    localStorage.setItem("role", role);
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("gender", gender);
+                    localStorage.setItem("picture", picture);
+                    if (role === "student") {
+                        const {
+                            studentName,
+                            status,
+                            department,
+                            semester,
+                            session,
+                            program,
+                            FathersName,
+                            MothersName,
+                        } = data.addInfo;
+                        localStorage.setItem("studentName", studentName);
+                        localStorage.setItem("status", status);
+                        localStorage.setItem("department", department);
+                        localStorage.setItem("semester", semester);
+                        localStorage.setItem("session", session);
+                        localStorage.setItem("program", program);
+                        localStorage.setItem("FathersName", FathersName);
+                        localStorage.setItem("MothersName", MothersName);
+                    }
+                    if (role === "teacher") {
+                        const { teacherName, department, status } =
+                            data.addInfo;
+                        localStorage.setItem("teacherName", teacherName);
+                        localStorage.setItem("status", status);
+                        localStorage.setItem("department", department);
+                    }
+                    if (role === "admin") {
+                        const { adminName } = data.addInfo;
+                        localStorage.setItem("adminName", adminName);
+                    }
                     // Redirect user in the requested route
                     history.replace(from);
                 }

@@ -28,12 +28,21 @@ export const addATeacher = async (req, res, next) => {
     // Create an instance of the Model Teacher
     const teacher = await new Teacher(teacherInfo);
 
+    const addInfo = {
+        teacherName,
+        role: "teacher",
+        email,
+        department,
+        gender,
+        picture,
+    };
+
     // Save the teacher to the teacher collection
     teacher.save((err) => {
         if (err) {
             next(err);
         } else {
-            sendResponse(teacher.teacherName, "teacher", teacher, 200, res);
+            sendResponse(addInfo, teacher, 200, res);
         }
     });
 };
