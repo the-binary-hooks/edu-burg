@@ -55,36 +55,36 @@ const Sidebar = () => {
     // Role
     const role = localStorage.getItem("role");
 
-    // Fetch data
-    useEffect(() => {
-        const fetchPrivateData = async () => {
-            // Config to send to the server
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            };
-            try {
-                const { data } = await axios.get(
-                    "http://localhost:5000/api/private",
-                    config
-                );
-                setPrivateData(data.data);
-            } catch (err) {
-                // Error means the token in the local storage is not valid
-                localStorage.removeItem("authToken");
-                localStorage.removeItem("role");
-                history.replace("/login");
-            }
-        };
-        if (localStorage.getItem("authToken")) fetchPrivateData();
-        else {
-            localStorage.removeItem("authToken");
-            localStorage.removeItem("role");
-            history.replace("/login");
-        }
-    }, [token, history]);
+    // // Fetch data
+    // useEffect(() => {
+    //     const fetchPrivateData = async () => {
+    //         // Config to send to the server
+    //         const config = {
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         };
+    //         try {
+    //             const { data } = await axios.get(
+    //                 "http://localhost:5000/api/private",
+    //                 config
+    //             );
+    //             setPrivateData(data.data);
+    //         } catch (err) {
+    //             // Error means the token in the local storage is not valid
+    //             localStorage.removeItem("authToken");
+    //             localStorage.removeItem("role");
+    //             history.replace("/login");
+    //         }
+    //     };
+    //     if (localStorage.getItem("authToken")) fetchPrivateData();
+    //     else {
+    //         localStorage.removeItem("authToken");
+    //         localStorage.removeItem("role");
+    //         history.replace("/login");
+    //     }
+    // }, [token, history]);
 
     // Logout
     const handleLogout = () => {
@@ -153,7 +153,17 @@ const Sidebar = () => {
                                     />
                                     <span>
                                         <strong>
-                                            {localStorage.getItem("name")}
+                                            {role === "admin"
+                                                ? localStorage.getItem(
+                                                      "adminName"
+                                                  )
+                                                : role === "teacher"
+                                                ? localStorage.getItem(
+                                                      "teacherName"
+                                                  )
+                                                : localStorage.getItem(
+                                                      "studentName"
+                                                  )}
                                         </strong>
                                     </span>
                                 </Link>
@@ -178,7 +188,7 @@ const Sidebar = () => {
                         )}
                     </div>
                 </Row>
-                {isOpen && privateData && (
+                {isOpen && (
                     <ul className="menu-link-list">
                         {dashboardLinks.map((link, index) => (
                             <li key={index}>
@@ -206,45 +216,47 @@ const Sidebar = () => {
                         : "sidebar d-flex flex-column justify-content-between py-5"
                 }
             >
-                {privateData && (
-                    <ul className="list-unstyled">
-                        <li>
-                            <Link to="/" className="text-white">
-                                <img
-                                    src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
-                                    alt="admin"
-                                />
-                                <br />
-                                <span>
-                                    <strong>
-                                        {localStorage.getItem("name")}
-                                    </strong>
-                                </span>
-                            </Link>
-                        </li>
-                        {dashboardLinks.map((link, index) => (
-                            <li key={index}>
-                                <Link
-                                    to={`/${link
-                                        .toLowerCase()
-                                        .replace(/ /g, "-")}`}
-                                    className="text-white"
-                                >
-                                    <span>{link}</span>
-                                </Link>
-                            </li>
-                        ))}
-                        <li>
+                {/* {privateData && ( */}
+                <ul className="list-unstyled">
+                    <li>
+                        <Link to="/" className="text-white">
+                            <img
+                                src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
+                                alt="admin"
+                            />
+                            <br />
+                            <span>
+                                <strong>
+                                    {role === "admin"
+                                        ? localStorage.getItem("adminName")
+                                        : role === "teacher"
+                                        ? localStorage.getItem("teacherName")
+                                        : localStorage.getItem("studentName")}
+                                </strong>
+                            </span>
+                        </Link>
+                    </li>
+                    {dashboardLinks.map((link, index) => (
+                        <li key={index}>
                             <Link
-                                to="/login"
+                                to={`/${link.toLowerCase().replace(/ /g, "-")}`}
                                 className="text-white"
-                                onClick={handleLogout}
                             >
-                                <span>Sign Out</span>
+                                <span>{link}</span>
                             </Link>
                         </li>
-                    </ul>
-                )}
+                    ))}
+                    <li>
+                        <Link
+                            to="/login"
+                            className="text-white"
+                            onClick={handleLogout}
+                        >
+                            <span>Sign Out</span>
+                        </Link>
+                    </li>
+                </ul>
+                {/* )} */}
             </div>
         </Col>
     );

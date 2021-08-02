@@ -75,12 +75,12 @@ const App = () => {
                 <Route path="/add-a-teacher">
                     <AddTeacher />
                 </Route>
-                <PrivateRoute path="/admission">
+                <Route path="/admission">
                     <Admission />
-                </PrivateRoute>
-                <PrivateRoute path="/make-admin">
+                </Route>
+                <Route path="/make-admin">
                     <MakeAdmin />
-                </PrivateRoute>
+                </Route>
                 <PrivateRoute path="/your-posts">
                     <NewsFeed />
                 </PrivateRoute>

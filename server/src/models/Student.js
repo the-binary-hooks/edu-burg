@@ -49,7 +49,7 @@ const StudentSchema = new mongoose.Schema({
     },
     semester: {
         type: String,
-        required: [true, "Semester is required"],
+        default: "1st",
     },
     session: {
         type: String,
@@ -77,11 +77,19 @@ const StudentSchema = new mongoose.Schema({
         default: Date.now(),
     },
     permanentAddress: {
-        type: String,
+        type: {
+            permanentDistrict: String,
+            permanentHouse: String,
+            permanentZipCode: String,
+        },
         required: [true, "Permanent address is required"],
     },
     presentAddress: {
-        type: String,
+        type: {
+            presentDistrict: String,
+            presentHouse: String,
+            presentZipCode: String,
+        },
         required: [true, "Present address is required"],
     },
     semesterResults: [
@@ -100,7 +108,7 @@ const StudentSchema = new mongoose.Schema({
             rollNo: String,
             registrationNo: String,
             passingYear: String,
-            GPA: Number,
+            GPA: String,
         },
         required: [true, "SSC/O-Level/Dakhil information is required"],
     },
@@ -110,7 +118,7 @@ const StudentSchema = new mongoose.Schema({
             rollNo: String,
             registrationNo: String,
             passingYear: String,
-            GPA: Number,
+            GPA: String,
         },
         required: [true, "HSC/A-Level/Alim/Diploma information is required"],
     },
@@ -158,6 +166,7 @@ const StudentSchema = new mongoose.Schema({
     gender: {
         type: String,
         enum: ["female", "male"],
+        required: [true, "Picture is required"],
     },
     picture: {
         type: String,
