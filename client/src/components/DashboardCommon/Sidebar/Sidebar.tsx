@@ -55,41 +55,41 @@ const Sidebar = () => {
     // Role
     const role = localStorage.getItem("role");
 
-    // // Fetch data
-    // useEffect(() => {
-    //     const fetchPrivateData = async () => {
-    //         // Config to send to the server
-    //         const config = {
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //                 Authorization: `Bearer ${token}`,
-    //             },
-    //         };
-    //         try {
-    //             const { data } = await axios.get(
-    //                 "http://localhost:5000/api/private",
-    //                 config
-    //             );
-    //             setPrivateData(data.data);
-    //         } catch (err) {
-    //             // Error means the token in the local storage is not valid
-    //             localStorage.removeItem("authToken");
-    //             localStorage.removeItem("role");
-    //             history.replace("/login");
-    //         }
-    //     };
-    //     if (localStorage.getItem("authToken")) fetchPrivateData();
-    //     else {
-    //         localStorage.removeItem("authToken");
-    //         localStorage.removeItem("role");
-    //         history.replace("/login");
-    //     }
-    // }, [token, history]);
+    // Fetch data
+    useEffect(() => {
+        const fetchPrivateData = async () => {
+            // Config to send to the server
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            try {
+                const { data } = await axios.get(
+                    "http://localhost:5000/api/private",
+                    config
+                );
+                setPrivateData(data.data);
+            } catch (err) {
+                // Error means the token in the local storage is not valid
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("role");
+                history.replace("/login");
+            }
+        };
+        if (localStorage.getItem("authToken")) fetchPrivateData();
+        else {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("role");
+            localStorage.clear();
+            history.replace("/login");
+        }
+    }, [token, history]);
 
     // Logout
     const handleLogout = () => {
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("role");
+        localStorage.clear();
         history.replace("/login");
     };
 
@@ -97,6 +97,7 @@ const Sidebar = () => {
         role === "admin"
             ? [
                   "Home",
+                  "Profile",
                   "Add a teacher",
                   "Admission",
                   "Add A Course",

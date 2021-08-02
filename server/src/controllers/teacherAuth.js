@@ -35,6 +35,7 @@ export const addATeacher = async (req, res, next) => {
         department,
         gender,
         picture,
+        bio,
     };
 
     // Save the teacher to the teacher collection

@@ -6,18 +6,18 @@ import Login from "./components/Authentication/Login/Login";
 import PrivateRoute from "./components/Authentication/PrivateRoute/PrivateRoute";
 
 // Common Dashboard Components
-import Home from "./components/Home/Home/Home";
+import Home from "./components/DashboardCommon/Home/Home/Home";
 import NewsFeed from "./components/DashboardCommon/NewsFeed/NewsFeed";
 import Chatting from "./components/DashboardCommon/Chatting/Chatting";
 import AllChats from "./components/DashboardCommon/AllChats/AllChats";
 import Followers from "./components/DashboardCommon/Followers/Followers";
 
 // Admin Dashboard Components
-import AddCourse from "./components/Home/AddCourse/AddCourse";
-import AddTeacher from "./components/Home/AddTeacher/AddTeacher";
-import Admission from "./components/Home/Admission/Admission";
-import MakeAdmin from "./components/Home/MakeAdmin/MakeAdmin";
-import StudentReview from "./components/Home/StudentReview/StudentReview";
+import AddCourse from "./components/AdminDashboard/AddCourse/AddCourse";
+import AddTeacher from "./components/AdminDashboard/AddTeacher/AddTeacher";
+import Admission from "./components/AdminDashboard/Admission/Admission";
+import MakeAdmin from "./components/AdminDashboard/MakeAdmin/MakeAdmin";
+import StudentReview from "./components/AdminDashboard/StudentReview/StudentReview";
 
 // Teacher Dashboard Components
 import CoursesAssigned from "./components/TeacherDashboard/CoursesAssigned/CoursesAssigned";

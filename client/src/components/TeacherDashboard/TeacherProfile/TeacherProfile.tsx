@@ -5,6 +5,20 @@ import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import "./TeacherProfile.css";
 
 const TeacherProfile = () => {
+    const handleStatusChange = (e: any, email: String | null) => {
+        const newStatus = { status: e.target.value };
+
+        fetch(`https://localhost:5000/teacher/updateStatus/${email}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify(newStatus),
+        })
+            .then((res) => res.json())
+            .then((result) => {});
+    };
+
     return (
         <Container fluid>
             <Row>
@@ -18,6 +32,23 @@ const TeacherProfile = () => {
                             className="profile-pic"
                         />
                         <h4 className="brand-text">John Doe</h4>
+                        {localStorage.getItem("role") === "admin" ? (
+                            <Form.Select
+                                aria-label="Active"
+                                onChange={(event) =>
+                                    handleStatusChange(
+                                        event,
+                                        localStorage.getItem("email")
+                                    )
+                                }
+                            >
+                                <option value="1">Active</option>
+                                <option value="2">Inactive</option>
+                            </Form.Select>
+                        ) : (
+                            <h6>Active</h6>
+                        )}
+                        <br />
                         <h6>Department: CSE</h6>
                         <p>
                             Senior Professor of Physics in the University of

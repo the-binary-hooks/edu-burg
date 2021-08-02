@@ -26,7 +26,15 @@ export const login = async (req, res, next) => {
         teacher = await Teacher.findOne({ id }).select("+password");
 
         if (teacher) {
-            const { teacherName, email, department, gender, picture } = teacher;
+            const {
+                teacherName,
+                email,
+                department,
+                gender,
+                picture,
+                status,
+                bio,
+            } = teacher;
             addInfo = {
                 teacherName,
                 role: "teacher",
@@ -35,6 +43,7 @@ export const login = async (req, res, next) => {
                 department,
                 gender,
                 picture,
+                bio,
             };
             sendResponse(addInfo, teacher, 200, res);
         } else {
@@ -52,7 +61,9 @@ export const login = async (req, res, next) => {
                     FathersName,
                     MothersName,
                     gender,
+                    status,
                     picture,
+                    bio,
                 } = student;
                 addInfo = {
                     studentName,
@@ -67,6 +78,7 @@ export const login = async (req, res, next) => {
                     MothersName,
                     gender,
                     picture,
+                    bio,
                 };
 
                 sendResponse(addInfo, student, 200, res);
@@ -75,13 +87,14 @@ export const login = async (req, res, next) => {
                 // from the admin collection
                 admin = await Admin.findOne({ id }).select("+password");
                 if (admin) {
-                    const { adminName, email, gender, picture } = admin;
+                    const { adminName, email, gender, picture, bio } = admin;
                     addInfo = {
                         adminName,
                         role: "admin",
                         email,
                         gender,
                         picture,
+                        bio,
                     };
 
                     sendResponse(addInfo, admin, 200, res);
