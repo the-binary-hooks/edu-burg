@@ -75,6 +75,7 @@ const AdminSchema = new mongoose.Schema({
     gender: {
         type: String,
         enum: ["female", "male"],
+        required: [true, "Picture is required"]
     },
     picture: {
         type: String,
