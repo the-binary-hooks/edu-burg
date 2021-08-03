@@ -73,3 +73,26 @@ export const addAStudent = async (req, res, next) => {
         }
     });
 };
+
+export const getStudents = async (req, res, next) => {
+    try {
+        const students = await Student.find({});
+        res.send(students);
+    } catch (err) {
+        next(new ErrorResponse(err.message));
+    }
+};
+
+export const updateStatus = async (req, res, next) => {
+    const status = req.body.status;
+    const id = req.params.id;
+    try {
+        const response = await Student.updateOne({ id }, { status });
+        res.status(200).send({
+            success: "true",
+            nModified: response.nModified,
+        });
+    } catch (err) {
+        next(new ErrorResponse(err.message));
+    }
+};

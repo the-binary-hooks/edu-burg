@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import "./Profile.css";
 
 // Params interface --- typeScript
@@ -30,23 +30,9 @@ interface userInterface {
 }
 
 const TeacherProfile = () => {
+    const [err, setErr] = useState("");
     const { id } = useParams<IUserPublicProfileRouteParams>();
     const [user, setUser] = useState<userInterface>({} as userInterface);
-    const handleStatusChange = (e: any, email: String | null) => {
-        const newStatus = { status: e.target.value };
-
-        fetch(`https://localhost:5000/teacher/updateStatus/${email}`, {
-            method: "PATCH",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-            body: JSON.stringify(newStatus),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            });
-    };
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/auth/getById/${id}`)
@@ -57,6 +43,30 @@ const TeacherProfile = () => {
                 }
             });
     }, [id]);
+
+    const handleStatusChange = (e: any, id: String | null) => {
+        const newStatus =
+            user.status === "active"
+                ? e.target.value === "1"
+                    ? "active"
+                    : "inactive"
+                : e.target.value === "1"
+                ? "inactive"
+                : "active";
+        fetch(`http://localhost:5000/api/student/updateStatus/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify({ status: newStatus }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success === false) {
+                    setErr(data.message);
+                }
+            });
+    };
 
     return (
         <Container fluid>
@@ -71,21 +81,23 @@ const TeacherProfile = () => {
                             className="profile-pic"
                         />
                         <h4 className="brand-text">{user.studentName}</h4>
+                        <p>{err}</p>
                         {localStorage.getItem("role") === "admin" ? (
                             <Form.Select
                                 aria-label="Active"
                                 onChange={(event) =>
-                                    handleStatusChange(
-                                        event,
-                                        localStorage.getItem("email")
-                                    )
+                                    handleStatusChange(event, user.id)
                                 }
                             >
-                                <option value="1">{user.status}</option>
-                                <option value="2">
+                                <option value="1">
                                     {user.status === "active"
-                                        ? "inactive"
-                                        : "active"}
+                                        ? "Active"
+                                        : "Inactive"}
+                                </option>
+                                <option value="2">
+                                    {user.status === "inactive"
+                                        ? "Active"
+                                        : "Inactive"}
                                 </option>
                             </Form.Select>
                         ) : (
