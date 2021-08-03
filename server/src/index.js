@@ -12,9 +12,9 @@ import cors from "cors";
 // Routers
 import authRouter from "./routes/auth.js";
 import privateRouter from "./routes/private.js";
-import teacherRouter from "./routes/teacherAuth.js";
-import studentRouter from "./routes/studentAuth.js";
-import adminRouter from "./routes/adminAuth.js";
+import teacherRouter from "./routes/teacherRoutes.js";
+import studentRouter from "./routes/studentRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
 
 // Mongoose -- framework of MongoDB
 import mongoose from "mongoose";
