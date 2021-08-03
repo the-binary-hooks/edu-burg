@@ -11,7 +11,7 @@ const Home = () => {
                 <Sidebar />
                 <div className="col-md-10">
                     <h2 className="home-heading text-center">Total</h2>
-                    <div className="info-block-container d-flex justify-content-around">
+                    <div className="info-block-container d-flex justify-content-around flex-wrap">
                         <HomeInfoBlock />
                         <HomeInfoBlock />
                         <HomeInfoBlock />

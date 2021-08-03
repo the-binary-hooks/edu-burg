@@ -70,11 +70,11 @@ const AddTeacher = () => {
                     className="col-md-10 mt-5 shadow m-auto px-3 py-4"
                     style={{ maxWidth: "900px" }}
                 >
-                    <h2 className="text-center pt-4">Add Teacher</h2>
+                    <h2 className="text-center pt-4 edu-buge-heading-1">Add Teacher</h2>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group mb-3">
-                                <label htmlFor="teacher-id">ID</label>
+                                <label htmlFor="teacher-id" className='edu-burg-input-label'>ID</label>
                                 <input
                                     {...register("id", {
                                         required: true,
@@ -88,7 +88,7 @@ const AddTeacher = () => {
                                 )}
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="teacher-name">Name</label>
+                                <label htmlFor="teacher-name" className="edu-burg-input-label">Name</label>
                                 <input
                                     {...register("teacherName", {
                                         required: true,
@@ -102,7 +102,7 @@ const AddTeacher = () => {
                                 )}
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="teacher-email">Email</label>
+                                <label htmlFor="teacher-email" className="edu-burg-input-label">Email</label>
                                 <input
                                     {...register("email", {
                                         required: true,
@@ -116,7 +116,7 @@ const AddTeacher = () => {
                                 )}
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="teacher-pass">Password</label>
+                                <label htmlFor="teacher-pass" className="edu-burg-input-label">Password</label>
                                 <input
                                     {...register("password", {
                                         required: true,
@@ -130,7 +130,7 @@ const AddTeacher = () => {
                                 )}
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="teacher-phone">Phone</label>
+                                <label htmlFor="teacher-phone" className="edu-burg-input-label">Phone</label>
                                 <input
                                     {...register("phone", {
                                         required: true,
@@ -144,7 +144,7 @@ const AddTeacher = () => {
                                 )}
                             </div>
                             <div className="form-group mb-3">
-                                <p>Department</p>
+                                <p className="edu-burg-input-label">Department</p>
                                 <select
                                     className="form-control"
                                     {...register("department")}
@@ -161,7 +161,7 @@ const AddTeacher = () => {
                                     </option>
                                 </select>
                             </div>
-                            <p className="mb-0">Gender</p>
+                            <p className="mb-0 edu-burg-input-label">Gender</p>
                             <div className="d-flex mb-3">
                                 <div className="form-check">
                                     <input
@@ -172,7 +172,7 @@ const AddTeacher = () => {
                                         {...register("male")}
                                     />
                                     <label
-                                        className="form-check-label"
+                                        className="form-check-label edu-burg-input-label"
                                         htmlFor="male"
                                     >
                                         Male
@@ -187,7 +187,7 @@ const AddTeacher = () => {
                                         {...register("female")}
                                     />
                                     <label
-                                        className="form-check-label"
+                                        className="form-check-label edu-burg-input-label"
                                         htmlFor="female"
                                     >
                                         Female
@@ -200,6 +200,7 @@ const AddTeacher = () => {
                                     type="file"
                                     id="teacher-image"
                                     onChange={handleImageUpload}
+                                    className='edu-burg-file-input'
                                 />
                             </div>
                             <div className="form-group">
