@@ -1,5 +1,5 @@
 import express from "express";
-import { addAStudent, getStudents, updateStatus } from "../controllers/studentAuth.js";
+import { addAStudent, getStudents, updateStatus } from "../controllers/studentControllers.js";
 
 let router = express.Router();
 

@@ -51,7 +51,7 @@ export const addATeacher = async (req, res, next) => {
     });
 };
 
-export const teachers = async (req, res, next) => {
+export const getTeachers = async (req, res, next) => {
     try {
         const teachers = await Teacher.find({});
         res.send(teachers);
