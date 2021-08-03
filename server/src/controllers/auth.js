@@ -3,7 +3,6 @@ import Student from "../models/Student.js";
 import Admin from "../models/Admin.js";
 import ErrorResponse from "../utils/errorResponse.js";
 import { sendResponse } from "../utils/sendResponse.js";
-import mongoose from "mongoose";
 
 export const login = async (req, res, next) => {
     // Read data from request body

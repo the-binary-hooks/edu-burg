@@ -1,10 +1,32 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import "./Profile.css";
 
+// Params interface --- typeScript
+interface IUserPublicProfileRouteParams {
+    id: string;
+}
+
+interface userInterface {
+    _id: string;
+    id: string;
+    teacherName: string;
+    role: string;
+    email: string;
+    gender: string;
+    picture: string;
+    bio: string | undefined;
+    status: string;
+    department: undefined;
+}
+
 const TeacherProfile = () => {
+    const { id } = useParams<IUserPublicProfileRouteParams>();
+    const [user, setUser] = useState<userInterface>({} as userInterface);
     const handleStatusChange = (e: any, email: String | null) => {
         const newStatus = { status: e.target.value };
 
@@ -16,8 +38,20 @@ const TeacherProfile = () => {
             body: JSON.stringify(newStatus),
         })
             .then((res) => res.json())
-            .then((result) => {});
+            .then((data) => {
+                console.log(data);
+            });
     };
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/auth/getById/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success === true) {
+                    setUser(data.addInfo);
+                }
+            });
+    }, [id]);
 
     return (
         <Container fluid>
@@ -31,7 +65,7 @@ const TeacherProfile = () => {
                             alt="profilePic"
                             className="profile-pic"
                         />
-                        <h4 className="brand-text">John Doe</h4>
+                        <h4 className="brand-text">{user.teacherName}</h4>
                         {localStorage.getItem("role") === "admin" ? (
                             <Form.Select
                                 aria-label="Active"
@@ -42,21 +76,23 @@ const TeacherProfile = () => {
                                     )
                                 }
                             >
-                                <option value="1">Active</option>
-                                <option value="2">Inactive</option>
+                                <option value="1">{user.status}</option>
+                                <option value="2">
+                                    {user.status === "active"
+                                        ? "inactive"
+                                        : "active"}
+                                </option>
                             </Form.Select>
                         ) : (
-                            <h6>Active</h6>
+                            <h6>{user.status}</h6>
                         )}
                         <br />
-                        {localStorage.getItem("role") !== "admin" && (
-                            <h6>Department: CSE</h6>
-                        )}
-                        <p>
-                            Senior Professor of Physics in the University of
-                            Bangladesh
-                        </p>
-                        <small>john.doe@gmail.com</small>
+
+                        <h6>Department: {user.department}</h6>
+                        <p>{user.bio}</p>
+                        <small>{user.email}</small>
+                        <br />
+                        <small>{user.gender}</small>
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>
