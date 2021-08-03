@@ -73,15 +73,12 @@ const Sidebar = () => {
                 setPrivateData(data.data);
             } catch (err) {
                 // Error means the token in the local storage is not valid
-                localStorage.removeItem("authToken");
-                localStorage.removeItem("role");
+                localStorage.clear();
                 history.replace("/login");
             }
         };
         if (localStorage.getItem("authToken")) fetchPrivateData();
         else {
-            localStorage.removeItem("authToken");
-            localStorage.removeItem("role");
             localStorage.clear();
             history.replace("/login");
         }
@@ -172,7 +169,7 @@ const Sidebar = () => {
                         </ul>
                     </div>
                     <div className="col-4">
-                        {isOpen ? (
+                        {isOpen && privateData ? (
                             <FontAwesomeIcon
                                 icon={faTimes}
                                 color="white"
@@ -191,17 +188,29 @@ const Sidebar = () => {
                 </Row>
                 {isOpen && (
                     <ul className="menu-link-list">
-                        {dashboardLinks.map((link, index) => (
-                            <li key={index}>
-                                <Link
-                                    to={`/${link
-                                        .toLowerCase()
-                                        .replace(/ /g, "-")}`}
-                                >
-                                    <span>{link}</span>
-                                </Link>
-                            </li>
-                        ))}
+                        {dashboardLinks.map((link, index) =>
+                            link === "Profile" ? (
+                                <li key={index}>
+                                    <Link
+                                        to={`/profile/${localStorage.getItem(
+                                            "_id"
+                                        )}`}
+                                    >
+                                        <span>{link}</span>
+                                    </Link>
+                                </li>
+                            ) : (
+                                <li key={index}>
+                                    <Link
+                                        to={`/${link
+                                            .toLowerCase()
+                                            .replace(/ /g, "-")}`}
+                                    >
+                                        <span>{link}</span>
+                                    </Link>
+                                </li>
+                            )
+                        )}
                         <li>
                             <Link to="/login" onClick={handleLogout}>
                                 <span>Sign Out</span>
@@ -217,47 +226,64 @@ const Sidebar = () => {
                         : "sidebar d-flex flex-column justify-content-between py-5"
                 }
             >
-                {/* {privateData && ( */}
-                <ul className="list-unstyled">
-                    <li>
-                        <Link to="/" className="text-white">
-                            <img
-                                src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
-                                alt="admin"
-                            />
-                            <br />
-                            <span>
-                                <strong>
-                                    {role === "admin"
-                                        ? localStorage.getItem("adminName")
-                                        : role === "teacher"
-                                        ? localStorage.getItem("teacherName")
-                                        : localStorage.getItem("studentName")}
-                                </strong>
-                            </span>
-                        </Link>
-                    </li>
-                    {dashboardLinks.map((link, index) => (
-                        <li key={index}>
-                            <Link
-                                to={`/${link.toLowerCase().replace(/ /g, "-")}`}
-                                className="text-white"
-                            >
-                                <span>{link}</span>
+                {privateData && (
+                    <ul className="list-unstyled">
+                        <li>
+                            <Link to="/" className="text-white">
+                                <img
+                                    src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
+                                    alt="admin"
+                                />
+                                <br />
+                                <span>
+                                    <strong>
+                                        {role === "admin"
+                                            ? localStorage.getItem("adminName")
+                                            : role === "teacher"
+                                            ? localStorage.getItem(
+                                                  "teacherName"
+                                              )
+                                            : localStorage.getItem(
+                                                  "studentName"
+                                              )}
+                                    </strong>
+                                </span>
                             </Link>
                         </li>
-                    ))}
-                    <li>
-                        <Link
-                            to="/login"
-                            className="text-white"
-                            onClick={handleLogout}
-                        >
-                            <span>Sign Out</span>
-                        </Link>
-                    </li>
-                </ul>
-                {/* )} */}
+                        {dashboardLinks.map((link, index) =>
+                            link === "Profile" ? (
+                                <li key={index}>
+                                    <Link
+                                        to={`/profile/${localStorage.getItem(
+                                            "id"
+                                        )}`}
+                                    >
+                                        <span>{link}</span>
+                                    </Link>
+                                </li>
+                            ) : (
+                                <li key={index}>
+                                    <Link
+                                        to={`/${link
+                                            .toLowerCase()
+                                            .replace(/ /g, "-")}`}
+                                    >
+                                        <span>{link}</span>
+                                    </Link>
+                                </li>
+                            )
+                        )}
+                        <li>
+                            <Link
+                                to="/login"
+                                className="text-white"
+                                onClick={handleLogout}
+                            >
+                                <span>Sign Out</span>
+                            </Link>
+                        </li>
+                    </ul>
+                )}
             </div>
         </Col>
     );

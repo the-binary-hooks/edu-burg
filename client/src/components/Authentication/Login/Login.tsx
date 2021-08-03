@@ -61,12 +61,15 @@ const Login = () => {
                 } else {
                     // Save token in the local storage
                     localStorage.setItem("authToken", data.token);
-                    const { role, email, gender, picture, bio } = data.addInfo;
+                    const { _id, id, role, email, gender, picture, bio } =
+                        data.addInfo;
                     localStorage.setItem("role", role);
                     localStorage.setItem("email", email);
                     localStorage.setItem("gender", gender);
                     localStorage.setItem("picture", picture);
                     localStorage.setItem("bio", bio);
+                    localStorage.setItem("_id", _id);
+                    localStorage.setItem("id", id);
                     if (role === "student") {
                         const {
                             studentName,

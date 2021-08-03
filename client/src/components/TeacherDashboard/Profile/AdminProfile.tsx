@@ -1,10 +1,31 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
-import "./TeacherProfile.css";
+import "./Profile.css";
 
-const TeacherProfile = () => {
+// Params interface --- typeScript
+interface IUserPublicProfileRouteParams {
+    id: string;
+}
+
+interface userInterface {
+    _id: string;
+    id: string;
+    adminName: string;
+    role: string;
+    email: string;
+    gender: string;
+    picture: string;
+    bio: string | undefined;
+}
+
+const AdminProfile = () => {
+    const { id } = useParams<IUserPublicProfileRouteParams>();
+    const [user, setUser] = useState<userInterface>({} as userInterface);
     const handleStatusChange = (e: any, email: String | null) => {
         const newStatus = { status: e.target.value };
 
@@ -16,8 +37,20 @@ const TeacherProfile = () => {
             body: JSON.stringify(newStatus),
         })
             .then((res) => res.json())
-            .then((result) => {});
+            .then((data) => {
+                console.log(data);
+            });
     };
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/auth/getById/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success === true) {
+                    setUser(data.addInfo);
+                }
+            });
+    }, [id]);
 
     return (
         <Container fluid>
@@ -27,34 +60,15 @@ const TeacherProfile = () => {
                     <br />
                     <Container>
                         <img
-                            src="https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
+                            src={user.picture}
                             alt="profilePic"
                             className="profile-pic"
                         />
-                        <h4 className="brand-text">John Doe</h4>
-                        {localStorage.getItem("role") === "admin" ? (
-                            <Form.Select
-                                aria-label="Active"
-                                onChange={(event) =>
-                                    handleStatusChange(
-                                        event,
-                                        localStorage.getItem("email")
-                                    )
-                                }
-                            >
-                                <option value="1">Active</option>
-                                <option value="2">Inactive</option>
-                            </Form.Select>
-                        ) : (
-                            <h6>Active</h6>
-                        )}
+                        <h4 className="brand-text">{user.adminName}</h4>
+                        <p>{user.bio}</p>
+                        <small>{user.email}</small>
                         <br />
-                        <h6>Department: CSE</h6>
-                        <p>
-                            Senior Professor of Physics in the University of
-                            Bangladesh
-                        </p>
-                        <small>john.doe@gmail.com</small>
+                        <small>{user.gender}</small>
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>
@@ -64,7 +78,6 @@ const TeacherProfile = () => {
                         <thead>
                             <tr className="brand-text">
                                 <th>Courses</th>
-                                <th>Students Number</th>
                                 <th>Posts</th>
                                 <th>Followers</th>
                                 <th>Following</th>
@@ -74,7 +87,6 @@ const TeacherProfile = () => {
                         <tbody>
                             <tr>
                                 <td>13</td>
-                                <td>6693</td>
                                 <td>55</td>
                                 <td>583</td>
                                 <td>29</td>
@@ -84,7 +96,7 @@ const TeacherProfile = () => {
                     </Table>
                     <br />
                     <br />
-                    <h6>Rate this Teacher</h6>
+                    <h6>Rate Admin</h6>
                     <Form.Control type="text" placeholder="5.00" />
                     <div className="rating-button">
                         <Button className="brand-button w-25">Submit</Button>
@@ -95,4 +107,4 @@ const TeacherProfile = () => {
     );
 };
 
-export default TeacherProfile;
+export default AdminProfile;
