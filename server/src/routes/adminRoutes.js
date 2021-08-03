@@ -1,5 +1,5 @@
 import express from "express";
-import { addAAdmin } from "../controllers/adminAuth.js";
+import { addAAdmin } from "../controllers/adminControllers.js";
 
 let router = express.Router();
 

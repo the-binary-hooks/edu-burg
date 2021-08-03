@@ -104,6 +104,8 @@ const Sidebar = () => {
                   "Student Reviews",
                   "Your Posts",
                   "Chats",
+                  "Teachers",
+                  "Students",
               ]
             : role === "teacher"
             ? [

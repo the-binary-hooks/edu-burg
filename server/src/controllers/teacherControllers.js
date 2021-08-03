@@ -1,4 +1,5 @@
 import Teacher from "../models/Teacher.js";
+import ErrorResponse from "../utils/errorResponse.js";
 import { sendResponse } from "../utils/sendResponse.js";
 
 export const addATeacher = async (req, res, next) => {
@@ -12,6 +13,7 @@ export const addATeacher = async (req, res, next) => {
         department,
         gender,
         picture,
+        bio,
     } = req.body;
 
     const teacherInfo = {
@@ -23,6 +25,7 @@ export const addATeacher = async (req, res, next) => {
         department,
         gender,
         picture,
+        bio,
     };
 
     // Create an instance of the Model Teacher
@@ -46,4 +49,27 @@ export const addATeacher = async (req, res, next) => {
             sendResponse(addInfo, teacher, 200, res);
         }
     });
+};
+
+export const getTeachers = async (req, res, next) => {
+    try {
+        const teachers = await Teacher.find({});
+        res.send(teachers);
+    } catch (err) {
+        next(new ErrorResponse(err.message));
+    }
+};
+
+export const updateStatus = async (req, res, next) => {
+    const status = req.body.status;
+    const id = req.params.id;
+    try {
+        const response = await Teacher.updateOne({ id }, { status });
+        res.status(200).send({
+            success: "true",
+            nModified: response.nModified,
+        });
+    } catch (err) {
+        next(new ErrorResponse(err.message));
+    }
 };
