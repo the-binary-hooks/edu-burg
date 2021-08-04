@@ -1,4 +1,6 @@
 import Teacher from "../models/Teacher.js";
+import Result from "../models/Result.js";
+import Student from "../models/Student.js";
 import ErrorResponse from "../utils/errorResponse.js";
 import { sendResponse } from "../utils/sendResponse.js";
 
@@ -72,4 +74,47 @@ export const updateStatus = async (req, res, next) => {
     } catch (err) {
         next(new ErrorResponse(err.message));
     }
+};
+
+export const publishResult = async (req, res, next) => {
+    // Read data from request body
+    const { comment, cgpa, studentId, semester, imageURL } = req.body;
+
+    const student = await Student.findOne({ id: studentId });
+
+    const resultInfo = {
+        comment,
+        cgpa,
+        studentId: student._id,
+        semester,
+        imageURL,
+    };
+
+    // Create an instance of the Model Teacher
+    const result = await new Result(resultInfo);
+
+    // Save the result to the result collection
+    result.save((err) => {
+        if (err) {
+            next(new ErrorResponse(err.message));
+        }
+    });
+
+    Student.findByIdAndUpdate(
+        student._id,
+        { $push: { semesterResults: result._id } },
+        { useFindAndModify: false },
+        function (err, docs) {
+            if (err) {
+                next(new ErrorResponse(err.message));
+            } else {
+                res.status(200).send({ success: true, result });
+            }
+        }
+    );
+};
+
+export const getResults = async (req, res, next) => {
+    const results = await Result.find({}).populate("studentId");
+    res.send(results);
 };

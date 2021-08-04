@@ -4,6 +4,14 @@ import { useState } from "react";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import axios from "axios";
 
+// Form data interface -- typescript
+interface IFormData {
+    studentId: string;
+    semester: "1st" | "2nd" | "3rd" | "4th";
+    cgpa: string;
+    comment: string;
+}
+
 const PublishResult = () => {
     const [imageURL, setImageURL] = useState(null);
     const [error, setError] = useState(null);
@@ -12,20 +20,24 @@ const PublishResult = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data: any) => {
-        const { comment, cgpa, studentId } = data;
-        const service = { comment, cgpa, studentId, imageURL };
+    const onSubmit = (data: IFormData) => {
+        const { comment, cgpa, studentId, semester } = data;
+        const result = { comment, cgpa, studentId, semester, imageURL };
 
-        fetch("https://morning-shelf-52119.herokuapp.com/addService", {
+        console.log(result);
+
+        fetch("http://localhost:5000/api/teacher/publishResult", {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify(service),
+            body: JSON.stringify(result),
         })
             .then((res) => res.json())
             .then((result) => {
-                if (result) {
-                    alert("Your service has been added successfully!!");
+                if (result.success === true) {
+                    alert("Your result has been added successfully!!");
                     window.location.reload();
+                } else {
+                    setError(result.message);
                 }
             });
     };
@@ -53,7 +65,7 @@ const PublishResult = () => {
                 <Col md={10} className="p-5 blue-text fw-bold">
                     <h3 className="brand-text">Publish Student Result</h3>
                     <br />
-                    <Form>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Group>
                             <Form.Label>Student Id</Form.Label>
                             <Form.Control
@@ -76,6 +88,20 @@ const PublishResult = () => {
                                 {...register("cgpa", { required: true })}
                             />
                             {errors.cgpa && (
+                                <span className="error">
+                                    This field is required
+                                </span>
+                            )}
+                        </Form.Group>
+                        <br />
+                        <Form.Group>
+                            <Form.Label>Semester</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="semester"
+                                {...register("semester", { required: true })}
+                            />
+                            {errors.semester && (
                                 <span className="error">
                                     This field is required
                                 </span>
