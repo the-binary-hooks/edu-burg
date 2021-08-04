@@ -76,7 +76,7 @@ export const addAStudent = async (req, res, next) => {
 
 export const getStudents = async (req, res, next) => {
     try {
-        const students = await Student.find({});
+        const students = await Student.find({}).populate("semesterResults");
         res.send(students);
     } catch (err) {
         next(new ErrorResponse(err.message));

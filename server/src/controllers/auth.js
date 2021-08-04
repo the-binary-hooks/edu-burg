@@ -70,6 +70,7 @@ export const login = async (req, res, next) => {
                     status,
                     picture,
                     bio,
+                    semesterResults,
                 } = student;
                 addInfo = {
                     _id,
@@ -87,6 +88,7 @@ export const login = async (req, res, next) => {
                     gender,
                     picture,
                     bio,
+                    semesterResults,
                 };
 
                 sendResponse(addInfo, student, 200, res);
@@ -171,7 +173,7 @@ export const getById = async (req, res, next) => {
         } else {
             // If no teacher is found, find student with the id sent
             // from the student collection
-            student = await Student.findOne({ id });
+            student = await Student.findOne({ id }).populate("semesterResults");
             if (student) {
                 const {
                     _id,
@@ -188,6 +190,7 @@ export const getById = async (req, res, next) => {
                     status,
                     picture,
                     bio,
+                    semesterResults,
                 } = student;
                 addInfo = {
                     _id,
@@ -205,6 +208,7 @@ export const getById = async (req, res, next) => {
                     gender,
                     picture,
                     bio,
+                    semesterResults,
                 };
 
                 sendResponse(addInfo, student, 200, res);

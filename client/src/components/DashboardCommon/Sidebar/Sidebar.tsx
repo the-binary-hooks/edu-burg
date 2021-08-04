@@ -121,7 +121,7 @@ const Sidebar = () => {
             : [
                   "Home",
                   "Profile",
-                  "Semester Result",
+                  "Semester Results",
                   "Followers",
                   "Courses",
                   "Your Posts",

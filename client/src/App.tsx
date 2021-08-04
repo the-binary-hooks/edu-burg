@@ -30,6 +30,7 @@ import "./App.css";
 import Profile from "./components/DashboardCommon/Profile/Profile";
 import Teachers from "./components/AdminDashboard/Teachers/Teachers";
 import Students from "./components/AdminDashboard/Students/Students";
+import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";
 
 const App = () => {
     return (
@@ -61,15 +62,15 @@ const App = () => {
                 <PrivateRoute path="/course/:id">
                     <Course />
                 </PrivateRoute>
+                <PrivateRoute path={`/profile/:id`}>
+                    <Profile />
+                </PrivateRoute>
                 {/* Teacher Dashboard */}
                 <PrivateRoute path="/courses">
                     <CoursesAssigned />
                 </PrivateRoute>
                 <PrivateRoute path="/publish-result">
                     <PublishResult />
-                </PrivateRoute>
-                <PrivateRoute path={`/profile/:id`}>
-                    <Profile />
                 </PrivateRoute>
                 {/* Admin Dashboard */}
                 <PrivateRoute path="/add-a-Course">
@@ -95,6 +96,10 @@ const App = () => {
                 </PrivateRoute>
                 <PrivateRoute path="/students">
                     <Students />
+                </PrivateRoute>
+                {/* Student Dashboard */}
+                <PrivateRoute path="/semester-results">
+                    <SemesterResults />
                 </PrivateRoute>
             </Switch>
         </Router>
