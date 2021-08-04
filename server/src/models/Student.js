@@ -94,10 +94,8 @@ const StudentSchema = new mongoose.Schema({
     },
     semesterResults: [
         {
-            studentId: { type: ObjectId },
-            cgpa: { type: Number },
-            resultImage: { type: String },
-            comment: { type: String },
+            type: ObjectId,
+            ref: "Result",
         },
     ],
     payments: [{ type: String }],
