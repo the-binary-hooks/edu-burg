@@ -24,8 +24,6 @@ const PublishResult = () => {
         const { comment, cgpa, studentId, semester } = data;
         const result = { comment, cgpa, studentId, semester, imageURL };
 
-        console.log(result);
-
         fetch("http://localhost:5000/api/teacher/publishResult", {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -59,7 +57,7 @@ const PublishResult = () => {
         }
     };
     return (
-        <Container fluid>
+        <Container fluid data-testid="container">
             <Row>
                 <Sidebar />
                 <Col md={10} className="p-5 blue-text fw-bold">
@@ -139,7 +137,7 @@ const PublishResult = () => {
                                 Publish
                             </Button>
                         ) : (
-                            <p>
+                            <p data-testid="pOnNoURL">
                                 You will be able to submit this form as soon as
                                 your image is ready to be uploaded.
                             </p>

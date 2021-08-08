@@ -22,7 +22,6 @@ import StudentReview from "./components/AdminDashboard/StudentReview/StudentRevi
 // Teacher Dashboard Components
 import CoursesAssigned from "./components/TeacherDashboard/CoursesAssigned/CoursesAssigned";
 import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
-import TeacherProfile from "./components/DashboardCommon/Profile/TeacherProfile";
 import Course from "./components/TeacherDashboard/Course/Course";
 
 // StyleSheet
@@ -34,7 +33,7 @@ import SemesterResults from "./components/StudentDashboard/SemesterResults/Semes
 
 const App = () => {
     return (
-        <Router>
+        <Router data-testid="router">
             <Switch>
                 <PrivateRoute exact path="/">
                     <Home />

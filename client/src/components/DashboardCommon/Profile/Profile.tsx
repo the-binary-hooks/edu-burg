@@ -10,7 +10,6 @@ interface IUserPublicProfileRouteParams {
 
 const Profile = () => {
     const { id } = useParams<IUserPublicProfileRouteParams>();
-    console.log(id);
 
     const [role, setRole] = useState(null);
 
