@@ -132,7 +132,7 @@ const Sidebar = () => {
               ];
 
     return (
-        <Col md={2} className="column">
+        <Col md={2} className="column" data-testid="sidebar">
             <div
                 className={
                     menuShows
@@ -281,7 +281,7 @@ const Sidebar = () => {
                                 className="text-white"
                                 onClick={handleLogout}
                             >
-                                <span>Sign Out</span>
+                                <span data-testid="list">Sign Out</span>
                             </Link>
                         </li>
                     </ul>

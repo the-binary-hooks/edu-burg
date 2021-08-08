@@ -47,16 +47,16 @@ const SemesterResults = () => {
                 }
             });
     }, [id]);
-    console.log(user);
-    console.log(user.semesterResults);
 
     return (
-        <Container fluid>
+        <Container fluid data-testid="container">
             <Row>
                 <Sidebar />
                 <Col md={10}>
                     <br />
-                    <h3 className="brand-text">Your Semester Results</h3>
+                    <h3 className="brand-text" data-testid="heading">
+                        Your Semester Results
+                    </h3>
                     <br />
                     {user.semesterResults?.map((semesterResult) => (
                         <>
@@ -72,14 +72,14 @@ const SemesterResults = () => {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
+                                        <td data-testid="tableData">
                                             <img
                                                 src={semesterResult.imageURL}
                                                 alt="result"
                                             />
                                         </td>
-                                        <td>{semesterResult.semester}</td>
-                                        <td>{semesterResult.cgpa}</td>
+                                        <td data-testid="tableData">{semesterResult.semester}</td>
+                                        <td data-testid="tableData">{semesterResult.cgpa}</td>
                                         <td style={{ overflowY: "auto" }}>
                                             {semesterResult.comment}
                                         </td>
