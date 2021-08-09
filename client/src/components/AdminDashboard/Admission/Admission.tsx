@@ -39,14 +39,6 @@ interface IFormData {
 }
 
 const Admission = () => {
-<<<<<<< HEAD
-    // Styles
-    const admissionHeadingStyle = {
-        fontFamily: "Roboto",
-        fontSize: "64px",
-    };
-=======
->>>>>>> nahid
     const formSubHeadingStyle = {
         fontFamily: "Roboto",
         fontSize: "36px",
