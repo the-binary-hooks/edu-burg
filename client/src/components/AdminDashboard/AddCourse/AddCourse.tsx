@@ -1,8 +1,16 @@
-// React Hook Form
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 // Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
+// Add Course From Data Interface -- typescript
+interface ICourseData  {
+    courseTitle: string,
+    courseCode: string,
+    courseTeacher: string,
+    courseStudents: string,
+    department: string
+}
 const AddCourse = () => {
     // React Hook Form
     const {
@@ -10,10 +18,34 @@ const AddCourse = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+    const [error, setError] = useState(null);
 
-    // Handle Submit
-    const onSubmit = (data: any) => console.log(data);
-
+    const onSubmit = (data: ICourseData) => {
+        let students = data.courseStudents.split(",");
+        let courseData = {
+            courseTitle: data.courseTitle,
+            courseCode: data.courseCode,
+            courseTeacher: data.courseTeacher,
+            courseStudents: students,
+            department: data.department
+        }
+        
+        console.log(courseData);
+        fetch("http://localhost:5000/api/admin/addCourse", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                if (result.success === true) {
+                    alert("Course Created successfully!!");
+                    window.location.reload();
+                } else {
+                    setError(result.message);
+                }
+            });
+    };
     const addCourseBlockStyle = {
         maxWidth: "570px",
         margin: "auto",
@@ -65,10 +97,41 @@ const AddCourse = () => {
                                 )}
                             </div>
                             <div className="form-group">
+                                <label htmlFor="course-teacher">Course Teacher (Enter Teacher ID)</label>
+                                <input
+                                    {...register("courseTeacher", {
+                                        required: true,
+                                    })}
+                                    type="number"
+                                    className="form-control"
+                                    id="course-teacher"
+                                />
+                                {errors.courseTeacher && (
+                                    <span>This field is required</span>
+                                )}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="course-teacher">Enter Student ID (Separate with comma )</label>
+                                <input
+                                    {...register("courseStudents", {
+                                        required: true,
+                                    })}
+                                    type="text"
+                                    className="form-control"
+                                    id="course-students"
+                                />
+                                {errors.courseStudents && (
+                                    <span>This field is required</span>
+                                )}
+                            </div>
+                            <div className="form-group">
                                 <label htmlFor="select-dept">
                                     Select Department
                                 </label>
                                 <select
+                                    {...register("department", {
+                                        required: true,
+                                    })}
                                     className="form-control"
                                     id="select-department"
                                 >
