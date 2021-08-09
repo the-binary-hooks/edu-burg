@@ -39,14 +39,7 @@ interface IFormData {
 }
 
 const Admission = () => {
-<<<<<<< HEAD
     // Styles
-    const admissionHeadingStyle = {
-        fontFamily: "Roboto",
-        fontSize: "64px",
-    };
-=======
->>>>>>> nahid
     const formSubHeadingStyle = {
         fontFamily: "Roboto",
         fontSize: "36px",
@@ -183,16 +176,17 @@ const Admission = () => {
                     className="col-md-10 mt-5 shadow m-auto px-3 py-4"
                     style={{ maxWidth: "991px" }}
                 >
-                    <h2
-                        className="text-center pt-4 edu-buge-heading-1"
-                    >
+                    <h2 className="text-center pt-4 edu-buge-heading-1">
                         Student Admission Form
                     </h2>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* Course Info  */}
                             <div className="d-flex justify-content-around flex-wrap">
-                                <div style={{minWidth:'210px'}} className="m-3">
+                                <div
+                                    style={{ minWidth: "210px" }}
+                                    className="m-3"
+                                >
                                     <p>Select Session</p>
                                     <input
                                         type="radio"
@@ -222,7 +216,10 @@ const Admission = () => {
                                         Spring
                                     </label>
                                 </div>
-                                <div style={{minWidth:'210px'}} className="m-3">
+                                <div
+                                    style={{ minWidth: "210px" }}
+                                    className="m-3"
+                                >
                                     <p>Select Program</p>
                                     <select {...register("program")}>
                                         <option value="program1">
@@ -236,7 +233,10 @@ const Admission = () => {
                                         </option>
                                     </select>
                                 </div>
-                                <div style={{minWidth:'210px'}} className="m-3">
+                                <div
+                                    style={{ minWidth: "210px" }}
+                                    className="m-3"
+                                >
                                     <p>Student ID</p>
                                     <input
                                         type="number"

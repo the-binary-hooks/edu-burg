@@ -6,9 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // React Bootstrap
 import { Button, Form } from "react-bootstrap";
 // Style Sheet
-import "./SearchPost.css";
+import "./Search.css";
 
-const SearchPosts = () => {
+// props interface -- typeScript
+interface IProps {
+    placeholder: string;
+}
+
+const Search = ({ placeholder }: IProps) => {
     // Initial State of the search string
     const [searchStr, setSearchStr] = useState("");
     return (
@@ -16,7 +21,7 @@ const SearchPosts = () => {
             <Form.Control
                 className="search-input"
                 type="text"
-                placeholder="Search for a post"
+                placeholder={placeholder}
                 value={searchStr}
                 onChange={(e) => setSearchStr(e.target.value)}
             />
@@ -27,4 +32,4 @@ const SearchPosts = () => {
     );
 };
 
-export default SearchPosts;
+export default Search;

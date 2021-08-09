@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 // Components
 import AddAPost from "../AddAPost/AddAPost";
 import Posts from "../Posts/Posts";
-import SearchPosts from "../SearchPost/SearchPost";
+import SearchPosts from "../Search/Search";
 import Sidebar from "../Sidebar/Sidebar";
 
 const NewsFeed = () => {
@@ -14,7 +14,7 @@ const NewsFeed = () => {
                 <Sidebar />
                 <Col md={3} className="column">
                     <br />
-                    <SearchPosts />
+                    <SearchPosts placeholder="Search for a post" />
                     <br />
                 </Col>
                 <Col md={7}>

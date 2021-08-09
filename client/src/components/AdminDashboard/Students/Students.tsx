@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import SearchPosts from "../../DashboardCommon/Search/Search";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import Student from "./Student/Student";
 
@@ -52,6 +53,7 @@ interface IStudents {
 }
 
 const Students = () => {
+    // Initial state
     const [students, setStudents] = useState<IStudents[]>([]);
 
     useEffect(() => {
@@ -65,6 +67,7 @@ const Students = () => {
             <Row>
                 <Sidebar />
                 <Col md={10}>
+                    <SearchPosts placeholder="Search for a student with ID" />
                     <div>
                         <div className="text-center mb-5">
                             <br />
