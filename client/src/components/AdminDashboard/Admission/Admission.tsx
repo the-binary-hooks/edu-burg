@@ -39,11 +39,14 @@ interface IFormData {
 }
 
 const Admission = () => {
+<<<<<<< HEAD
     // Styles
     const admissionHeadingStyle = {
         fontFamily: "Roboto",
         fontSize: "64px",
     };
+=======
+>>>>>>> nahid
     const formSubHeadingStyle = {
         fontFamily: "Roboto",
         fontSize: "36px",
@@ -181,16 +184,15 @@ const Admission = () => {
                     style={{ maxWidth: "991px" }}
                 >
                     <h2
-                        style={admissionHeadingStyle}
-                        className="text-center pt-4"
+                        className="text-center pt-4 edu-buge-heading-1"
                     >
                         Student Admission Form
                     </h2>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/* Course Info  */}
-                            <div className="d-flex justify-content-around">
-                                <div>
+                            <div className="d-flex justify-content-around flex-wrap">
+                                <div style={{minWidth:'210px'}} className="m-3">
                                     <p>Select Session</p>
                                     <input
                                         type="radio"
@@ -220,7 +222,7 @@ const Admission = () => {
                                         Spring
                                     </label>
                                 </div>
-                                <div>
+                                <div style={{minWidth:'210px'}} className="m-3">
                                     <p>Select Program</p>
                                     <select {...register("program")}>
                                         <option value="program1">
@@ -234,7 +236,7 @@ const Admission = () => {
                                         </option>
                                     </select>
                                 </div>
-                                <div>
+                                <div style={{minWidth:'210px'}} className="m-3">
                                     <p>Student ID</p>
                                     <input
                                         type="number"
@@ -441,8 +443,8 @@ const Admission = () => {
                                 </div>
                                 <div className="mt-2">
                                     <p>Permanent Address</p>
-                                    <div className="d-flex justify-content-around pt-1">
-                                        <div className="form-group">
+                                    <div className="d-flex pt-1 flex-wrap">
+                                        <div className="form-group my-2">
                                             <input
                                                 {...register("permanentHouse", {
                                                     required: true,
@@ -458,7 +460,7 @@ const Admission = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group my-2">
                                             <input
                                                 {...register(
                                                     "permanentDistrict",
@@ -475,7 +477,7 @@ const Admission = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group my-2">
                                             <input
                                                 {...register(
                                                     "permanentZipCode",
@@ -496,8 +498,8 @@ const Admission = () => {
                                 </div>
                                 <div className="mt-2">
                                     <p>Present Address</p>
-                                    <div className="d-flex justify-content-around pt-1">
-                                        <div className="form-group">
+                                    <div className="d-flex pt-1 flex-wrap">
+                                        <div className="form-group my-2">
                                             <input
                                                 {...register("presentHouse", {
                                                     required: true,
@@ -513,7 +515,7 @@ const Admission = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group my-2">
                                             <input
                                                 {...register(
                                                     "presentDistrict",
@@ -530,7 +532,7 @@ const Admission = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group my-2">
                                             <input
                                                 {...register("presentZipCode", {
                                                     required: true,
@@ -720,11 +722,13 @@ const Admission = () => {
                                     </div>
                                 </div>
                                 <div>
+                                    <p>Choose Image</p>
                                     <input
                                         type="file"
                                         name="image"
                                         id="image"
                                         onChange={handleImageUpload}
+                                        className="edu-burg-file-input"
                                     />
                                 </div>
                                 <div className="form-group">
