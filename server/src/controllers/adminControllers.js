@@ -50,34 +50,40 @@ adminControllers.addAAdmin = async (req, res, next) => {
     });
 };
 
-
-export const addCourse = async(req,res,next) => {
-    const {courseTitle, courseCode, courseTeacher,courseStudents, department} = req.body;
+adminControllers.addCourse = async (req, res, next) => {
+    const {
+        courseTitle,
+        courseCode,
+        courseTeacher,
+        courseStudents,
+        department,
+    } = req.body;
     const courseData = {
         courseTitle,
         courseCode,
         courseTeacher,
         courseStudents,
-        department
-    }
+        department,
+    };
 
     // Create an instance of the Model Course
     const course = await new Course(courseData);
-    console.log(courseData)
+    console.log(courseData);
 
     // Save the course to the course collection
     course.save((err) => {
         if (err) {
-           console.log(error);
+            console.log(error);
         } else {
-            res.status(200).send({success: true,courseData})
+            res.status(200).send({ success: true, courseData });
         }
     });
 
-    // Find the teacher 
+    // Find the teacher
 
     // Update Teacher course array
 
-    // Update student teacher array 
+    // Update student teacher array
+};
 
-}
+export default adminControllers;
