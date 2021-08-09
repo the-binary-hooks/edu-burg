@@ -1,4 +1,5 @@
 import Admin from "../models/Admin.js";
+import Course from "../models/Course.js";
 import { sendResponse } from "../utils/sendResponse.js";
 
 export const addAAdmin = async (req, res, next) => {
@@ -35,3 +36,35 @@ export const addAAdmin = async (req, res, next) => {
         }
     });
 };
+
+
+export const addCourse = async(req,res,next) => {
+    const {courseTitle, courseCode, courseTeacher,courseStudents, department} = req.body;
+    const courseData = {
+        courseTitle,
+        courseCode,
+        courseTeacher,
+        courseStudents,
+        department
+    }
+
+    // Create an instance of the Model Course
+    const course = await new Course(courseData);
+    console.log(courseData)
+
+    // Save the course to the course collection
+    course.save((err) => {
+        if (err) {
+           console.log(error);
+        } else {
+            res.status(200).send({success: true,courseData})
+        }
+    });
+
+    // Find the teacher 
+
+    // Update Teacher course array
+
+    // Update student teacher array 
+
+}
