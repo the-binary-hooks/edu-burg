@@ -13,19 +13,6 @@ describe("renders <SemesterResults />", () => {
         expect(container).toBeTruthy();
     });
 
-    // I don't know why it doesn't work --- feeling frustrated 😒
-    // it("renders all table data", () => {
-    //     act(() => {
-    //         const { queryAllByTestId, queryByTestId } = render(
-    //             <Router>
-    //                 <SemesterResults />
-    //             </Router>
-    //         );
-    //         const tdList = queryAllByTestId("tableData");
-    //         expect(tdList).toHaveLength(3);
-    //     });
-    // });
-
     it("renders the heading", () => {
         const { queryByTestId } = render(
             <Router>

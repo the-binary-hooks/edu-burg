@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-// Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import Student from "./Student/Student";
 
@@ -52,10 +52,8 @@ interface IStudents {
 }
 
 const Students = () => {
-    // Initial States
     const [students, setStudents] = useState<IStudents[]>([]);
 
-    // Fetch all the students
     useEffect(() => {
         fetch("http://localhost:5000/api/student/getAll")
             .then((res) => res.json())

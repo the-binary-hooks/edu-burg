@@ -5,9 +5,9 @@ import { Button, Container, Form } from "react-bootstrap";
 // React Hook form
 import { useForm } from "react-hook-form";
 // Router
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 // CSS
-import "../auth.css";
+import "./login.css";
 // Font Awesome
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -108,15 +108,25 @@ const Login = () => {
     };
 
     return (
-        <div className="brand-text login-page">
-            <Container className="login-container">
+        <div className="brand-text login-page" data-testid="login-page">
+            <Container
+                className="login-container"
+                data-testid="login-container"
+            >
                 <h4>Sign In</h4>
-                <FontAwesomeIcon icon={faTimes} size="1x" />
+                <FontAwesomeIcon
+                    icon={faTimes}
+                    size="1x"
+                    data-testid="awesome-icon"
+                />
                 <br />
                 <br />
                 {err && <span className="error">{err}</span>}
-                <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Form.Group>
+                <Form
+                    onSubmit={handleSubmit(onSubmit)}
+                    data-testid="login-form"
+                >
+                    <Form.Group data-testid="id-input">
                         <Form.Label>Your Registration ID</Form.Label>
                         <Form.Control
                             type="number"
@@ -132,7 +142,10 @@ const Login = () => {
                         )}
                     </Form.Group>
                     <br />
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group
+                        controlId="formBasicPassword"
+                        data-testid="pass-input"
+                    >
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
@@ -150,6 +163,7 @@ const Login = () => {
                     <Button
                         type="submit"
                         className="submit-button brand-button"
+                        data-testid="login-button"
                     >
                         Login
                     </Button>

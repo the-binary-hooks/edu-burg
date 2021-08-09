@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 // Components
 import Sidebar from "../../Sidebar/Sidebar";
 // CSS
-import "./Profile.css";
+import "../Profile/Profile.css";
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";

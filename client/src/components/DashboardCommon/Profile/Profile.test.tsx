@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import AdminProfile from "../UsersProfile/AdminProfile";
-import TeacherProfile from "../UsersProfile/TeacherProfile";
-import StudentProfile from "../UsersProfile/StudentProfile";
+import AdminProfile from "./UsersProfile/AdminProfile";
+import TeacherProfile from "./UsersProfile/TeacherProfile";
+import StudentProfile from "./UsersProfile/StudentProfile";
 
 describe("renders three types of profiles", () => {
     it("renders <Container></Container> in <TeacherProfile />", () => {
