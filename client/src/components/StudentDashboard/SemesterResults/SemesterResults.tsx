@@ -41,7 +41,7 @@ const SemesterResults = () => {
     const [user, setUser] = useState<userInterface>({} as userInterface);
 
     // Local storage item
-    const id = localStorage.getItem("id");
+    const id = sessionStorage.getItem("id");
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/auth/getById/${id}`)

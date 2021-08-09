@@ -50,7 +50,7 @@ const Sidebar = () => {
     }, [setMenuShows, menuShows]);
 
     // JWT Token
-    const token = localStorage.getItem("authToken");
+    const token = sessionStorage.getItem("authToken");
 
     // Private data fetched
     const [privateData, setPrivateData] = useState("");
@@ -59,7 +59,7 @@ const Sidebar = () => {
     let history = useHistory();
 
     // Role
-    const role = localStorage.getItem("role");
+    const role = sessionStorage.getItem("role");
 
     // Fetch data
     useEffect(() => {
@@ -79,20 +79,20 @@ const Sidebar = () => {
                 setPrivateData(data.data);
             } catch (err) {
                 // Error means the token in the local storage is not valid
-                localStorage.clear();
+                sessionStorage.clear();
                 history.replace("/login");
             }
         };
-        if (localStorage.getItem("authToken")) fetchPrivateData();
+        if (sessionStorage.getItem("authToken")) fetchPrivateData();
         else {
-            localStorage.clear();
+            sessionStorage.clear();
             history.replace("/login");
         }
     }, [token, history]);
 
     // Logout
     const handleLogout = () => {
-        localStorage.clear();
+        sessionStorage.clear();
         history.replace("/login");
     };
 
@@ -148,10 +148,11 @@ const Sidebar = () => {
                 onClick={toggle}
             >
                 <Row style={{ margin: 0 }}>
+                    {/* When the menu shows; that means it is in smaller device && the menu is not open */}
                     <div className="col-7">
                         <ul className="ul">
-                            <li>
-                                <Link to="/" className="text-white">
+                            <Link to="/" className="react-link text-white fs-5">
+                                <li>
                                     <img
                                         src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
                                         alt="admin"
@@ -160,24 +161,25 @@ const Sidebar = () => {
                                     <span>
                                         <strong>
                                             {role === "admin"
-                                                ? localStorage.getItem(
+                                                ? sessionStorage.getItem(
                                                       "adminName"
                                                   )
                                                 : role === "teacher"
-                                                ? localStorage.getItem(
+                                                ? sessionStorage.getItem(
                                                       "teacherName"
                                                   )
-                                                : localStorage.getItem(
+                                                : sessionStorage.getItem(
                                                       "studentName"
                                                   )}
                                         </strong>
                                     </span>
-                                </Link>
-                            </li>
+                                </li>
+                            </Link>
                         </ul>
                     </div>
+                    {/* When the menu shows; that means it is in smaller device && the menu is open */}
                     <div className="col-4">
-                        {isOpen && privateData ? (
+                        {isOpen ? (
                             <FontAwesomeIcon
                                 icon={faTimes}
                                 color="white"
@@ -194,36 +196,43 @@ const Sidebar = () => {
                         )}
                     </div>
                 </Row>
-                {isOpen && (
+                {/* When the menu shows; that means it is in smaller device && the menu is open && privateData is available; that means the user is authenticated */}
+                {isOpen && privateData && (
                     <ul className="menu-link-list">
                         {dashboardLinks.map((link, index) =>
                             link === "Profile" ? (
-                                <li key={index}>
-                                    <Link
-                                        to={`/profile/${localStorage.getItem(
-                                            "_id"
-                                        )}`}
-                                    >
+                                <Link
+                                    className="react-link text-white fs-5"
+                                    to={`/profile/${sessionStorage.getItem(
+                                        "_id"
+                                    )}`}
+                                >
+                                    <li key={index}>
                                         <span>{link}</span>
-                                    </Link>
-                                </li>
+                                    </li>
+                                </Link>
                             ) : (
-                                <li key={index}>
-                                    <Link
-                                        to={`/${link
-                                            .toLowerCase()
-                                            .replace(/ /g, "-")}`}
-                                    >
+                                <Link
+                                    className="react-link text-white fs-5"
+                                    to={`/${link
+                                        .toLowerCase()
+                                        .replace(/ /g, "-")}`}
+                                >
+                                    <li key={index}>
                                         <span>{link}</span>
-                                    </Link>
-                                </li>
+                                    </li>
+                                </Link>
                             )
                         )}
-                        <li>
-                            <Link to="/login" onClick={handleLogout}>
+                        <Link
+                            className="react-link text-white fs-5"
+                            to="/login"
+                            onClick={handleLogout}
+                        >
+                            <li>
                                 <span>Sign Out</span>
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
                     </ul>
                 )}
             </div>
@@ -234,10 +243,11 @@ const Sidebar = () => {
                         : "sidebar d-flex flex-column justify-content-between py-5"
                 }
             >
+                {/* In large devices, when privateData is available */}
                 {privateData && (
                     <ul className="list-unstyled">
-                        <li>
-                            <Link to="/" className="text-white">
+                        <Link to="/" className="react-link text-white fs-5">
+                            <li>
                                 <img
                                     src="https://demo.wpjobster.com/wp-content/uploads/2020/04/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg"
                                     alt="admin"
@@ -246,50 +256,56 @@ const Sidebar = () => {
                                 <span>
                                     <strong>
                                         {role === "admin"
-                                            ? localStorage.getItem("adminName")
+                                            ? sessionStorage.getItem(
+                                                  "adminName"
+                                              )
                                             : role === "teacher"
-                                            ? localStorage.getItem(
+                                            ? sessionStorage.getItem(
                                                   "teacherName"
                                               )
-                                            : localStorage.getItem(
+                                            : sessionStorage.getItem(
                                                   "studentName"
                                               )}
                                     </strong>
                                 </span>
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
                         {dashboardLinks.map((link, index) =>
                             link === "Profile" ? (
-                                <li key={index}>
-                                    <Link
-                                        to={`/profile/${localStorage.getItem(
-                                            "id"
-                                        )}`}
-                                    >
+                                <Link
+                                    className="react-link text-white fs-5"
+                                    key={index}
+                                    to={`/profile/${sessionStorage.getItem(
+                                        "id"
+                                    )}`}
+                                >
+                                    <li>
                                         <span>{link}</span>
-                                    </Link>
-                                </li>
+                                    </li>
+                                </Link>
                             ) : (
-                                <li key={index}>
-                                    <Link
-                                        to={`/${link
-                                            .toLowerCase()
-                                            .replace(/ /g, "-")}`}
-                                    >
+                                <Link
+                                    className="react-link text-white fs-5"
+                                    key={index}
+                                    to={`/${link
+                                        .toLowerCase()
+                                        .replace(/ /g, "-")}`}
+                                >
+                                    <li>
                                         <span>{link}</span>
-                                    </Link>
-                                </li>
+                                    </li>
+                                </Link>
                             )
                         )}
-                        <li>
-                            <Link
-                                to="/login"
-                                className="text-white"
-                                onClick={handleLogout}
-                            >
+                        <Link
+                            to="/login"
+                            className="text-white react-link text-white fs-5"
+                            onClick={handleLogout}
+                        >
+                            <li>
                                 <span data-testid="list">Sign Out</span>
-                            </Link>
-                        </li>
+                            </li>
+                        </Link>
                     </ul>
                 )}
             </div>

@@ -11,7 +11,7 @@ interface IProps {
 
 const PrivateRoute = ({ children, ...rest }: IProps) => {
     // JWT Token
-    const token = localStorage.getItem("authToken");
+    const token = sessionStorage.getItem("authToken");
 
     return (
         <Route
