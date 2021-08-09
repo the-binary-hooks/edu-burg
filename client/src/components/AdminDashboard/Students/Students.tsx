@@ -60,8 +60,9 @@ const Students = () => {
             .then((data) => setStudents(data));
     }, []);
 
+    console.log(students)
     return (
-        <Container fluid>
+        <Container fluid data-testid="container">
             <Row>
                 <Sidebar />
                 <Col md={10}>

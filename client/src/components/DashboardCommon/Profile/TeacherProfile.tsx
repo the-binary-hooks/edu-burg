@@ -64,7 +64,7 @@ const TeacherProfile = () => {
     };
 
     return (
-        <Container fluid>
+        <Container fluid data-testid="container">
             <Row>
                 <Sidebar />
                 <Col md={10} style={{ textAlign: "center" }}>

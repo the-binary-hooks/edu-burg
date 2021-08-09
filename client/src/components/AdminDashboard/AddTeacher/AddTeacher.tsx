@@ -63,7 +63,7 @@ const AddTeacher = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" data-testid="container">
             <div className="row">
                 <Sidebar />
                 <div
