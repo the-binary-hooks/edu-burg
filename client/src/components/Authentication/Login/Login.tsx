@@ -29,7 +29,7 @@ const Login = () => {
 
     // If the user is already logged in, doesn't make sense to show him/her the login page again
     useEffect(() => {
-        if (localStorage.getItem("authToken")) {
+        if (sessionStorage.getItem("authToken")) {
             history.replace(from);
         }
     }, [from, history]);
@@ -60,16 +60,16 @@ const Login = () => {
                     }, 5000);
                 } else {
                     // Save token in the local storage
-                    localStorage.setItem("authToken", data.token);
+                    sessionStorage.setItem("authToken", data.token);
                     const { _id, id, role, email, gender, picture, bio } =
                         data.addInfo;
-                    localStorage.setItem("role", role);
-                    localStorage.setItem("email", email);
-                    localStorage.setItem("gender", gender);
-                    localStorage.setItem("picture", picture);
-                    localStorage.setItem("bio", bio);
-                    localStorage.setItem("_id", _id);
-                    localStorage.setItem("id", id);
+                    sessionStorage.setItem("role", role);
+                    sessionStorage.setItem("email", email);
+                    sessionStorage.setItem("gender", gender);
+                    sessionStorage.setItem("picture", picture);
+                    sessionStorage.setItem("bio", bio);
+                    sessionStorage.setItem("_id", _id);
+                    sessionStorage.setItem("id", id);
                     if (role === "student") {
                         const {
                             studentName,
@@ -81,25 +81,25 @@ const Login = () => {
                             FathersName,
                             MothersName,
                         } = data.addInfo;
-                        localStorage.setItem("studentName", studentName);
-                        localStorage.setItem("status", status);
-                        localStorage.setItem("department", department);
-                        localStorage.setItem("semester", semester);
-                        localStorage.setItem("session", session);
-                        localStorage.setItem("program", program);
-                        localStorage.setItem("FathersName", FathersName);
-                        localStorage.setItem("MothersName", MothersName);
+                        sessionStorage.setItem("studentName", studentName);
+                        sessionStorage.setItem("status", status);
+                        sessionStorage.setItem("department", department);
+                        sessionStorage.setItem("semester", semester);
+                        sessionStorage.setItem("session", session);
+                        sessionStorage.setItem("program", program);
+                        sessionStorage.setItem("FathersName", FathersName);
+                        sessionStorage.setItem("MothersName", MothersName);
                     }
                     if (role === "teacher") {
                         const { teacherName, department, status } =
                             data.addInfo;
-                        localStorage.setItem("teacherName", teacherName);
-                        localStorage.setItem("status", status);
-                        localStorage.setItem("department", department);
+                        sessionStorage.setItem("teacherName", teacherName);
+                        sessionStorage.setItem("status", status);
+                        sessionStorage.setItem("department", department);
                     }
                     if (role === "admin") {
                         const { adminName } = data.addInfo;
-                        localStorage.setItem("adminName", adminName);
+                        sessionStorage.setItem("adminName", adminName);
                     }
                     // Redirect user in the requested route
                     history.replace(from);

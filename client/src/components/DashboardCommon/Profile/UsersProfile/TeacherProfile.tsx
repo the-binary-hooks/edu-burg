@@ -91,7 +91,7 @@ const TeacherProfile = () => {
                         />
                         <p>{err}</p>
                         <h4 className="brand-text">{teacher.teacherName}</h4>
-                        {localStorage.getItem("role") === "admin" ? (
+                        {sessionStorage.getItem("role") === "admin" ? (
                             <Form.Select
                                 aria-label="Active"
                                 onChange={(event) =>
