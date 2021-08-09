@@ -1,9 +1,22 @@
+/*
+ * Title: Middleware to protect private route
+ * Description: Won't let any user without valid JWT token access
+ *              private data
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
 import jwt from "jsonwebtoken";
+// Models
 import Teacher from "../models/Teacher.js";
 import Student from "../models/Student.js";
 import Admin from "../models/Admin.js";
+// Handling Errors
 import ErrorResponse from "../utils/errorResponse.js";
 
+// Middleware
 export const protect = async (req, res, next) => {
     let token;
 

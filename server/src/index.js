@@ -1,3 +1,13 @@
+/*
+ * Title:  Server For Edu Burg ERP
+ * Description: ExpressJS application that uses Mongoose, socket.io and Redis for sending data from
+ *              the DB to the client
+ * Author: Lamisa Zamzam, MD Nakibul Hosen Nahid
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
 // For using environment vars
 import "dotenv";
 import dotenv from "dotenv";

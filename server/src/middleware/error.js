@@ -1,5 +1,17 @@
+/*
+ * Title: Middleware to handle errors gracefully
+ * Description: Won't console.error and choke the server
+ *              private data
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
+// Handling Errors
 import ErrorResponse from "../utils/errorResponse.js";
 
+// Middleware
 const errorHandler = (err, req, res, nex) => {
     let error = { ...err };
     error.message = err.message;

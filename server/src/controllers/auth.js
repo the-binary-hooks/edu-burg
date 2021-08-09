@@ -1,10 +1,27 @@
+/*
+ * Title: Controllers of the auth router
+ * Description: declares functions to
+ *              make login possible in Edu Burg ERP,
+ *              get a document by id
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
+// Models
 import Teacher from "../models/Teacher.js";
 import Student from "../models/Student.js";
 import Admin from "../models/Admin.js";
+// Handling Error
 import ErrorResponse from "../utils/errorResponse.js";
+// Sending response
 import { sendResponse } from "../utils/sendResponse.js";
 
-export const login = async (req, res, next) => {
+// Auth Controllers Object --- module scaffolding
+const authControllers = {};
+
+authControllers.login = async (req, res, next) => {
     // Read data from request body
     const { id, password } = req.body;
 
@@ -119,14 +136,11 @@ export const login = async (req, res, next) => {
             }
         }
     } catch (err) {
-        res.status(500).json({
-            success: false,
-            error: err.message,
-        });
+        next(new ErrorResponse(err.message));
     }
 };
 
-export const getById = async (req, res, next) => {
+authControllers.getById = async (req, res, next) => {
     // Read data from request body
     const id = req.params.id;
 
@@ -246,4 +260,4 @@ export const getById = async (req, res, next) => {
     }
 };
 
-export default [];
+export default authControllers;

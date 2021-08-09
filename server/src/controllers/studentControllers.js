@@ -1,7 +1,26 @@
+/*
+ * Title: Controllers of the student router
+ * Description: declares functions to
+ *              add a student to the DB,
+ *              get all the records of the students,
+ *              update status of a student
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
+// Models
 import Student from "../models/Student.js";
+// Handling Error
+import ErrorResponse from "../utils/errorResponse.js";
+// Sending response
 import { sendResponse } from "../utils/sendResponse.js";
 
-export const addAStudent = async (req, res, next) => {
+// Student Controllers Object --- module scaffolding
+const studentControllers = {};
+
+studentControllers.addAStudent = async (req, res, next) => {
     // Read data from request body
     const {
         id,
@@ -67,15 +86,16 @@ export const addAStudent = async (req, res, next) => {
     // Save the student to the student collection
     student.save((err) => {
         if (err) {
-            next(err);
+            next(new ErrorResponse(err.message));
         } else {
             sendResponse(addInfo, student, 200, res);
         }
     });
 };
 
-export const getStudents = async (req, res, next) => {
+studentControllers.getStudents = async (req, res, next) => {
     try {
+        // Get all the students saved to the DB
         const students = await Student.find({}).populate("semesterResults");
         res.send(students);
     } catch (err) {
@@ -83,10 +103,12 @@ export const getStudents = async (req, res, next) => {
     }
 };
 
-export const updateStatus = async (req, res, next) => {
+studentControllers.updateStatus = async (req, res, next) => {
+    // Read Data from request body
     const status = req.body.status;
     const id = req.params.id;
     try {
+        // Update student status
         const response = await Student.updateOne({ id }, { status });
         res.status(200).send({
             success: "true",
@@ -96,3 +118,5 @@ export const updateStatus = async (req, res, next) => {
         next(new ErrorResponse(err.message));
     }
 };
+
+export default studentControllers;

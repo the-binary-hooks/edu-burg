@@ -1,3 +1,12 @@
+/*
+ * Title: Model of the Student object in Edu Burg ERP
+ * Description: Defines the structure of student object to be saved in the DB
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -192,4 +201,5 @@ StudentSchema.methods.getSignedToken = function () {
 
 // Student Model
 const Student = mongoose.model("Student", StudentSchema);
+
 export default Student;

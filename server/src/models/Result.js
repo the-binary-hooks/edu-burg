@@ -1,3 +1,12 @@
+/*
+ * Title: Model of the Result object in Edu Burg ERP
+ * Description: Defines the structure of result object to be saved in the DB
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
 import mongoose from "mongoose";
 
 // MongoDB data type ObjectId
@@ -30,4 +39,5 @@ const ResultSchema = new mongoose.Schema({
 
 // Result Model
 const Result = mongoose.model("Result", ResultSchema);
+
 export default Result;

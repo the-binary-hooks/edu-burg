@@ -1,3 +1,12 @@
+/*
+ * Title: Model of the Teacher object in Edu Burg ERP
+ * Description: Defines the structure of teacher object to be saved in the DB
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -107,7 +116,6 @@ TeacherSchema.pre("save", async function (next) {
     if (!this.isModified("password")) {
         next();
     }
-
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();
@@ -122,4 +130,5 @@ TeacherSchema.methods.getSignedToken = function () {
 
 // Teacher Model
 const Teacher = mongoose.model("Teacher", TeacherSchema);
+
 export default Teacher;

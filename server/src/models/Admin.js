@@ -1,3 +1,12 @@
+/*
+ * Title: Model of the Teacher object in Edu Burg ERP
+ * Description: Defines the structure of teacher object to be saved in the DB
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -75,7 +84,7 @@ const AdminSchema = new mongoose.Schema({
     gender: {
         type: String,
         enum: ["female", "male"],
-        required: [true, "Picture is required"]
+        required: [true, "Picture is required"],
     },
     picture: {
         type: String,
@@ -103,4 +112,5 @@ AdminSchema.methods.getSignedToken = function () {
 
 // Admin Model
 const Admin = mongoose.model("Admin", AdminSchema);
+
 export default Admin;

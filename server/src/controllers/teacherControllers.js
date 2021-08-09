@@ -1,10 +1,30 @@
+/*
+ * Title: Controllers of the teacher router
+ * Description: declares functions to
+ *              add a teacher to the DB,
+ *              get all the records of the teachers,
+ *              update status of a teacher
+ *              publish result of a students
+ *              get all the results published
+ * Author: Lamisa Zamzam
+ * Date: 14 July, 2021 - present
+ *
+ */
+
+// Dependencies
+// Models
 import Teacher from "../models/Teacher.js";
 import Result from "../models/Result.js";
 import Student from "../models/Student.js";
+// Handling errors
 import ErrorResponse from "../utils/errorResponse.js";
+// Sending response
 import { sendResponse } from "../utils/sendResponse.js";
 
-export const addATeacher = async (req, res, next) => {
+// Teacher Controllers Object --- module scaffolding
+const teacherControllers = {};
+
+teacherControllers.addATeacher = async (req, res, next) => {
     // Read data from request body
     const {
         id,
@@ -53,8 +73,9 @@ export const addATeacher = async (req, res, next) => {
     });
 };
 
-export const getTeachers = async (req, res, next) => {
+teacherControllers.getTeachers = async (req, res, next) => {
     try {
+        // Get all the teachers saved to the DB
         const teachers = await Teacher.find({});
         res.send(teachers);
     } catch (err) {
@@ -62,10 +83,12 @@ export const getTeachers = async (req, res, next) => {
     }
 };
 
-export const updateStatus = async (req, res, next) => {
+teacherControllers.updateStatus = async (req, res, next) => {
+    // Read Data from request body
     const status = req.body.status;
     const id = req.params.id;
     try {
+        // Update teacher status
         const response = await Teacher.updateOne({ id }, { status });
         res.status(200).send({
             success: "true",
@@ -76,7 +99,7 @@ export const updateStatus = async (req, res, next) => {
     }
 };
 
-export const publishResult = async (req, res, next) => {
+teacherControllers.publishResult = async (req, res, next) => {
     // Read data from request body
     const { comment, cgpa, studentId, semester, imageURL } = req.body;
 
@@ -100,6 +123,7 @@ export const publishResult = async (req, res, next) => {
         }
     });
 
+    // Add the result to the specific student's record
     Student.findByIdAndUpdate(
         student._id,
         { $push: { semesterResults: result._id } },
@@ -114,7 +138,10 @@ export const publishResult = async (req, res, next) => {
     );
 };
 
-export const getResults = async (req, res, next) => {
+teacherControllers.getResults = async (req, res, next) => {
+    // Get all the results ever added to the db
     const results = await Result.find({}).populate("studentId");
     res.send(results);
 };
+
+export default teacherControllers;
