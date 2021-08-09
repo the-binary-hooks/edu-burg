@@ -1,5 +1,4 @@
-import React from 'react';
-import Sidebar from '../../DashboardCommon/Sidebar/Sidebar';
+import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const StudentReview = () => {
     return (
@@ -7,8 +6,13 @@ const StudentReview = () => {
             <div className="row">
                 <Sidebar />
                 <div className="col-md-10 pe-4">
-                    <table style={{captionSide:'top'}} className="table table-striped table-hover table-responsive ms-2 mt-5 me-2 shadow m-auto px-3 py-4">
-                        <caption className="text-center display-4">Student Review</caption>
+                    <table
+                        style={{ captionSide: "top" }}
+                        className="table table-striped table-hover table-responsive ms-2 mt-5 me-2 shadow m-auto px-3 py-4"
+                    >
+                        <caption className="text-center display-4">
+                            Student Review
+                        </caption>
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -48,7 +52,6 @@ const StudentReview = () => {
                                 <td>This is a review text</td>
                                 <td>Doe</td>
                             </tr>
-                            
                         </tbody>
                     </table>
                 </div>

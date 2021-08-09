@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+// Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import Teacher from "./Teacher/Teacher";
 
@@ -26,8 +26,10 @@ interface ITeachers {
 }
 
 const Teachers = () => {
+    // Initial State
     const [teachers, setTeachers] = useState<ITeachers[]>([]);
 
+    // Fetch all the teachers
     useEffect(() => {
         fetch("http://localhost:5000/api/teacher/getAll")
             .then((res) => res.json())

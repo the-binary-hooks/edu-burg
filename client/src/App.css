@@ -1,3 +1,8 @@
+/* Error */
+.error {
+    color: red;
+}
+
 /* Common Button to be used across the app  */
 .brand-button {
     background-color: #10b981 !important;
@@ -32,8 +37,14 @@
     margin-bottom: 5%;
 }
 
+/* use it to have no-padding bootstrap col */
 .column {
     padding: 0 !important;
+}
+
+/* Use it to get rid of the default style of Link in react router dom */
+.react-link {
+    text-decoration: none;
 }
 
 .react-link:-webkit-any-link {
@@ -44,20 +55,21 @@
     text-decoration: none;
 }
 
-.react-link {
-    text-decoration: none;
-}
-.edu-buge-heading-1{
+.edu-burg-heading-1 {
     font: bold 64px Roboto, sans-serif;
 }
-.edu-burg-input-label{
+
+.edu-burg-input-label {
     font: 24px Roboto, sans-serif;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 }
-.edu-buge-heading-1, .edu-buge-label{
+
+.edu-burg-heading-1,
+.edu-burg-label {
     color: #111827;
 }
-/* 
+
+/*
 input[type=file] {
   cursor: pointer;
   width: 180px;
@@ -84,23 +96,25 @@ input[type=file]::-webkit-file-upload-button {
   visibility: hidden;
 }
 */
-.edu-burg-file-input{
+
+.edu-burg-file-input {
     cursor: pointer;
     width: 220px;
     height: 58px;
     overflow: hidden;
 }
-.edu-burg-file-input:before{
+
+.edu-burg-file-input:before {
     width: 220px;
     height: 40px;
     font-size: 24px;
     line-height: 32px;
     background: #111827;
-    content: 'Select your file';
+    content: "Select your file";
     display: inline-block;
     color: white;
     border: none;
-    border-radius:5px;
+    border-radius: 5px;
     padding: 3px 10px;
     text-align: center;
     font-family: Roboto, sans-serif;

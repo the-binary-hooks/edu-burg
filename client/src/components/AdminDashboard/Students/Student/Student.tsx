@@ -1,8 +1,10 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+// Props Interface --- typeScript
 interface IProps {
     student: {
         status: string;
@@ -55,7 +57,10 @@ interface IProps {
 }
 
 const Student = ({ student, active, inactive }: IProps) => {
+    // Initial State
     const [err, setErr] = useState("");
+
+    // Handle Student Status Change
     const handleStatusChange = (e: any, id: String | null) => {
         const newStatus = active
             ? e.target.value === "1"

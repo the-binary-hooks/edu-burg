@@ -1,8 +1,12 @@
+// React Bootstrap
 import { Card, Col, Container, Row } from "react-bootstrap";
+// React Router
 import { useHistory } from "react-router-dom";
+// Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const CoursesAssigned = () => {
+    // React Router vars
     const history = useHistory();
     return (
         <Container fluid>

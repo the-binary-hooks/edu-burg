@@ -1,8 +1,13 @@
+// React Bootstrap
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+// React Hook Form
 import { useForm } from "react-hook-form";
+// React
 import { useState } from "react";
-import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
+// Axios
 import axios from "axios";
+// Components
+import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 // Form data interface -- typescript
 interface IFormData {
@@ -13,13 +18,18 @@ interface IFormData {
 }
 
 const PublishResult = () => {
+    // Initial states
     const [imageURL, setImageURL] = useState(null);
     const [error, setError] = useState(null);
+
+    // React Router Form
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    // Handle Form Submit
     const onSubmit = (data: IFormData) => {
         const { comment, cgpa, studentId, semester } = data;
         const result = { comment, cgpa, studentId, semester, imageURL };
@@ -56,6 +66,7 @@ const PublishResult = () => {
                 });
         }
     };
+
     return (
         <Container fluid data-testid="container">
             <Row>
@@ -63,6 +74,8 @@ const PublishResult = () => {
                 <Col md={10} className="p-5 blue-text fw-bold">
                     <h3 className="brand-text">Publish Student Result</h3>
                     <br />
+
+                    {/* Student ID */}
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Group>
                             <Form.Label>Student Id</Form.Label>
@@ -78,6 +91,8 @@ const PublishResult = () => {
                             )}
                         </Form.Group>
                         <br />
+
+                        {/* CGPA */}
                         <Form.Group>
                             <Form.Label>CGPA</Form.Label>
                             <Form.Control
@@ -92,6 +107,8 @@ const PublishResult = () => {
                             )}
                         </Form.Group>
                         <br />
+
+                        {/* Semester */}
                         <Form.Group>
                             <Form.Label>Semester</Form.Label>
                             <Form.Control
@@ -107,6 +124,7 @@ const PublishResult = () => {
                         </Form.Group>
                         <br />
 
+                        {/* Result Image */}
                         <Form.Group>
                             <Form.Label>Upload Result Image</Form.Label>
                             <br />
@@ -118,6 +136,7 @@ const PublishResult = () => {
                         </Form.Group>
                         <br />
 
+                        {/* Comment About Result */}
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Comment</Form.Label>
                             <Form.Control
@@ -132,6 +151,8 @@ const PublishResult = () => {
                             )}
                         </Form.Group>
                         <br />
+
+                        {/* Submit Button */}
                         {imageURL ? (
                             <Button className="brand-button" type="submit">
                                 Publish
@@ -143,6 +164,8 @@ const PublishResult = () => {
                             </p>
                         )}
                     </Form>
+
+                    {/* Error In case it occurs */}
                     <p>{error}</p>
                 </Col>
             </Row>

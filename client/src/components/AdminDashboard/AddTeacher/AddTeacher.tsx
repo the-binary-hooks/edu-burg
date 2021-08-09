@@ -70,7 +70,7 @@ const AddTeacher = () => {
                     className="col-md-10 mt-5 shadow m-auto px-3 py-4"
                     style={{ maxWidth: "900px" }}
                 >
-                    <h2 className="text-center pt-4 edu-buge-heading-1">Add Teacher</h2>
+                    <h2 className="text-center pt-4 edu-burg-heading-1">Add Teacher</h2>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group mb-3">

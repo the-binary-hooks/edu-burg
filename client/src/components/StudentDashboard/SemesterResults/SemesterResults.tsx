@@ -1,7 +1,11 @@
+// React
 import { useEffect, useState } from "react";
+// React Bootstrap
 import { Col, Container, Row, Table } from "react-bootstrap";
+// Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
+// Interface of a student
 interface userInterface {
     _id: string;
     id: string;
@@ -32,10 +36,11 @@ interface userInterface {
 }
 
 const SemesterResults = () => {
+    // Initial States
     const [err, setErr] = useState("");
-
     const [user, setUser] = useState<userInterface>({} as userInterface);
 
+    // Local storage item
     const id = localStorage.getItem("id");
 
     useEffect(() => {
@@ -44,6 +49,8 @@ const SemesterResults = () => {
             .then((data) => {
                 if (data.success === true) {
                     setUser(data.addInfo);
+                } else {
+                    setErr(data.err.message);
                 }
             });
     }, [id]);
@@ -57,6 +64,10 @@ const SemesterResults = () => {
                     <h3 className="brand-text" data-testid="heading">
                         Your Semester Results
                     </h3>
+
+                    {/* Error In case it occurs */}
+                    <p>{err}</p>
+
                     <br />
                     {user.semesterResults?.map((semesterResult) => (
                         <>
@@ -78,8 +89,12 @@ const SemesterResults = () => {
                                                 alt="result"
                                             />
                                         </td>
-                                        <td data-testid="tableData">{semesterResult.semester}</td>
-                                        <td data-testid="tableData">{semesterResult.cgpa}</td>
+                                        <td data-testid="tableData">
+                                            {semesterResult.semester}
+                                        </td>
+                                        <td data-testid="tableData">
+                                            {semesterResult.cgpa}
+                                        </td>
                                         <td style={{ overflowY: "auto" }}>
                                             {semesterResult.comment}
                                         </td>

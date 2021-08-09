@@ -1,6 +1,13 @@
+// React Bootstrap
 import { Col, Container, Row } from "react-bootstrap";
+
+// React Router
 import { Link } from "react-router-dom";
+
+// Components
 import Sidebar from "../Sidebar/Sidebar";
+
+// CSS
 import "./AllChats.css";
 
 const AllChats = () => {

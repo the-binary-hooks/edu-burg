@@ -1,18 +1,24 @@
+// React
+import { useState, useEffect } from "react";
+// React Bootstrap
+import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
+// React Router
+import { useParams } from "react-router-dom";
+// Components
+import Sidebar from "../../Sidebar/Sidebar";
+// CSS
+import "./Profile.css";
+// Font Awesome
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { useEffect } from "react";
-import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
-import "./Profile.css";
 
 // Params interface --- typeScript
-interface IUserPublicProfileRouteParams {
+interface IAdminPublicProfileRouteParams {
     id: string;
 }
 
-interface userInterface {
+// Admin Interface
+interface adminInterface {
     _id: string;
     id: string;
     adminName: string;
@@ -24,15 +30,18 @@ interface userInterface {
 }
 
 const AdminProfile = () => {
-    const { id } = useParams<IUserPublicProfileRouteParams>();
-    const [user, setUser] = useState<userInterface>({} as userInterface);
+    // Param Var
+    const { id } = useParams<IAdminPublicProfileRouteParams>();
+    // Initial State
+    const [admin, setAdmin] = useState<adminInterface>({} as adminInterface);
 
+    // Fetch the admin with the Id
     useEffect(() => {
         fetch(`http://localhost:5000/api/auth/getById/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
-                    setUser(data.addInfo);
+                    setAdmin(data.addInfo);
                 }
             });
     }, [id]);
@@ -45,15 +54,15 @@ const AdminProfile = () => {
                     <br />
                     <Container>
                         <img
-                            src={user.picture}
+                            src={admin.picture}
                             alt="profilePic"
                             className="profile-pic"
                         />
-                        <h4 className="brand-text">{user.adminName}</h4>
-                        <p>{user.bio}</p>
-                        <small>{user.email}</small>
+                        <h4 className="brand-text">{admin.adminName}</h4>
+                        <p>{admin.bio}</p>
+                        <small>{admin.email}</small>
                         <br />
-                        <small>{user.gender}</small>
+                        <small>{admin.gender}</small>
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>

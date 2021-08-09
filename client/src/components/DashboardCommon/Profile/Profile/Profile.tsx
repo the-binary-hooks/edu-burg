@@ -1,18 +1,25 @@
+// React
 import { useEffect, useState } from "react";
+// React Router
 import { useParams } from "react-router-dom";
-import AdminProfile from "./AdminProfile";
-import StudentProfile from "./StudentProfile";
-import TeacherProfile from "./TeacherProfile";
+// Components
+import AdminProfile from "../UsersProfile/AdminProfile";
+import StudentProfile from "../UsersProfile/StudentProfile";
+import TeacherProfile from "../UsersProfile/TeacherProfile";
 
+// User Public Profile Interface
 interface IUserPublicProfileRouteParams {
     id: string;
 }
 
 const Profile = () => {
+    // Param Var
     const { id } = useParams<IUserPublicProfileRouteParams>();
 
+    // Initial State
     const [role, setRole] = useState(null);
 
+    // Fetch logged in user from the DB
     useEffect(() => {
         fetch(`http://localhost:5000/api/auth/getById/${id}`)
             .then((res) => res.json())
@@ -23,8 +30,6 @@ const Profile = () => {
                 }
             });
     }, [id]);
-
-    console.log(role)
 
     return (
         <>

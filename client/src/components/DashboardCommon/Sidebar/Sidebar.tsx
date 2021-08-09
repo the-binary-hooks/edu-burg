@@ -1,10 +1,14 @@
 // React
 import { useEffect, useState } from "react";
-
+// React Bootstrap
 import { Col, Row } from "react-bootstrap";
+// React Router
 import { Link, useHistory } from "react-router-dom";
+// CSS
 import "./Sidebar.css";
+// Axios
 import axios from "axios";
+// Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
@@ -32,11 +36,13 @@ const Sidebar = () => {
         // on resize, hide the menu
         window.addEventListener("resize", hideMenu);
 
+        // Remove Event Listener on component un-mount
         return () => {
             window.removeEventListener("resize", hideMenu);
         };
     }, [isOpen]);
 
+    // Show menu
     useEffect(() => {
         if (window.innerWidth < 760 && !menuShows) {
             setMenuShows(true);

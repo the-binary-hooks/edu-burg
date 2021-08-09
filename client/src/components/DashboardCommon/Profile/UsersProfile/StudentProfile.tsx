@@ -1,17 +1,24 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// React
 import { useEffect, useState } from "react";
+// React Bootstrap
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
+// React Router
 import { useParams } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
+// Components
+import Sidebar from "../../Sidebar/Sidebar";
+// CSS
 import "./Profile.css";
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // Params interface --- typeScript
-interface IUserPublicProfileRouteParams {
+interface IStudentPublicProfileRouteParams {
     id: string;
 }
 
-interface userInterface {
+// Student Interface
+interface studentInterface {
     _id: string;
     id: string;
     studentName: string;
@@ -29,24 +36,31 @@ interface userInterface {
     MothersName: string;
 }
 
-const TeacherProfile = () => {
+const StudentProfile = () => {
+    // Initial States
     const [err, setErr] = useState("");
-    const { id } = useParams<IUserPublicProfileRouteParams>();
-    const [user, setUser] = useState<userInterface>({} as userInterface);
+    const [student, setStudent] = useState<studentInterface>(
+        {} as studentInterface
+    );
 
+    // Param Var
+    const { id } = useParams<IStudentPublicProfileRouteParams>();
+
+    // Fetch the student with Id
     useEffect(() => {
         fetch(`http://localhost:5000/api/auth/getById/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
-                    setUser(data.addInfo);
+                    setStudent(data.addInfo);
                 }
             });
     }, [id]);
 
+    // Handle student's status change
     const handleStatusChange = (e: any, id: String | null) => {
         const newStatus =
-            user.status === "active"
+            student.status === "active"
                 ? e.target.value === "1"
                     ? "active"
                     : "inactive"
@@ -80,41 +94,41 @@ const TeacherProfile = () => {
                             alt="profilePic"
                             className="profile-pic"
                         />
-                        <h4 className="brand-text">{user.studentName}</h4>
+                        <h4 className="brand-text">{student.studentName}</h4>
                         <p>{err}</p>
                         {localStorage.getItem("role") === "admin" ? (
                             <Form.Select
                                 aria-label="Active"
                                 onChange={(event) =>
-                                    handleStatusChange(event, user.id)
+                                    handleStatusChange(event, student.id)
                                 }
                             >
                                 <option value="1">
-                                    {user.status === "active"
+                                    {student.status === "active"
                                         ? "Active"
                                         : "Inactive"}
                                 </option>
                                 <option value="2">
-                                    {user.status === "inactive"
+                                    {student.status === "inactive"
                                         ? "Active"
                                         : "Inactive"}
                                 </option>
                             </Form.Select>
                         ) : (
-                            <h6>{user.status}</h6>
+                            <h6>{student.status}</h6>
                         )}
                         <br />
 
-                        <h6>Department: {user.department}</h6>
-                        <p>{user.bio}</p>
-                        <small>{user.email}</small>
+                        <h6>Department: {student.department}</h6>
+                        <p>{student.bio}</p>
+                        <small>{student.email}</small>
                         <br />
-                        <small>{user.gender}</small>
-                        <p>Semester: {user.semester}</p>
-                        <p>Session: {user.session}</p>
-                        <p>Program: {user.program}</p>
-                        <p>Father's Name: {user.FathersName}</p>
-                        <p>Mother's Name: {user.MothersName}</p>
+                        <small>{student.gender}</small>
+                        <p>Semester: {student.semester}</p>
+                        <p>Session: {student.session}</p>
+                        <p>Program: {student.program}</p>
+                        <p>Father's Name: {student.FathersName}</p>
+                        <p>Mother's Name: {student.MothersName}</p>
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>
@@ -151,4 +165,4 @@ const TeacherProfile = () => {
     );
 };
 
-export default TeacherProfile;
+export default StudentProfile;

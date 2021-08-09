@@ -1,4 +1,7 @@
-import { Button, Col, Form, Row } from "react-bootstrap";
+// React Bootstrap
+import { Button, Form, Row } from "react-bootstrap";
+
+// CSS
 import "./AddAPost.css";
 
 const AddAPost = () => {

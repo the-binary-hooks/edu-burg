@@ -1,17 +1,24 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// React
 import { useEffect, useState } from "react";
+// React Bootstrap
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
+// React Router
 import { useParams } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
+// Components
+import Sidebar from "../../Sidebar/Sidebar";
+// CSS
 import "./Profile.css";
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // Params interface --- typeScript
-interface IUserPublicProfileRouteParams {
+interface ITeacherPublicProfileRouteParams {
     id: string;
 }
 
-interface userInterface {
+// Teacher interface
+interface teacherInterface {
     _id: string;
     id: string;
     teacherName: string;
@@ -25,23 +32,30 @@ interface userInterface {
 }
 
 const TeacherProfile = () => {
+    // Initial States
     const [err, setErr] = useState("");
-    const { id } = useParams<IUserPublicProfileRouteParams>();
-    const [user, setUser] = useState<userInterface>({} as userInterface);
+    const [teacher, setTeacher] = useState<teacherInterface>(
+        {} as teacherInterface
+    );
 
+    // Param Vars
+    const { id } = useParams<ITeacherPublicProfileRouteParams>();
+
+    // Fetch teacher with this Id
     useEffect(() => {
         fetch(`http://localhost:5000/api/auth/getById/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
-                    setUser(data.addInfo);
+                    setTeacher(data.addInfo);
                 }
             });
     }, [id]);
 
+    // Handle teacher's status change
     const handleStatusChange = (e: any, id: String | null) => {
         const newStatus =
-            user.status === "active"
+            teacher.status === "active"
                 ? e.target.value === "1"
                     ? "active"
                     : "inactive"
@@ -76,34 +90,34 @@ const TeacherProfile = () => {
                             className="profile-pic"
                         />
                         <p>{err}</p>
-                        <h4 className="brand-text">{user.teacherName}</h4>
+                        <h4 className="brand-text">{teacher.teacherName}</h4>
                         {localStorage.getItem("role") === "admin" ? (
                             <Form.Select
                                 aria-label="Active"
                                 onChange={(event) =>
-                                    handleStatusChange(event, user.id)
+                                    handleStatusChange(event, teacher.id)
                                 }
                             >
                                 <option value="1">
-                                    {user.status === "active"
+                                    {teacher.status === "active"
                                         ? "Active"
                                         : "Inactive"}
                                 </option>
                                 <option value="2">
-                                    {user.status === "inactive"
+                                    {teacher.status === "inactive"
                                         ? "Active"
                                         : "Inactive"}
                                 </option>
                             </Form.Select>
                         ) : (
-                            <h6>{user.status}</h6>
+                            <h6>{teacher.status}</h6>
                         )}
                         <br />
-                        <h6>Department: {user.department}</h6>
-                        <p>{user.bio}</p>
-                        <small>{user.email}</small>
+                        <h6>Department: {teacher.department}</h6>
+                        <p>{teacher.bio}</p>
+                        <small>{teacher.email}</small>
                         <br />
-                        <small>{user.gender}</small>
+                        <small>{teacher.gender}</small>
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>

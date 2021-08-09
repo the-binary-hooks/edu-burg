@@ -1,4 +1,7 @@
+// React Bootstrap
 import { Col, Container, Row } from "react-bootstrap";
+
+// Components
 import AddAPost from "../AddAPost/AddAPost";
 import Posts from "../Posts/Posts";
 import SearchPosts from "../SearchPost/SearchPost";

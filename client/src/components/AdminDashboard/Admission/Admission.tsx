@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import axios from "axios";
 
+// Data on Form submit interface --- typeScript
 interface IFormData {
     id: String;
     dob: String;
@@ -38,6 +39,7 @@ interface IFormData {
 }
 
 const Admission = () => {
+    // Styles
     const admissionHeadingStyle = {
         fontFamily: "Roboto",
         fontSize: "64px",
@@ -50,12 +52,15 @@ const Admission = () => {
         fontFamily: "Roboto",
         fontSize: "24px",
     };
+
+    // React Router Form Vars
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
+    // Initial States
     const [imageURL, setImageURL] = useState(null);
     const [error, setError] = useState(null);
 
@@ -76,6 +81,7 @@ const Admission = () => {
         }
     };
 
+    // Handle Form submit
     const onSubmit = (data: IFormData) => {
         console.log(data);
         const {
@@ -149,8 +155,8 @@ const Admission = () => {
             studentName,
             picture: imageURL,
         };
-        console.log(student);
 
+        // Add Student to DB
         fetch("http://localhost:5000/api/student/add", {
             method: "POST",
             headers: { "content-type": "application/json" },
@@ -165,6 +171,7 @@ const Admission = () => {
                 }
             });
     };
+
     return (
         <div className="container-fluid" data-testid="container">
             <div className="row">
@@ -734,6 +741,7 @@ const Admission = () => {
                                             uploaded.
                                         </p>
                                     )}
+                                    <p>{error}</p>
                                 </div>
                             </div>
                         </form>

@@ -26,7 +26,7 @@ import Course from "./components/TeacherDashboard/Course/Course";
 
 // StyleSheet
 import "./App.css";
-import Profile from "./components/DashboardCommon/Profile/Profile";
+import Profile from "./components/DashboardCommon/Profile/Profile/Profile";
 import Teachers from "./components/AdminDashboard/Teachers/Teachers";
 import Students from "./components/AdminDashboard/Students/Students";
 import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";

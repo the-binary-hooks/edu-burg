@@ -1,14 +1,19 @@
-import React from "react";
+// React Hook Form
 import { useForm } from "react-hook-form";
+// Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const AddCourse = () => {
+    // React Hook Form
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    // Handle Submit
     const onSubmit = (data: any) => console.log(data);
+
     const addCourseBlockStyle = {
         maxWidth: "570px",
         margin: "auto",
@@ -17,6 +22,7 @@ const AddCourse = () => {
         boxShadow: "6px 4px 32px 6px rgb(0,0,0,0.25)",
         marginTop: "20px",
     };
+
     return (
         <div className="container-fluid">
             <div className="row">

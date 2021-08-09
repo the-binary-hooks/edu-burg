@@ -1,8 +1,15 @@
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// React Bootstrap
 import { Col, Container, Form, Row } from "react-bootstrap";
+
+// Components
 import Sidebar from "../Sidebar/Sidebar";
+
+// CSS
 import "./Chatting.css";
+
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const Chatting = () => {
     return (

@@ -1,4 +1,6 @@
+// React Bootstrap
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
+// CSS
 import "./Posts.css";
 
 const Posts = () => {

@@ -1,8 +1,15 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// React Bootstrap
 import { Button, Col, Container, Row } from "react-bootstrap";
+
+// Components
 import Sidebar from "../Sidebar/Sidebar";
+
+// CSS
 import "./Followers.css";
+
+// Font Awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Followers = () => {
     return (

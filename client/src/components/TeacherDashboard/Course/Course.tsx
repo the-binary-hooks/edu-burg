@@ -1,6 +1,9 @@
+// React Bootstrap
 import { Col, Container, Row, Table } from "react-bootstrap";
+// Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import CourseStudent from "./CourseStudent/CourseStudent";
+// CSS
 import "./Course.css";
 
 const Course = () => {
@@ -48,9 +51,7 @@ const Course = () => {
                     <Table responsive="sm">
                         <thead>
                             <tr className="brand-text">
-                                <th>
-                                    Student Name
-                                </th>
+                                <th>Student Name</th>
                                 <th>Semester</th>
                                 <th>CGPA</th>
                                 <th>Assignments Done</th>
