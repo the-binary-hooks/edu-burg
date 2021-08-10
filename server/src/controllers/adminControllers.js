@@ -11,7 +11,7 @@
 import Admin from "../models/Admin.js";
 import Course from "../models/Course.js";
 import { sendResponse } from "../utils/sendResponse.js";
-
+import Teacher from "../models/Teacher.js";
 // Admin Controllers Object --- module scaffolding
 const adminControllers = {};
 
@@ -79,11 +79,20 @@ adminControllers.addCourse = async (req, res, next) => {
         }
     });
 
-    // Find the teacher
+    // Find the teacher and  Update Teacher course array
+    Teacher.findOneAndUpdate(
+        { id: courseTeacher }, 
+        { $push: { courses: courseData  } },
+       function (error, success) {
+             if (error) {
+                 console.log(error);
+             } else {
+                 console.log(success);
+             }
+         });
+    
 
-    // Update Teacher course array
-
-    // Update student teacher array
+    // Find the students and  Update students course array
 };
 
 export default adminControllers;
