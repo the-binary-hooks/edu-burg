@@ -11,11 +11,11 @@ import "./Search.css";
 // props interface -- typeScript
 interface IProps {
     placeholder: string;
+    searchStr: string;
+    setSearchStr: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Search = ({ placeholder }: IProps) => {
-    // Initial State of the search string
-    const [searchStr, setSearchStr] = useState("");
+const Search = ({ placeholder, searchStr, setSearchStr }: IProps) => {
     return (
         <div className="container">
             <Form.Control

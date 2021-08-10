@@ -79,7 +79,6 @@ const Admission = () => {
 
     // Handle Form submit
     const onSubmit = (data: IFormData) => {
-        console.log(data);
         const {
             id,
             dob,
@@ -161,7 +160,6 @@ const Admission = () => {
             .then((res) => res.json())
             .then((result) => {
                 if (result) {
-                    console.log(result);
                     alert("Your student has been registered successfully!!");
                     window.location.reload();
                 }

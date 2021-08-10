@@ -29,7 +29,7 @@ const AddCourse = () => {
             courseStudents: students,
             department: data.department
         }
-        
+
         console.log(courseData);
         fetch("http://localhost:5000/api/admin/addCourse", {
             method: "POST",

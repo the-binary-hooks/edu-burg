@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import SearchPosts from "../../DashboardCommon/Search/Search";
+import Search from "../../DashboardCommon/Search/Search";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import Student from "./Student/Student";
 
@@ -53,36 +53,61 @@ interface IStudents {
 }
 
 const Students = () => {
-    // Initial state
+    // Initial states
     const [students, setStudents] = useState<IStudents[]>([]);
+    const [searchStr, setSearchStr] = useState("");
 
+    // Get all students record in the DB
     useEffect(() => {
         fetch("http://localhost:5000/api/student/getAll")
             .then((res) => res.json())
             .then((data) => setStudents(data));
     }, []);
 
+    // Get all students record in the DB
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/auth/getById/${searchStr}`)
+            .then((res) => res.json())
+            .then((data) =>console.log(data));
+    }, [searchStr]);
+
+    console.log(students)
+
     return (
         <Container fluid data-testid="container">
             <Row>
                 <Sidebar />
                 <Col md={10}>
-                    <SearchPosts placeholder="Search for a student with ID" />
+                    <Search
+                        placeholder="Search for a student with ID"
+                        searchStr={searchStr}
+                        setSearchStr={setSearchStr}
+                    />
                     <div>
                         <div className="text-center mb-5">
                             <br />
                             <h3 className="brand-text">Active</h3>
                         </div>
 
-                        {students
-                            .filter((student) => student.status === "active")
-                            .map((student) => (
-                                <Student
-                                    student={student}
-                                    active
-                                    key={student.id}
-                                />
-                            ))}
+                        {students.filter(
+                            (student) => student.status === "active"
+                        )[0] ? (
+                            students
+                                .filter(
+                                    (student) => student.status === "active"
+                                )
+                                .map((student) => (
+                                    <Student
+                                        student={student}
+                                        active
+                                        key={student.id}
+                                    />
+                                ))
+                        ) : (
+                            <p className="ms-5 text-secondary">
+                                No Students Found
+                            </p>
+                        )}
 
                         <Button className="brand-button">Show More</Button>
                     </div>
@@ -91,15 +116,25 @@ const Students = () => {
                         <div className="text-center mb-3">
                             <h3 className="brand-text">Inactive</h3>
                         </div>
-                        {students
-                            .filter((student) => student.status === "inactive")
-                            .map((student) => (
-                                <Student
-                                    student={student}
-                                    inactive
-                                    key={student.id}
-                                />
-                            ))}
+                        {students.filter(
+                            (student) => student.status === "inactive"
+                        )[0] ? (
+                            students
+                                .filter(
+                                    (student) => student.status === "inactive"
+                                )
+                                .map((student) => (
+                                    <Student
+                                        student={student}
+                                        inactive
+                                        key={student.id}
+                                    />
+                                ))
+                        ) : (
+                            <p className="ms-5 text-secondary">
+                                No Students Found
+                            </p>
+                        )}
                         <Button className="brand-button">Show More</Button>
                     </div>
                 </Col>
