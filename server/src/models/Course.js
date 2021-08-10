@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 
+// MongoDB data type ObjectId
+const ObjectId = mongoose.Schema.Types.ObjectId;
+
 const CourseSchema = new mongoose.Schema({
     courseTitle: {
         type: String,
@@ -9,18 +12,22 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide the course code"],
     },
-    courseTeacher:{
-        type: String,
-        required: [true, "Please provide teacher id"]
+    courseTeacher: {
+        type: ObjectId,
+        ref: "Teacher",
+        required: [true, "Please provide the student ID"],
     },
-    courseTeacher:{
-        type: Array,
-        required: [true, "Please provide students id(s)"]
-    },
+    courseStudents: [
+        {
+            type: ObjectId,
+            ref: "Student",
+            required: [true, "Please provide students' id(s)"],
+        },
+    ],
     department: {
         type: String,
         required: [true, "Please provide the department name"],
-    }
+    },
 });
 
 const Course = mongoose.model("Course", CourseSchema);

@@ -144,6 +144,8 @@ authControllers.getById = async (req, res, next) => {
     // Read data from request body
     const id = req.params.id;
 
+    console.log(id);
+
     // If any of the id is absent, throw error
     if (!id) {
         return next(new ErrorResponse("Please provide the id", 400));
