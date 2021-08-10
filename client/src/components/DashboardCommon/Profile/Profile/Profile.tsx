@@ -25,7 +25,6 @@ const Profile = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
-                    console.log(data);
                     setRole(data.addInfo.role);
                 }
             });

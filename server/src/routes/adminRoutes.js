@@ -1,7 +1,7 @@
 /*
  * Title: Routes when someone hits /api/admin route of the server
  * Description: Declares the routes on /api/admin and binds the controllers with them
- * Author: Lamisa Zamzam
+ * Author: Lamisa Zamzam, Md Nakibul Hosen Nahid
  * Date: 14 July, 2021 - present
  *
  */

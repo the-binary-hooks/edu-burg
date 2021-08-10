@@ -202,23 +202,25 @@ const Sidebar = () => {
                         {dashboardLinks.map((link, index) =>
                             link === "Profile" ? (
                                 <Link
+                                    key={index}
                                     className="react-link text-white fs-5"
                                     to={`/profile/${sessionStorage.getItem(
                                         "_id"
                                     )}`}
                                 >
-                                    <li key={index}>
+                                    <li>
                                         <span>{link}</span>
                                     </li>
                                 </Link>
                             ) : (
                                 <Link
+                                    key={index}
                                     className="react-link text-white fs-5"
                                     to={`/${link
                                         .toLowerCase()
                                         .replace(/ /g, "-")}`}
                                 >
-                                    <li key={index}>
+                                    <li>
                                         <span>{link}</span>
                                     </li>
                                 </Link>

@@ -60,8 +60,6 @@ const Student = ({ student, active, inactive }: IProps) => {
     // Initial State
     const [err, setErr] = useState("");
 
-    console.log("hello")
-    console.log("student", student);
     // Handle Student Status Change
     const handleStatusChange = (e: any, id: String | null) => {
         const newStatus = active

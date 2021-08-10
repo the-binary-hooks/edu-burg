@@ -1,7 +1,7 @@
 /*
  * Title: Controllers of the admin router
  * Description: declares functions to add an admin to the DB,
- * Author: Lamisa Zamzam
+ * Author: Lamisa Zamzam, MD Nakibul Hosen Nahid
  * Date: 14 July, 2021 - present
  *
  */
