@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 // Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
@@ -29,7 +29,7 @@ const AddCourse = () => {
             courseStudents: students,
             department: data.department
         }
-        
+
         console.log(courseData);
         fetch("http://localhost:5000/api/admin/addCourse", {
             method: "POST",

@@ -10,8 +10,14 @@
 // Models
 import Admin from "../models/Admin.js";
 import Course from "../models/Course.js";
-import { sendResponse } from "../utils/sendResponse.js";
 import Teacher from "../models/Teacher.js";
+
+// Sending response
+import { sendResponse } from "../utils/sendResponse.js";
+
+// Handling errors
+import ErrorResponse from "../utils/errorResponse.js";
+
 // Admin Controllers Object --- module scaffolding
 const adminControllers = {};
 
@@ -58,39 +64,47 @@ adminControllers.addCourse = async (req, res, next) => {
         courseStudents,
         department,
     } = req.body;
+
+    const teacher = await Teacher.findOne({ id: courseTeacher });
+
     const courseData = {
         courseTitle,
         courseCode,
-        courseTeacher,
+        courseTeacher: teacher._id,
         courseStudents,
         department,
     };
 
-    // Create an instance of the Model Course
-    const course = await new Course(courseData);
-    console.log(courseData);
+    const studentIds = courseStudents.split(",");
 
-    // Save the course to the course collection
-    course.save((err) => {
-        if (err) {
-            console.log(error);
-        } else {
-            res.status(200).send({ success: true, courseData });
-        }
-    });
+    // // Create an instance of the Model Course
+    // const course = await new Course(courseData);
 
-    // Find the teacher and  Update Teacher course array
-    Teacher.findOneAndUpdate(
-        { id: courseTeacher }, 
-        { $push: { courses: courseData  } },
-       function (error, success) {
-             if (error) {
-                 console.log(error);
-             } else {
-                 console.log(success);
-             }
-         });
-    
+    // // Save the course to the course collection
+    // course.save((err) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         res.status(200).send({ success: true, courseData });
+    //     }
+    // });
+
+    // // Find the teacher and  Update Teacher course array
+    // Teacher.findByIdAndUpdate(
+    //     teacher._id,
+    //     { $push: { courses: course._id } },
+    //     { useFindAndModify: false },
+    //     function (error, success) {
+    //         if (error) {
+    //             console.log(error);
+    //             // next(new ErrorResponse(error.message));
+    //         }
+    //     }
+    // );
+
+    // const teacher2 = await Teacher.findOne({ id: courseTeacher });
+
+    // console.log(teacher2);
 
     // Find the students and  Update students course array
 };
