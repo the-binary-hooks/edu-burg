@@ -82,7 +82,7 @@ adminControllers.addCourse = async (req, res, next) => {
     // Find the teacher and  Update Teacher course array
     Teacher.findOneAndUpdate(
         { id: courseTeacher }, 
-        { $push: { courses: courseData  } },
+        { $addToSet: { courses: courseData  } },
        function (error, success) {
              if (error) {
                  console.log(error);
