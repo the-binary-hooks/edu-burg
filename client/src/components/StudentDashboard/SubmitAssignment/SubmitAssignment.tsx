@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 const SubmitAssignment = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data:any) => console.log(data);
+    const onSubmit = (data:object) => console.log(data);
     return (
         <div className="container-fluid">
             <div className="row">
