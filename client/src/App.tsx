@@ -32,6 +32,7 @@ import Students from "./components/AdminDashboard/Students/Students";
 import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";
 import SubmitAssignment from "./components/StudentDashboard/SubmitAssignment/SubmitAssignment";
 import AddDepartment from "./components/AdminDashboard/AddDepartment/AddDepartment";
+import PaymentHistory from "./components/StudentDashboard/Payment-History/PaymentHistory";
 
 const App = () => {
     return (
@@ -107,6 +108,9 @@ const App = () => {
                 </PrivateRoute>
                 <PrivateRoute path="/submit-assignments">
                     <SubmitAssignment />
+                </PrivateRoute>
+                <PrivateRoute path="/payment-history">
+                    <PaymentHistory />
                 </PrivateRoute>
             </Switch>
         </Router>
