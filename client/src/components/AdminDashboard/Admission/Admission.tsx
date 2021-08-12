@@ -191,6 +191,7 @@ const Admission = () => {
                                         id="summer"
                                         className="px-2"
                                         {...register("summer")}
+                                        name="session"
                                     />
                                     <label htmlFor="summer" className="px-2">
                                         Summer
@@ -200,6 +201,7 @@ const Admission = () => {
                                         type="radio"
                                         id="winter"
                                         {...register("winter")}
+                                        name="session"
                                     />
                                     <label htmlFor="winter" className="px-2">
                                         Winter
@@ -209,6 +211,7 @@ const Admission = () => {
                                         type="radio"
                                         {...register("spring")}
                                         id="spring"
+                                        name="session"
                                     />
                                     <label htmlFor="spring" className="px-2">
                                         Spring
