@@ -31,6 +31,7 @@ import Teachers from "./components/AdminDashboard/Teachers/Teachers";
 import Students from "./components/AdminDashboard/Students/Students";
 import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";
 import SubmitAssignment from "./components/StudentDashboard/SubmitAssignment/SubmitAssignment";
+import AddDepartment from "./components/AdminDashboard/AddDepartment/AddDepartment";
 
 const App = () => {
     return (
@@ -81,6 +82,9 @@ const App = () => {
                 </Route>
                 <Route path="/admission">
                     <Admission />
+                </Route>
+                <Route path="/add-departments">
+                    <AddDepartment />
                 </Route>
                 <Route path="/make-admin">
                     <MakeAdmin />
