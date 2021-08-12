@@ -37,7 +37,7 @@ const Home = () => {
                 <Sidebar />
                 <div className="col-md-10">
                     <h2 className="home-heading text-center">Total</h2>
-                    <div className="info-block-container d-flex justify-content-around flex-wrap">
+                    <div className="info-block-container d-flex justify-content-around flex-wrap mb-5">
                         <HomeInfoBlock teachers={teachers} />
                         <HomeInfoBlock students={students} />
                         <HomeInfoBlock courses={6} />
