@@ -1,14 +1,15 @@
-import React from 'react';
-import Sidebar from '../../DashboardCommon/Sidebar/Sidebar';
+import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const PaymentHistory = () => {
     return (
-        <div>
+        <div className="container-fluid">
             <div className="row">
                 <Sidebar />
                 <div className="col-md-10 mt-5">
-                    <h2 className="edu-burg-heading-1 text-center">Here is your payment history</h2>
-                    <table className="table table-hover text-center mt-5">
+                    <h2 className="edu-burg-heading-1 text-center">
+                        Here is your payment history
+                    </h2>
+                    <table className="table table-responsive table-hover text-center mt-5">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
