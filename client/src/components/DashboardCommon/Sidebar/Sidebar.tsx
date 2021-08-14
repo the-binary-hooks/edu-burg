@@ -72,10 +72,7 @@ const Sidebar = () => {
                 },
             };
             try {
-                const { data } = await axios.get(
-                    "/api/private",
-                    config
-                );
+                const { data } = await axios.get("/api/private", config);
                 setPrivateData(data.data);
             } catch (err) {
                 // Error means the token in the local storage is not valid
@@ -135,6 +132,7 @@ const Sidebar = () => {
                   "Payment history",
                   "News Feed",
                   "Submit Assignments",
+                  "Payment History",
               ];
 
     return (
