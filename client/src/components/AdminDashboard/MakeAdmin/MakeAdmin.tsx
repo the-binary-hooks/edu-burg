@@ -58,7 +58,7 @@ const MakeAdmin = () => {
         };
 
         // Add admin to DB
-        fetch("http://localhost:5000/api/admin/add", {
+        fetch("/api/admin/add", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(admin),

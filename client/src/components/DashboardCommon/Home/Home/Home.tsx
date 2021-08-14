@@ -19,14 +19,14 @@ const Home = () => {
 
     // Fetch Teachers
     useEffect(() => {
-        fetch("http://localhost:5000/api/teacher/getAll")
+        fetch("/api/teacher/getAll")
             .then((res) => res.json())
             .then((data) => setTeachers(parseInt(data.length)));
     }, []);
 
     // Fetch Students
     useEffect(() => {
-        fetch("http://localhost:5000/api/student/getAll")
+        fetch("/api/student/getAll")
             .then((res) => res.json())
             .then((data) => setStudents(parseInt(data.length)));
     }, []);

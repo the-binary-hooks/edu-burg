@@ -34,7 +34,7 @@ const PublishResult = () => {
         const { comment, cgpa, studentId, semester } = data;
         const result = { comment, cgpa, studentId, semester, imageURL };
 
-        fetch("http://localhost:5000/api/teacher/publishResult", {
+        fetch("/api/teacher/publishResult", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(result),

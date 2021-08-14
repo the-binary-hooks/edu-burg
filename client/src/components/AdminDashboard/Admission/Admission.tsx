@@ -152,7 +152,7 @@ const Admission = () => {
         };
 
         // Add Student to DB
-        fetch("http://localhost:5000/api/student/add", {
+        fetch("/api/student/add", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(student),

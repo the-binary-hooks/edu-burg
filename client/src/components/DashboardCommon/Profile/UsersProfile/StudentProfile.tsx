@@ -48,7 +48,7 @@ const StudentProfile = () => {
 
     // Fetch the student with Id
     useEffect(() => {
-        fetch(`http://localhost:5000/api/auth/getById/${id}`)
+        fetch(`/api/auth/getById/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
@@ -67,7 +67,7 @@ const StudentProfile = () => {
                 : e.target.value === "1"
                 ? "inactive"
                 : "active";
-        fetch(`http://localhost:5000/api/student/updateStatus/${id}`, {
+        fetch(`/api/student/updateStatus/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

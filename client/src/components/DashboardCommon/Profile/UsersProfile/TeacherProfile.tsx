@@ -43,7 +43,7 @@ const TeacherProfile = () => {
 
     // Fetch teacher with this Id
     useEffect(() => {
-        fetch(`http://localhost:5000/api/auth/getById/${id}`)
+        fetch(`/api/auth/getById/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {
@@ -62,7 +62,7 @@ const TeacherProfile = () => {
                 : e.target.value === "1"
                 ? "inactive"
                 : "active";
-        fetch(`http://localhost:5000/api/teacher/updateStatus/${id}`, {
+        fetch(`/api/teacher/updateStatus/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
