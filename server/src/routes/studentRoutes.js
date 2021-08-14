@@ -16,13 +16,13 @@ const { addAStudent, getStudents, updateStatus } = studentControllers;
 // Router Object -- module scaffolding
 let router = express.Router();
 
-// Path => http://localhost:5000/api/student/add
+// Path => /api/student/add
 router.route("/add").post(addAStudent);
 
-// Path => http://localhost:5000/api/student/getAll
+// Path => /api/student/getAll
 router.route("/getAll").get(getStudents);
 
-// Path => http://localhost:5000/api/student/updateStatus/:id
+// Path => /api/student/updateStatus/:id
 router.route("/updateStatus/:id").patch(updateStatus);
 
 export default router;

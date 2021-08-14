@@ -17,19 +17,19 @@ const { addATeacher, getTeachers, updateStatus, publishResult, getResults } =
 // Router Object -- module scaffolding
 let router = express.Router();
 
-// Path => http://localhost:5000/api/teacher/add
+// Path => /api/teacher/add
 router.route("/add").post(addATeacher);
 
-// Path => http://localhost:5000/api/teacher/getAll
+// Path => /api/teacher/getAll
 router.route("/getAll").get(getTeachers);
 
-// Path => http://localhost:5000/api/teacher/updateStatus/:id
+// Path => /api/teacher/updateStatus/:id
 router.route("/updateStatus/:id").patch(updateStatus);
 
-// Path => http://localhost:5000/api/teacher/publishResult
+// Path => /api/teacher/publishResult
 router.route("/publishResult").post(publishResult);
 
-// Path => http://localhost:5000/api/teacher/allResults
+// Path => /api/teacher/allResults
 router.route("/allResults").get(getResults);
 
 export default router;
