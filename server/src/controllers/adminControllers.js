@@ -67,6 +67,10 @@ adminControllers.addCourse = async (req, res, next) => {
 
     const teacher = await Teacher.findOne({ id: courseTeacher });
 
+    const studentIds = courseStudents
+        .split(",")
+        .map((studentId) => studentId.trim());
+
     const courseData = {
         courseTitle,
         courseCode,
@@ -75,15 +79,12 @@ adminControllers.addCourse = async (req, res, next) => {
         department,
     };
 
-    const studentIds = courseStudents
-        .split(",")
-        .map((studentId) => studentId.trim());
-
     const studentDBIds = [];
 
-    // studentIds.map((studentId) => {
-    //     const student = await Student.findOne({ id: studentId });
-    // });
+    studentIds.map(async (studentId) => {
+        const student = await Student.findOne({ id: studentId });
+        console.log(student);
+    });
 
     // // Create an instance of the Model Course
     // const course = await new Course(courseData);
