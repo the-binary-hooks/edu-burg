@@ -23,6 +23,7 @@ import StudentReview from "./components/AdminDashboard/StudentReview/StudentRevi
 import CoursesAssigned from "./components/TeacherDashboard/CoursesAssigned/CoursesAssigned";
 import PublishResult from "./components/TeacherDashboard/PublishResult/PublishResult";
 import Course from "./components/TeacherDashboard/Course/Course";
+import AllAssignment from "./components/TeacherDashboard/AllAssignment/AllAssignment";
 
 // StyleSheet
 import "./App.css";
@@ -71,6 +72,9 @@ const App = () => {
                 </PrivateRoute>
                 <PrivateRoute path="/publish-result">
                     <PublishResult />
+                </PrivateRoute>
+                <PrivateRoute path='/all-assignments'>
+                    <AllAssignment />
                 </PrivateRoute>
                 {/* Admin Dashboard */}
                 <PrivateRoute path="/add-a-Course">
