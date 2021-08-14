@@ -1,7 +1,7 @@
 /*
  * Title: Controllers of the admin router
  * Description: declares functions to add an admin to the DB,
- * Author: Lamisa Zamzam, MD Nakibul Hosen Nahid
+ * Author: Lamisa Zamzam
  * Date: 14 July, 2021 - present
  *
  */
@@ -75,7 +75,15 @@ adminControllers.addCourse = async (req, res, next) => {
         department,
     };
 
-    const studentIds = courseStudents.split(",");
+    const studentIds = courseStudents
+        .split(",")
+        .map((studentId) => studentId.trim());
+
+    const studentDBIds = [];
+
+    // studentIds.map((studentId) => {
+    //     const student = await Student.findOne({ id: studentId });
+    // });
 
     // // Create an instance of the Model Course
     // const course = await new Course(courseData);

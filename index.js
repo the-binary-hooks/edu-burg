@@ -13,6 +13,9 @@ import "dotenv";
 import dotenv from "dotenv";
 dotenv.config();
 
+import path from "path";
+const __dirname = path.resolve();
+
 // Express -- framework of node
 import express from "express";
 
@@ -20,18 +23,18 @@ import express from "express";
 import cors from "cors";
 
 // Routers
-import authRouter from "./routes/auth.js";
-import privateRouter from "./routes/private.js";
-import teacherRouter from "./routes/teacherRoutes.js";
-import studentRouter from "./routes/studentRoutes.js";
-import adminRouter from "./routes/adminRoutes.js";
+import authRouter from "./server/src/routes/auth.js";
+import privateRouter from "./server/src/routes/private.js";
+import teacherRouter from "./server/src/routes/teacherRoutes.js";
+import studentRouter from "./server/src/routes/studentRoutes.js";
+import adminRouter from "./server/src/routes/adminRoutes.js";
 
 // Mongoose -- framework of MongoDB
 import mongoose from "mongoose";
 
 // For handling Errors in case they occur
-import errorHandler from "./middleware/error.js";
-import ErrorResponse from "./utils/errorResponse.js";
+import errorHandler from "./server/src/middleware/error.js";
+import ErrorResponse from "./server/src/utils/errorResponse.js";
 
 // Initialize the app
 const app = express();
@@ -40,7 +43,8 @@ const app = express();
 const connectDB = async () => {
     try {
         await mongoose.connect(
-            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.uabc2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+            process.env.MONGO_URI ||
+                `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.uabc2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
             {
                 auth: { authSource: "admin" },
                 user: process.env.DB_USER,
@@ -78,8 +82,18 @@ app.use("/api/admin", adminRouter);
 app.use("/api/private", privateRouter);
 
 // Root api call
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+if (process.env.NODE_ENV === "production") {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, "client/build")));
+
+    // Handle React routing, return all requests to React app
+    app.get("*", function (req, res) {
+        res.sendFile(path.join(__dirname, "client/build", "index.html"));
+    });
+}
+
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
 // Handle Error
