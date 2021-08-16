@@ -25,6 +25,7 @@ import privateRouter from "./routes/private.js";
 import teacherRouter from "./routes/teacherRoutes.js";
 import studentRouter from "./routes/studentRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
 // Mongoose -- framework of MongoDB
 import mongoose from "mongoose";
@@ -76,6 +77,8 @@ app.use("/api/student", studentRouter);
 app.use("/api/admin", adminRouter);
 
 app.use("/api/private", privateRouter);
+
+app.use("/api/post", postRoutes);
 
 // Root api call
 app.get("/", (req, res) => {
