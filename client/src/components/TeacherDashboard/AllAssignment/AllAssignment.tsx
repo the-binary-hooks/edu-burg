@@ -47,7 +47,7 @@ const AllAssignment = () => {
                         </thead>
                         <tbody>
                            {
-                               fakeAssignment.map(data => <Assignments  ></Assignments>)
+                               fakeAssignment.map(data => <Assignments></Assignments>)
                            }
                         </tbody>
                     </Table>
