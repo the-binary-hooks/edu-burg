@@ -151,6 +151,8 @@ const Admission = () => {
             picture: imageURL,
         };
 
+        console.log(student)
+
         // Add Student to DB
         fetch("/api/student/add", {
             method: "POST",
@@ -161,7 +163,7 @@ const Admission = () => {
             .then((result) => {
                 if (result) {
                     alert("Your student has been registered successfully!!");
-                    window.location.reload();
+                    // window.location.reload();
                 }
             });
     };

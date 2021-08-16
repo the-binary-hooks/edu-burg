@@ -11,6 +11,7 @@
 import Admin from "../models/Admin.js";
 import Course from "../models/Course.js";
 import Teacher from "../models/Teacher.js";
+import Student from "../models/Student.js";
 
 // Sending response
 import { sendResponse } from "../utils/sendResponse.js";
@@ -71,51 +72,68 @@ adminControllers.addCourse = async (req, res, next) => {
         .split(",")
         .map((studentId) => studentId.trim());
 
-    const courseData = {
-        courseTitle,
-        courseCode,
-        courseTeacher: teacher._id,
-        courseStudents,
-        department,
-    };
-
     const studentDBIds = [];
 
     studentIds.map(async (studentId) => {
         const student = await Student.findOne({ id: studentId });
-        console.log(student);
+        if (student) {
+            studentDBIds.push(student._id);
+        }
     });
 
-    // // Create an instance of the Model Course
-    // const course = await new Course(courseData);
+    setTimeout(async () => {
+        const courseData = {
+            courseTitle,
+            courseCode,
+            courseTeacher: teacher._id,
+            courseStudents: studentDBIds,
+            department,
+        };
 
-    // // Save the course to the course collection
-    // course.save((err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.status(200).send({ success: true, courseData });
-    //     }
-    // });
+        // Create an instance of the Model Course
+        const course = await new Course(courseData);
 
-    // // Find the teacher and  Update Teacher course array
-    // Teacher.findByIdAndUpdate(
-    //     teacher._id,
-    //     { $push: { courses: course._id } },
-    //     { useFindAndModify: false },
-    //     function (error, success) {
-    //         if (error) {
-    //             console.log(error);
-    //             // next(new ErrorResponse(error.message));
-    //         }
-    //     }
-    // );
+        // Save the course to the course collection
+        course.save((err) => {
+            if (err) {
+                console.log(err);
+                next(new ErrorResponse(err.message));
+            } else {
+                res.status(200).send({ success: true, courseData });
+            }
+        });
 
-    // const teacher2 = await Teacher.findOne({ id: courseTeacher });
+        console.log(course);
 
-    // console.log(teacher2);
+        // Find the teacher and  Update Teacher course array
+        Teacher.findByIdAndUpdate(
+            teacher._id,
+            { $push: { courses: course._id } },
+            { useFindAndModify: false },
+            function (error, success) {
+                if (error) {
+                    console.log(error);
+                }
+            }
+        );
 
-    // Find the students and  Update students course array
+        // Find the students and Update students course array
+        studentDBIds.map(async (studentId) => {
+            Student.findByIdAndUpdate(
+                studentId,
+                { $push: { courses: course._id } },
+                { useFindAndModify: false },
+                function (err, docs) {
+                    if (err) {
+                        console.log(err);
+                        // next(new ErrorResponse(err.message));
+                    } else {
+                        // res.status(200).send({ success: true, course });
+                    }
+                }
+            );
+        });
+    }, 1000);
 };
 
 export default adminControllers;

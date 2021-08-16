@@ -88,6 +88,7 @@ authControllers.login = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 } = student;
                 addInfo = {
                     _id,
@@ -106,6 +107,7 @@ authControllers.login = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 };
 
                 sendResponse(addInfo, student, 200, res);
@@ -189,7 +191,9 @@ authControllers.getById = async (req, res, next) => {
         } else {
             // If no teacher is found, find student with the id sent
             // from the student collection
-            student = await Student.findOne({ id }).populate("semesterResults");
+            student = await Student.findOne({ id })
+                .populate("semesterResults")
+                .populate("courses");
             if (student) {
                 const {
                     _id,
@@ -207,6 +211,7 @@ authControllers.getById = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 } = student;
                 addInfo = {
                     _id,
@@ -225,6 +230,7 @@ authControllers.getById = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 };
 
                 sendResponse(addInfo, student, 200, res);

@@ -30,9 +30,6 @@ import Profile from "./components/DashboardCommon/Profile/Profile/Profile";
 import Teachers from "./components/AdminDashboard/Teachers/Teachers";
 import Students from "./components/AdminDashboard/Students/Students";
 import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";
-import SubmitAssignment from "./components/StudentDashboard/SubmitAssignment/SubmitAssignment";
-import AddDepartment from "./components/AdminDashboard/AddDepartment/AddDepartment";
-import PaymentHistory from "./components/StudentDashboard/Payment-History/PaymentHistory";
 
 const App = () => {
     return (
@@ -84,9 +81,6 @@ const App = () => {
                 <Route path="/admission">
                     <Admission />
                 </Route>
-                <Route path="/add-departments">
-                    <AddDepartment />
-                </Route>
                 <Route path="/make-admin">
                     <MakeAdmin />
                 </Route>
@@ -105,12 +99,6 @@ const App = () => {
                 {/* Student Dashboard */}
                 <PrivateRoute path="/semester-results">
                     <SemesterResults />
-                </PrivateRoute>
-                <PrivateRoute path="/submit-assignments">
-                    <SubmitAssignment />
-                </PrivateRoute>
-                <PrivateRoute path="/payment-history">
-                    <PaymentHistory />
                 </PrivateRoute>
             </Switch>
         </Router>
