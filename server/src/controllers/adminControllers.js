@@ -66,8 +66,6 @@ adminControllers.addCourse = async (req, res, next) => {
         department,
     } = req.body;
 
-    const teacher = await Teacher.findOne({ id: courseTeacher });
-
     const studentIds = courseStudents
         .split(",")
         .map((studentId) => studentId.trim());
@@ -82,6 +80,8 @@ adminControllers.addCourse = async (req, res, next) => {
     });
 
     setTimeout(async () => {
+        let teacher = await Teacher.findOne({ id: courseTeacher });
+
         const courseData = {
             courseTitle,
             courseCode,
@@ -96,26 +96,21 @@ adminControllers.addCourse = async (req, res, next) => {
         // Save the course to the course collection
         course.save((err) => {
             if (err) {
-                console.log(err);
                 next(new ErrorResponse(err.message));
             } else {
                 res.status(200).send({ success: true, courseData });
             }
         });
 
-        console.log(course);
-
         // Find the teacher and  Update Teacher course array
         Teacher.findByIdAndUpdate(
             teacher._id,
             { $push: { courses: course._id } },
             { useFindAndModify: false },
-            function (error, success) {
-                if (error) {
-                    console.log(error);
-                }
-            }
+            function (error, success) {}
         );
+
+        teacher = await Teacher.findOne({ id: courseTeacher });
 
         // Find the students and Update students course array
         studentDBIds.map(async (studentId) => {
@@ -123,14 +118,7 @@ adminControllers.addCourse = async (req, res, next) => {
                 studentId,
                 { $push: { courses: course._id } },
                 { useFindAndModify: false },
-                function (err, docs) {
-                    if (err) {
-                        console.log(err);
-                        // next(new ErrorResponse(err.message));
-                    } else {
-                        // res.status(200).send({ success: true, course });
-                    }
-                }
+                function (err, docs) {}
             );
         });
     }, 1000);

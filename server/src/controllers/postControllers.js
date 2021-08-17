@@ -50,8 +50,6 @@ postControllers.addPost = async (req, res, next) => {
         email,
     };
 
-    console.log(postInfo);
-
     // Create an instance of the Model Post
     const post = await new Post(postInfo);
 
@@ -81,7 +79,6 @@ postControllers.addPost = async (req, res, next) => {
                     { useFindAndModify: false },
                     function (error, success) {
                         if (error) {
-                            console.log(error);
                             next(new ErrorResponse(error.message));
                         }
                         if (success) {

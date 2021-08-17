@@ -71,7 +71,6 @@ const AdminProfile = () => {
                     <Table responsive="sm">
                         <thead>
                             <tr className="brand-text">
-                                <th>Courses</th>
                                 <th>Posts</th>
                                 <th>Followers</th>
                                 <th>Following</th>
@@ -80,7 +79,6 @@ const AdminProfile = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>13</td>
                                 <td>55</td>
                                 <td>583</td>
                                 <td>29</td>

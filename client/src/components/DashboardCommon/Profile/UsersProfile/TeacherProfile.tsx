@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // React Bootstrap
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 // React Router
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // Components
 import Sidebar from "../../Sidebar/Sidebar";
 // CSS
@@ -22,6 +22,15 @@ interface teacherInterface {
     _id: string;
     id: string;
     teacherName: string;
+    courses: [
+        {
+            courseTitle: string;
+            courseCode: string;
+            courseTeacher: string;
+            courseStudents: [string];
+            department: string;
+        }
+    ];
     role: string;
     email: string;
     gender: string;
@@ -77,6 +86,7 @@ const TeacherProfile = () => {
             });
     };
 
+    console.log(teacher);
     return (
         <Container fluid data-testid="container">
             <Row>
@@ -136,11 +146,21 @@ const TeacherProfile = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>13</td>
+                                <td>
+                                    <Link to="/courses">
+                                        {teacher?.courses?.length}
+                                    </Link>
+                                </td>
                                 <td>6693</td>
-                                <td>55</td>
-                                <td>583</td>
-                                <td>29</td>
+                                <td>
+                                    <Link to="/your-posts">55</Link>
+                                </td>
+                                <td>
+                                    <Link to="/followers">583</Link>
+                                </td>
+                                <td>
+                                    <Link to="/followers">29</Link>
+                                </td>
                                 <td>4.9</td>
                             </tr>
                         </tbody>

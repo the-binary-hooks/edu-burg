@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
@@ -186,7 +187,7 @@ const MakeAdmin = () => {
                                 </div>
                             </div>
                             <div className="form-group mb-3">
-                                <input
+                                <Form.Control
                                     type="file"
                                     name="admin-image"
                                     id="admin-image"

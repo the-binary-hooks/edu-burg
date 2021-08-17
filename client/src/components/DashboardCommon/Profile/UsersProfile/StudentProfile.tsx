@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // React Bootstrap
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
 // React Router
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // Components
 import Sidebar from "../../Sidebar/Sidebar";
 // CSS
@@ -22,6 +22,15 @@ interface studentInterface {
     _id: string;
     id: string;
     studentName: string;
+    courses: [
+        {
+            courseTitle: string;
+            courseCode: string;
+            courseTeacher: string;
+            courseStudents: [string];
+            department: string;
+        }
+    ];
     role: string;
     email: string;
     gender: string;
@@ -90,7 +99,7 @@ const StudentProfile = () => {
                     <br />
                     <Container>
                         <img
-                            src="https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
+                            src={student.picture}
                             alt="profilePic"
                             className="profile-pic"
                         />
@@ -132,6 +141,11 @@ const StudentProfile = () => {
                         <Button className="brand-button">
                             <FontAwesomeIcon icon={faPlus} /> Follow
                         </Button>
+                        <Link to="/semester-results">
+                            <Button className="brand-button">
+                                See Semester Results
+                            </Button>
+                        </Link>
                     </Container>
 
                     <Table responsive="sm">
@@ -147,12 +161,22 @@ const StudentProfile = () => {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>13</td>
+                                <td>
+                                    <Link to="/courses">
+                                        {student?.courses?.length}
+                                    </Link>
+                                </td>
                                 <td>45</td>
                                 <td>87</td>
-                                <td>55</td>
-                                <td>583</td>
-                                <td>29</td>
+                                <td>
+                                    <Link to="/your-posts">55</Link>
+                                </td>
+                                <td>
+                                    <Link to="/followers">583</Link>
+                                </td>
+                                <td>
+                                    <Link to="/followers">29</Link>
+                                </td>
                             </tr>
                         </tbody>
                     </Table>
