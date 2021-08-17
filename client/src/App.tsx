@@ -84,9 +84,9 @@ const App = () => {
                 <Route path="/make-admin">
                     <MakeAdmin />
                 </Route>
-                <PrivateRoute path="/your-posts">
+                <Route path="/your-posts">
                     <NewsFeed />
-                </PrivateRoute>
+                </Route>
                 <PrivateRoute path="/student-reviews">
                     <StudentReview />
                 </PrivateRoute>

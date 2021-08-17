@@ -23,12 +23,12 @@ import express from "express";
 import cors from "cors";
 
 // Routers
-import authRouter from "./routes/auth.js";
-import privateRouter from "./routes/private.js";
-import teacherRouter from "./routes/teacherRoutes.js";
-import studentRouter from "./routes/studentRoutes.js";
-import adminRouter from "./routes/adminRoutes.js";
-import postRoutes from "./routes/postRoutes.js";
+import authRouter from "./server/src/routes/auth.js";
+import privateRouter from "./server/src/routes/private.js";
+import teacherRouter from "./server/src/routes/teacherRoutes.js";
+import studentRouter from "./server/src/routes/studentRoutes.js";
+import adminRouter from "./server/src/routes/adminRoutes.js";
+import postRoutes from "./server/src/routes/postRoutes.js";
 
 // Mongoose -- framework of MongoDB
 import mongoose from "mongoose";

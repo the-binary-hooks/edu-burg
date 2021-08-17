@@ -15,7 +15,7 @@ const NewsFeed = () => {
     return (
         <Container fluid>
             <Row>
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <Col md={3} className="column">
                     <br />
                     {/* <Search
