@@ -2,12 +2,11 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 // React Router
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react-router/node_modules/@types/react";
 // Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const CoursesAssigned = () => {
-<<<<<<< HEAD
-=======
     const userInfo = {
         id: sessionStorage.getItem("_id"),
         role: sessionStorage.getItem("role")
@@ -32,7 +31,6 @@ const CoursesAssigned = () => {
             })
     }, [userInfo.id, userInfo.role]);
 
->>>>>>> nahid
     // React Router vars
     const history = useHistory();
     return (
