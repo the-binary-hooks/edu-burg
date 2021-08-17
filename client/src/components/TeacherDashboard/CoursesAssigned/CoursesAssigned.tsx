@@ -1,5 +1,4 @@
 // React Bootstrap
-import { useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 // React Router
 import { useHistory } from "react-router-dom";
@@ -7,11 +6,6 @@ import { useHistory } from "react-router-dom";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const CoursesAssigned = () => {
-    useEffect(() => {
-        console.log(sessionStorage.getItem("_id"));
-        // fetch("")
-    }, []);
-
     // React Router vars
     const history = useHistory();
     return (
@@ -25,6 +19,7 @@ const CoursesAssigned = () => {
                     <Row>
                         {Array.from({ length: 4 }).map((_, idx) => (
                             <Col
+                                key={idx}
                                 md={6}
                                 onClick={() => history.push(`/course/:id`)}
                             >

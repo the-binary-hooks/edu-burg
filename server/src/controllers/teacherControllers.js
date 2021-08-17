@@ -83,6 +83,21 @@ teacherControllers.getTeachers = async (req, res, next) => {
     }
 };
 
+teacherControllers.getByName = async (req, res, next) => {
+    const searchStr = req.params.searchStr;
+    if (searchStr) {
+        try {
+            // Get all the teachers saved to the DB
+            const teachers = await Teacher.find({
+                teacherName: new RegExp(searchStr, "i"),
+            }).populate("courses");
+            res.send(teachers);
+        } catch (err) {
+            next(new ErrorResponse(err.message));
+        }
+    }
+};
+
 teacherControllers.updateStatus = async (req, res, next) => {
     // Read Data from request body
     const status = req.body.status;

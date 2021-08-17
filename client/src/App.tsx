@@ -75,19 +75,19 @@ const App = () => {
                 <PrivateRoute path="/publish-result">
                     <PublishResult />
                 </PrivateRoute>
-                <PrivateRoute path='/all-assignments'>
+                <PrivateRoute path="/all-assignments">
                     <AllAssignment />
                 </PrivateRoute>
-                <PrivateRoute path='/single-assignment'>
+                <PrivateRoute path="/single-assignment">
                     <SingleAssignment />
                 </PrivateRoute>
                 {/* Admin Dashboard */}
                 <PrivateRoute path="/add-a-Course">
                     <AddCourse />
                 </PrivateRoute>
-                <Route path="/add-a-teacher">
+                <PrivateRoute path="/add-a-teacher">
                     <AddTeacher />
-                </Route>
+                </PrivateRoute>
                 <Route path="/admission">
                     <Admission />
                 </Route>

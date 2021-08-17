@@ -109,6 +109,23 @@ studentControllers.getStudents = async (req, res, next) => {
     }
 };
 
+studentControllers.getByName = async (req, res, next) => {
+    const searchStr = req.params.searchStr;
+    if (searchStr) {
+        try {
+            // Get all the students saved to the DB
+            const students = await Student.find({
+                studentName: new RegExp(searchStr, "i"),
+            })
+                .populate("semesterResults")
+                .populate("courses");
+            res.send(students);
+        } catch (err) {
+            next(new ErrorResponse(err.message));
+        }
+    }
+};
+
 studentControllers.updateStatus = async (req, res, next) => {
     // Read Data from request body
     const status = req.body.status;

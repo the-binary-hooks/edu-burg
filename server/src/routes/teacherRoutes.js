@@ -11,8 +11,14 @@ import express from "express";
 import teacherControllers from "../controllers/teacherControllers.js";
 
 // Getting controllers
-const { addATeacher, getTeachers, updateStatus, publishResult, getResults } =
-    teacherControllers;
+const {
+    addATeacher,
+    getTeachers,
+    getByName,
+    updateStatus,
+    publishResult,
+    getResults,
+} = teacherControllers;
 
 // Router Object -- module scaffolding
 let router = express.Router();
@@ -22,6 +28,9 @@ router.route("/add").post(addATeacher);
 
 // Path => /api/teacher/getAll
 router.route("/getAll").get(getTeachers);
+
+// Path => /api/teacher/getByName/:searchStr
+router.route("/getByName/:searchStr").get(getByName);
 
 // Path => /api/teacher/updateStatus/:id
 router.route("/updateStatus/:id").patch(updateStatus);
