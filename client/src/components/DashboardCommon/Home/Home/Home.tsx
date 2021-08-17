@@ -19,14 +19,14 @@ const Home = () => {
 
     // Fetch Teachers
     useEffect(() => {
-        fetch("http://localhost:5000/api/teacher/getAll")
+        fetch("/api/teacher/getAll")
             .then((res) => res.json())
             .then((data) => setTeachers(parseInt(data.length)));
     }, []);
 
     // Fetch Students
     useEffect(() => {
-        fetch("http://localhost:5000/api/student/getAll")
+        fetch("/api/student/getAll")
             .then((res) => res.json())
             .then((data) => setStudents(parseInt(data.length)));
     }, []);
@@ -37,7 +37,7 @@ const Home = () => {
                 <Sidebar />
                 <div className="col-md-10">
                     <h2 className="home-heading text-center">Total</h2>
-                    <div className="info-block-container d-flex justify-content-around flex-wrap">
+                    <div className="info-block-container d-flex justify-content-around flex-wrap mb-5">
                         <HomeInfoBlock teachers={teachers} />
                         <HomeInfoBlock students={students} />
                         <HomeInfoBlock courses={6} />

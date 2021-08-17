@@ -1,6 +1,5 @@
 {
     "name": "client",
-    "proxy": "http://127.0.0.1:5000",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -53,5 +52,7 @@
     "devDependencies": {
         "@types/express": "^4.17.13",
         "@types/react-router-dom": "^5.1.8"
-    }
+    },
+    "typings": "./index.d.ts",
+    "proxy": "http://localhost:5000"
 }

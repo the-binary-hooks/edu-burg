@@ -59,14 +59,14 @@ const Students = () => {
 
     // Get all students record in the DB
     useEffect(() => {
-        fetch("http://localhost:5000/api/student/getAll")
+        fetch("/api/student/getAll")
             .then((res) => res.json())
             .then((data) => setStudents(data));
     }, []);
 
     // Get all students record in the DB
     useEffect(() => {
-        fetch(`http://localhost:5000/api/auth/getById/${searchStr}`)
+        fetch(`/api/auth/getById/${searchStr}`)
             .then((res) => res.json())
             .then((data) =>console.log(data));
     }, [searchStr]);

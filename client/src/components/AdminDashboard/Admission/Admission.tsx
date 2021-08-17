@@ -151,8 +151,10 @@ const Admission = () => {
             picture: imageURL,
         };
 
+        console.log(student)
+
         // Add Student to DB
-        fetch("http://localhost:5000/api/student/add", {
+        fetch("/api/student/add", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(student),
@@ -161,7 +163,7 @@ const Admission = () => {
             .then((result) => {
                 if (result) {
                     alert("Your student has been registered successfully!!");
-                    window.location.reload();
+                    // window.location.reload();
                 }
             });
     };
@@ -191,6 +193,7 @@ const Admission = () => {
                                         id="summer"
                                         className="px-2"
                                         {...register("summer")}
+                                        name="session"
                                     />
                                     <label htmlFor="summer" className="px-2">
                                         Summer
@@ -200,6 +203,7 @@ const Admission = () => {
                                         type="radio"
                                         id="winter"
                                         {...register("winter")}
+                                        name="session"
                                     />
                                     <label htmlFor="winter" className="px-2">
                                         Winter
@@ -209,6 +213,7 @@ const Admission = () => {
                                         type="radio"
                                         {...register("spring")}
                                         id="spring"
+                                        name="session"
                                     />
                                     <label htmlFor="spring" className="px-2">
                                         Spring

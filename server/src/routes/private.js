@@ -14,7 +14,7 @@ import { protect } from "../middleware/auth.js";
 // Router Object -- module scaffolding
 let router = express.Router();
 
-// Path => http://localhost:5000/api/private
+// Path => /api/private
 router.route("/").get(protect, getPrivateData);
 
 export default router;

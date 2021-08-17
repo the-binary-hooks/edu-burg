@@ -21,6 +21,7 @@ import { sendResponse } from "../utils/sendResponse.js";
 const studentControllers = {};
 
 studentControllers.addAStudent = async (req, res, next) => {
+    console.log("body", req.body);
     // Read data from request body
     const {
         id,
@@ -66,6 +67,8 @@ studentControllers.addAStudent = async (req, res, next) => {
         picture,
     };
 
+    console.log("stduentInfo", studentInfo);
+
     const addInfo = {
         studentName,
         role: "student",
@@ -86,6 +89,7 @@ studentControllers.addAStudent = async (req, res, next) => {
     // Save the student to the student collection
     student.save((err) => {
         if (err) {
+            console.log(err);
             next(new ErrorResponse(err.message));
         } else {
             sendResponse(addInfo, student, 200, res);
@@ -96,7 +100,9 @@ studentControllers.addAStudent = async (req, res, next) => {
 studentControllers.getStudents = async (req, res, next) => {
     try {
         // Get all the students saved to the DB
-        const students = await Student.find({}).populate("semesterResults");
+        const students = await Student.find({})
+            .populate("semesterResults")
+            .populate("courses");
         res.send(students);
     } catch (err) {
         next(new ErrorResponse(err.message));

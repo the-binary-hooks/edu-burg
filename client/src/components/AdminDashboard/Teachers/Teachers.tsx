@@ -31,7 +31,7 @@ const Teachers = () => {
 
     // Fetch all the teachers
     useEffect(() => {
-        fetch("http://localhost:5000/api/teacher/getAll")
+        fetch("/api/teacher/getAll")
             .then((res) => res.json())
             .then((data) => setTeachers(data));
     }, []);

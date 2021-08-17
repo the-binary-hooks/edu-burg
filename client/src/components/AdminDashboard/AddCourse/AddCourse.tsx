@@ -31,7 +31,7 @@ const AddCourse = () => {
         }
 
         console.log(courseData);
-        fetch("http://localhost:5000/api/admin/addCourse", {
+        fetch("/api/admin/addCourse", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

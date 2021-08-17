@@ -44,7 +44,7 @@ const SemesterResults = () => {
     const id = sessionStorage.getItem("id");
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/auth/getById/${id}`)
+        fetch(`/api/auth/getById/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 if (data.success === true) {

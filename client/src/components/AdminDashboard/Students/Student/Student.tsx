@@ -69,7 +69,7 @@ const Student = ({ student, active, inactive }: IProps) => {
             : e.target.value === "1"
             ? "inactive"
             : "active";
-        fetch(`http://localhost:5000/api/student/updateStatus/${id}`, {
+        fetch(`/api/student/updateStatus/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",

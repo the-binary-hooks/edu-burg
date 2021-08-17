@@ -1,9 +1,12 @@
 // React Bootstrap
+import { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 // CSS
 import "./Posts.css";
 
+
 const Posts = () => {
+
     return (
         <Card className="card">
             <Row>

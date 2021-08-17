@@ -31,6 +31,7 @@ import Profile from "./components/DashboardCommon/Profile/Profile/Profile";
 import Teachers from "./components/AdminDashboard/Teachers/Teachers";
 import Students from "./components/AdminDashboard/Students/Students";
 import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";
+
 import SubmitAssignment from "./components/StudentDashboard/SubmitAssignment/SubmitAssignment";
 import SingleAssignment from "./components/TeacherDashboard/SingleAssignmentPage/SingleAssignment";
 
@@ -108,9 +109,6 @@ const App = () => {
                 {/* Student Dashboard */}
                 <PrivateRoute path="/semester-results">
                     <SemesterResults />
-                </PrivateRoute>
-                <PrivateRoute path="/submit-assignments">
-                    <SubmitAssignment />
                 </PrivateRoute>
             </Switch>
         </Router>
