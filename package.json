@@ -12,7 +12,7 @@
         "install-client": "cd client && npm install",
         "build": "cd client && npm run build",
         "heroku-postbuild": "npm run install-client && npm run build",
-        "push lamisa": "git push && git checkout main && git merge lamisa && git pull && git push && git checkout lamisa && git pull origin main"
+        "push-lamisa": "git push && git checkout main && git merge lamisa && git commit -m\"merged branch lamisa\" && git pull && git push && git checkout lamisa && git pull origin main"
     },
     "repository": {
         "type": "git",
