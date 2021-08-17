@@ -1,33 +1,32 @@
 //React bootstrap
 
-import { Col, Container, Row, Table } from "react-bootstrap"
-import Sidebar from "../../DashboardCommon/Sidebar/Sidebar"
-import Assignments from "./Assignments"
+import { Col, Container, Row, Table } from "react-bootstrap";
+import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
+import Assignments from "./Assignments";
 
 const AllAssignment = () => {
     const fakeAssignment = [
         {
-            "id":1,
-            "code":1,
-            "link":"link.com"
+            id: 1,
+            code: 1,
+            link: "link.com",
         },
         {
-            "id":2,
-            "code":2,
-            "link":"link2.com"
+            id: 2,
+            code: 2,
+            link: "link2.com",
         },
         {
-            "id":3,
-            "code":3,
-            "link":"link3.com"
+            id: 3,
+            code: 3,
+            link: "link3.com",
         },
         {
-            "id":4,
-            "code":4,
-            "link":"link4.com"
+            id: 4,
+            code: 4,
+            link: "link4.com",
         },
-     
-    ]
+    ];
     return (
         <Container fluid>
             <Row>
@@ -46,17 +45,15 @@ const AllAssignment = () => {
                             </tr>
                         </thead>
                         <tbody>
-                           {
-                               fakeAssignment.map(data => <Assignments></Assignments>)
-                           }
+                            {fakeAssignment.map((data) => (
+                                <Assignments data={data}></Assignments>
+                            ))}
                         </tbody>
                     </Table>
-
                 </Col>
             </Row>
-
         </Container>
-    )
-}
+    );
+};
 
-export default AllAssignment
+export default AllAssignment;
