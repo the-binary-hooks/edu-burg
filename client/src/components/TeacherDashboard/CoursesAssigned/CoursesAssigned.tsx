@@ -7,10 +7,29 @@ import { useHistory } from "react-router-dom";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const CoursesAssigned = () => {
+    const userInfo = {
+        id: sessionStorage.getItem("_id"),
+        role: sessionStorage.getItem("role")
+    }
     useEffect(() => {
-        console.log(sessionStorage.getItem("_id"));
-        // fetch("")
-    }, []);
+        console.log(userInfo.id, 'id');
+        console.log(userInfo.role, 'role');
+        fetch(`/api/${userInfo.role}/getCourses/${userInfo.id}`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify({role: userInfo.role})
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    }, [userInfo.id, userInfo.role]);
 
     // React Router vars
     const history = useHistory();
