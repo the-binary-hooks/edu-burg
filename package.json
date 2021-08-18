@@ -16,7 +16,7 @@
         "merge-nahid": "git checkout nahid && git pull && git checkout main && git merge nahid && git push && git checkout lamisa && git pull origin main",
         "merge-fariha": "git checkout fariha && git pull && git checkout main && git merge fariha && git push && git checkout lamisa && git pull origin main",
         "merge-fozlolhoq": "git checkout fozlolhoq && git pull && git checkout main && git merge fozlolhoq && git push && git checkout lamisa && git pull origin main",
-        "merge-team": "npm run push-lamisa && npm run merge-nahid && npm run merge-fariha && npm run merge fozlolhoq"
+        "merge-team": "npm run push-lamisa && npm run merge-nahid && npm run merge-fariha && npm run merge-fozlolhoq"
     },
     "repository": {
         "type": "git",
