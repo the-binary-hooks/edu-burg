@@ -1,34 +1,34 @@
 // React Bootstrap
+import { useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 // React Router
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react-router/node_modules/@types/react";
 // Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
 const CoursesAssigned = () => {
     const userInfo = {
         id: sessionStorage.getItem("_id"),
-        role: sessionStorage.getItem("role")
-    }
+        role: sessionStorage.getItem("role"),
+    };
     useEffect(() => {
-        console.log(userInfo.id, 'id');
-        console.log(userInfo.role, 'role');
+        console.log(userInfo.id, "id");
+        console.log(userInfo.role, "role");
         fetch(`/api/${userInfo.role}/getCourses/${userInfo.id}`, {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({role: userInfo.role})
+            body: JSON.stringify({ role: userInfo.role }),
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err.message);
-            })
+            });
     }, [userInfo.id, userInfo.role]);
 
     // React Router vars
