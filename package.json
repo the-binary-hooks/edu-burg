@@ -5,7 +5,7 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
-        "client": "cd client && npm start",
+        "client": "cd client && npm start --prefix client",
         "start": "node index.ts",
         "dev": "concurrently -n 'server,client' \"nodemon index.ts\" \"npm run client\"",
         "server": "nodemon server/index",
