@@ -15,7 +15,7 @@
         "push-lamisa": "git push && git checkout main && git merge lamisa && git pull && git push && git checkout lamisa && git pull origin main",
         "merge-nahid": "git checkout nahid && git pull && git checkout main && git merge nahid && git push && git checkout lamisa && git pull origin main",
         "merge-fariha": "git checkout fariha && git pull && git checkout main && git merge fariha && git push && git checkout lamisa && git pull origin main",
-        "merge-fozlolhoq": "git checkout folzolhoq && git pull && git checkout main && git merge folzolhoq && git push && git checkout lamisa && git pull origin main"
+        "merge-fozlolhoq": "git checkout fozlolhoq && git pull && git checkout main && git merge fozlolhoq && git push && git checkout lamisa && git pull origin main"
     },
     "repository": {
         "type": "git",
