@@ -140,26 +140,41 @@ studentControllers.updateStatus = async (req, res, next) => {
 
 //Get Courses of a student
 
-studentControllers.getCourses = async(req,res) => {
+studentControllers.getCourses = async (req, res) => {
     let id = req.params.id;
     let role = req.body.role;
-    console.log(id,role);
-    if(role = "student"){
-        Student.find({_id: req.params.id},(err,data) => {
-            if(err){
+    console.log(id, role);
+    if ((role = "student")) {
+        Student.find({ _id: req.params.id }, (err, data) => {
+            if (err) {
                 res.status(500).json({
-                    error:"There was an server side error"
-                })
-                console.log(err)
-            } else{
+                    error: "There was an server side error",
+                });
+                console.log(err);
+            } else {
                 res.status(200).json({
-                    result: data || "No Course Found",
-                    message: "Get courses successfully"
-                })
+                    result: data,
+                    message: "Get courses successfully",
+                });
             }
         })
-    }else{
-        console.log("can't find in student collection")
+            .populate("semesterResults")
+            .populate("courses")
+            .populate({
+                path: "courses",
+                populate: [
+                    {
+                        path: "courseTeacher",
+                        model: "Teacher",
+                    },
+                    {
+                        path: "courseStudents",
+                        model: "Student",
+                    },
+                ],
+            });
+    } else {
+        console.log("can't find in student collection");
     }
     // res.status(200).json({
     //     message: "data got successfully"
