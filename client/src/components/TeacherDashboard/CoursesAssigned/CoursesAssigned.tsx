@@ -24,10 +24,10 @@ const CoursesAssigned = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                console.log(data.result[0].courses);
             })
             .catch((err) => {
-                console.log(err.message);
+                console.log(err);
             });
     }, [userInfo.id, userInfo.role]);
 
