@@ -12,7 +12,7 @@ import express from "express";
 import postControllers from "../controllers/postControllers.js";
 
 // Destructuring controllers
-const { addPost, getPost } = postControllers;
+const { addPost, getPost, getFile } = postControllers;
 
 // Router Object -- module scaffolding
 let router = express.Router();
@@ -22,5 +22,8 @@ router.route("/addPost").post(addPost);
 
 // Path => http://localhost:5000/api/post/getPost
 router.route("/getPost").post(getPost);
+
+// Path => http://localhost:5000/api/post/getFile
+router.route("/getFile").post(getFile);
 
 export default router;

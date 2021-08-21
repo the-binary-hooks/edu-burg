@@ -159,4 +159,30 @@ teacherControllers.getResults = async (req, res, next) => {
     res.send(results);
 };
 
+
+// Get All Assigned Courses 
+
+teacherControllers.getCourses = async (req, res) => {
+    let id = req.params.id;
+    let role = req.body.role;
+    console.log(id,role);
+    if(role == "teacher"){
+       await Teacher.find({_id : req.params.id}, (err, data) => {
+            if(err){
+                res.status(500).json({
+                    error : "There was an server side error"
+                })
+                console.log(err)
+            } else{
+                res.status(200).json({
+                    result: data || "No Course Found",
+                    message: "Get courses successfully"
+                })
+            }
+        })
+    } else{
+        console.log("Can't find in the teacher collection");
+    }
+}
+
 export default teacherControllers;

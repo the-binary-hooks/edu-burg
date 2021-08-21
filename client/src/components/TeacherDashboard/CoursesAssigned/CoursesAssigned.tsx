@@ -1,23 +1,31 @@
 // React Bootstrap
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-// React Router
-import { useHistory } from "react-router-dom";
-<<<<<<< HEAD
-// import { useEffect } from "react-router/node_modules/@types/react";
-=======
->>>>>>> f72daa162751c992b004c6dc8de310954db55579
+
 // Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
+import ListCourse from "./ListCourse";
+
+// courses array interface -- typeScript
+interface ICourses {
+    courseCode: string;
+    courseStudents: { studentName: string; _id: string }[];
+    courseTeacher: { teacherName: string };
+    courseTitle: string;
+    department: string;
+    __v: number;
+    _id: string;
+}
 
 const CoursesAssigned = () => {
+    const [courses, setCourses] = useState<ICourses[]>([]);
+    const [courseId, setCourseId] = useState("");
     const userInfo = {
         id: sessionStorage.getItem("_id"),
         role: sessionStorage.getItem("role"),
     };
+
     useEffect(() => {
-        console.log(userInfo.id, "id");
-        console.log(userInfo.role, "role");
         fetch(`/api/${userInfo.role}/getCourses/${userInfo.id}`, {
             method: "POST",
             headers: {
@@ -28,15 +36,14 @@ const CoursesAssigned = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                console.log(data.result[0].courses);
+                setCourses(data.result[0].courses);
             })
             .catch((err) => {
-                console.log(err.message);
+                console.log(err);
             });
     }, [userInfo.id, userInfo.role]);
 
-    // React Router vars
-    const history = useHistory();
     return (
         <Container fluid>
             <Row>
@@ -46,30 +53,8 @@ const CoursesAssigned = () => {
                     <h1 className="brand-text">Your Courses</h1>
                     <br />
                     <Row>
-                        {Array.from({ length: 4 }).map((_, idx) => (
-                            <Col
-                                key={idx}
-                                md={6}
-                                onClick={() => history.push(`/course/:id`)}
-                            >
-                                <Card className="card">
-                                    <Card.Img
-                                        variant="top"
-                                        src="holder.js/100px160"
-                                    />
-                                    <Card.Body>
-                                        <Card.Title className="brand-text">
-                                            Card title
-                                        </Card.Title>
-                                        <Card.Text>
-                                            This is a longer card with
-                                            supporting text below as a natural
-                                            lead-in to additional content. This
-                                            content is a little bit longer.
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
+                        {courses.map((course) => (
+                            <ListCourse course={course} />
                         ))}
                     </Row>
                 </Col>

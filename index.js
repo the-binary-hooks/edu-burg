@@ -22,6 +22,10 @@ import express from "express";
 // CORS -- for Cross Origin Resource Sharing
 import cors from "cors";
 
+// File Upload -- to upload files
+// const fileUpload = require("express-fileupload");
+import fileUpload from "express-fileupload";
+
 // Routers
 import authRouter from "./server/src/routes/auth.js";
 import privateRouter from "./server/src/routes/private.js";
@@ -66,6 +70,9 @@ connectDB();
 
 // Use CORS
 app.use(cors());
+
+// for parsing the req.files
+app.use(fileUpload());
 
 // for parsing the req.body
 app.use(express.json());

@@ -8,11 +8,13 @@ import "./AddAPost.css";
 interface IPost {
     description: string;
     id: string;
-    imageOneCode?: string;
-    imageTwoCode?: string;
-    imageThreeCode?: string;
-    videoCode?: string;
+    imageOneCode: string;
+    imageTwoCode: string;
+    imageThreeCode: string;
+    videoCode: string;
     postID: string;
+    role: string;
+    email: string;
 }
 interface IMedia {
     imageOne?: any;
@@ -22,19 +24,21 @@ interface IMedia {
     imageThree?: any;
     imageThreeCode?: string;
     video?: any;
-    videoCode?: string;
+    videoCode: string;
 }
 
 const AddAPost = () => {
     // const [ disableButton, setDisableButton]= useState(false);
     const [post, setPost] = useState<IPost>({
         description: "",
-        id: "",
         imageOneCode: "",
         imageTwoCode: "",
         imageThreeCode: "",
         videoCode: "",
         postID: "id" + new Date() + Math.random().toString(16).slice(2),
+        role: sessionStorage.getItem("role") || "N/A",
+        email: sessionStorage.getItem("email") || "N/A",
+        id: sessionStorage.getItem("_id") || "N/A",
     });
     const [media, setMedia] = useState<IMedia>({
         imageOne: null,
@@ -44,6 +48,7 @@ const AddAPost = () => {
         imageThree: null,
         imageThreeCode: '',
         video: null,
+        videoCode: '',
     });
     const [video, setVideo] = useState({});
 
@@ -152,28 +157,25 @@ const AddAPost = () => {
     // var id =  "id" + new Date() + Math.random().toString(16).slice(2)
     const handlePost = () => {
         // setDisableButton(true);
-        const id = sessionStorage.getItem("_id");
-        const email = sessionStorage.getItem("email");
-        const role = sessionStorage.getItem("role");
         // body: JSON.stringify({ userName: userNameInput, email: email }),
+        const formData = new FormData();
+          formData.append("description", post.description);
+          formData.append("imageOneCode", post.imageOneCode);
+          formData.append("imageTwoCode",post.imageTwoCode);
+          formData.append("imageThreeCode",post.imageThreeCode);
+          formData.append("videoCode",post.videoCode);
+          formData.append("imageOne", media.imageOne);
+          formData.append("imageTwo", media.imageTwo);
+          formData.append("imageThree", media.imageThree);
+          formData.append("imageThree", media.imageThree);
+          formData.append("role", post.role);
+          formData.append("postID", post.postID);
+          formData.append("email", post.email);
+          formData.append("id", post.id);
         fetch("http://localhost:5000/api/post/addPost", {
             method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-                description: post.description,
-                id,
-                email,
-                imageOneCode: post.imageOneCode,
-                imageTwoCode: post.imageTwoCode,
-                role: role,
-                imageThreeCode: post.imageThreeCode,
-                videoCode: post.videoCode,
-                postID: post.postID,
-                imageOne: media.imageOne,
-                imageTwo: media.imageTwo,
-                imageThree: media.imageThree,
-                video: media.video,
-            }),
+            // headers: { "content-type": "application/json" },
+            body: formData
         })
             .then((res) => res.json())
             .then((result) => {

@@ -33,13 +33,50 @@ postControllers.addPost = async (req, res, next) => {
         imageThreeCode,
         videoCode,
         postID,
-        imageOne,
-        imageTwo,
-        imageThree,
-        video,
         email,
     } = req.body;
-
+    let imageOne, imageTwo, imageThree,  video;
+    if(req.files){
+        ({ imageOne, imageTwo, imageThree,  video} = req.files);
+    }
+    
+    if(imageOne){
+        const newImg = imageOne;
+        const encImg = newImg.toString("base64");
+        imageOne = {
+          contentType: imageOne.mimetype,
+          size: imageOne.size,
+          img: Buffer.from(encImg, "base64"),
+        };
+    }
+    if(imageTwo){
+        const newImg = imageTwo;
+        const encImg = newImg.toString("base64");
+        imageTwo = {
+          contentType: imageTwo.mimetype,
+          size: imageTwo.size,
+          img: Buffer.from(encImg, "base64"),
+        };
+    }
+    if(imageThree){
+        const newImg = imageThree;
+        const encImg = newImg.toString("base64");
+        imageThree = {
+          contentType: imageThree.mimetype,
+          size: imageThree.size,
+          img: Buffer.from(encImg, "base64"),
+        };
+    }
+    if(video){
+        const newVid = video;
+        const encVid= newVid.toString("base64");
+        video = {
+          contentType: video.mimetype,
+          size: video.size,
+          video: Buffer.from(encVid, "base64"),
+        };
+    }
+    
     const postInfo = {
         description,
         id,
@@ -61,6 +98,7 @@ postControllers.addPost = async (req, res, next) => {
         if (err) {
             next(new ErrorResponse(err.message));
         } else {
+            console.log(role,'role', role == '"admin"')
             if (role === "student") {
                 Student.findByIdAndUpdate(
                     id,
@@ -76,7 +114,7 @@ postControllers.addPost = async (req, res, next) => {
                         }
                     }
                 );
-            } else if (role === "teacher") {
+            } else if (role == "teacher") {
                 Teacher.findByIdAndUpdate(
                     id,
                     { $push: { posts: post._id } },
@@ -91,7 +129,7 @@ postControllers.addPost = async (req, res, next) => {
                         }
                     }
                 );
-            } else if (role === "admin") {
+            } else if (role == "admin") {
                 Admin.findByIdAndUpdate(
                     id,
                     { $push: { posts: post._id } },
@@ -114,7 +152,9 @@ postControllers.addPost = async (req, res, next) => {
     });
 
     const updateFileCollection = async()=>{
+        console.log(imageOne, imageTwo, imageThree)
         if ( imageOneCode || imageTwoCode || imageThreeCode ||videoCode){
+            let error = '';
             if (imageOneCode) {
                 console.log(imageOneCode);
                 const fileInfo = {
@@ -125,8 +165,7 @@ postControllers.addPost = async (req, res, next) => {
                 file.save((err) => {
                     if (err) {
                         next(new ErrorResponse(err.message));
-                    }else{
-                        res.status(200).send({ success: true });
+                        error ='true';
                     }
                 });
             }
@@ -139,8 +178,7 @@ postControllers.addPost = async (req, res, next) => {
                 file.save((err) => {
                     if (err) {
                         next(new ErrorResponse(err.message));
-                    }else{
-                        res.status(200).send({ success: true });
+                        error ='true';
                     }
                 });
             }
@@ -153,8 +191,7 @@ postControllers.addPost = async (req, res, next) => {
                 file.save((err) => {
                     if (err) {
                         next(new ErrorResponse(err.message));
-                    }else{
-                        res.status(200).send({ success: true });
+                        error ='true';
                     }
                 });
             }
@@ -167,16 +204,19 @@ postControllers.addPost = async (req, res, next) => {
                 file.save((err) => {
                     if (err) {
                         next(new ErrorResponse(err.message));
-                    }else{
-                        res.status(200).send({ success: true });
+                        error ='true';
                     }
                 });
+            }
+            if(!error) {
+                res.status(200).send({ success: true });
             }
         }else{
             res.status(200).send({ success: true });
         }
         
     }
+
     
 };
 
@@ -188,10 +228,27 @@ postControllers.getPost = async (req, res, next) => {
     } = req.body;
 
     try {
-        // Get all the posts saved to the DB of this user
-        // const posts = await Post.find({id:id});
-        // res.send(posts);
         await Post.find({id:id}, (err,data) => {
+            if (err) {
+                next(new ErrorResponse(err.message));
+            }else{
+                res.status(200).send({ data: data, result:true });
+            }
+        })
+    } catch (err) {
+        next(new ErrorResponse(err.message));
+    }
+    
+};
+
+postControllers.getFile = async (req, res, next) => {
+    // Read data from request body
+    const {
+        code
+    } = req.body;
+
+    try {
+        await File.find({code:code}, (err,data) => {
             if (err) {
                 next(new ErrorResponse(err.message));
             }else{
