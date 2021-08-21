@@ -11,7 +11,12 @@ import express from "express";
 import studentControllers from "../controllers/studentControllers.js";
 
 // Destructuring controllers
+<<<<<<< HEAD
 const { addAStudent, getStudents, updateStatus, getCourses, getByName } = studentControllers;
+=======
+const { addAStudent, getStudents, getByName, updateStatus, getCourses } =
+    studentControllers;
+>>>>>>> f72daa162751c992b004c6dc8de310954db55579
 
 // Router Object -- module scaffolding
 let router = express.Router();

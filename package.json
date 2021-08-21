@@ -13,7 +13,11 @@
         "build": "cd client && npm run build",
         "heroku-postbuild": "npm run install-client && npm run build",
         "push-lamisa": "git push && git checkout main && git merge lamisa && git pull && git push && git checkout lamisa && git pull origin main",
-        "merge-nahid": "git checkout nahid && git pull && git checkout main && git merge nahid && git push"
+        "merge-nahid": "git checkout nahid && git pull && git checkout main && git merge nahid && git push && git checkout lamisa && git pull origin main",
+        "merge-fariha": "git checkout fariha && git pull && git checkout main && git merge fariha && git push && git checkout lamisa && git pull origin main",
+        "merge-fozlolhoq": "git checkout fozlolhoq && git pull && git checkout main && git merge fozlolhoq && git push && git checkout lamisa && git pull origin main",
+        "merge-team": "npm run push-lamisa && npm run merge-nahid && npm run merge-fariha && npm run merge-fozlolhoq",
+        "pull-all": "git checkout main && git pull && git checkout nahid && git pull origin main && git checkout fozlolhoq && git pull origin main && git checkout fariha && git pull origin main && git checkout lamisa && git pull origin main"
     },
     "repository": {
         "type": "git",
