@@ -1,8 +1,9 @@
 // React Bootstrap
+import { useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 // React Router
 import { useHistory } from "react-router-dom";
-import { useEffect } from "react-router/node_modules/@types/react";
+// import { useEffect } from "react-router/node_modules/@types/react";
 // Components
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 

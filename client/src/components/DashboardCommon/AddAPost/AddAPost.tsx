@@ -16,9 +16,13 @@ interface IPost {
 }
 interface IMedia {
     imageOne?: any;
+    imageOneCode?: string;
     imageTwo?: any;
+    imageTwoCode?: string;
     imageThree?: any;
+    imageThreeCode?: string;
     video?: any;
+    videoCode?: string;
 }
 
 const AddAPost = () => {
@@ -34,32 +38,44 @@ const AddAPost = () => {
     });
     const [media, setMedia] = useState<IMedia>({
         imageOne: null,
+        imageOneCode: '',
         imageTwo: null,
+        imageTwoCode: '',
         imageThree: null,
+        imageThreeCode: '',
         video: null,
     });
     const [video, setVideo] = useState({});
 
     const handleTextChange = (e: any) => {
-        console.log(e.target.value);
         const newpost = { ...post };
         newpost.description = e.target.value;
         setPost(newpost);
     };
     const handleImageChange = (e: any) => {
-        console.log(e.target.files[0]);
         const file = e.target.files[0];
         if (file.type.startsWith("image/")) {
             const newMedia = { ...media };
+            const newPost = { ...post };
+            const code = "postCode " + new Date() + Math.random().toString(16).slice(2)
             if (!media.imageOne) {
                 newMedia.imageOne = file;
+                newMedia.imageOneCode = code;
+                newPost.imageOneCode = code;
                 setMedia(newMedia);
+                setPost(newPost);
             } else if (!media.imageTwo) {
                 newMedia.imageTwo = file;
+                newMedia.imageTwoCode = code;
+                newPost.imageTwoCode = code;
                 setMedia(newMedia);
+                setPost(newPost);
             } else if (!media.imageThree) {
                 newMedia.imageThree = file;
+                newMedia.imageThreeCode = code;
+                newPost.imageThreeCode = code;
                 setMedia(newMedia);
+                setPost(newPost);
             }
             console.log(media, "media");
         } else {
@@ -68,12 +84,16 @@ const AddAPost = () => {
     };
 
     const handleVideoChange = (e: any) => {
-        console.log(e.target.files[0]);
         const file = e.target.files[0];
         if (file.type.startsWith("video/")) {
             const newMedia = { ...media };
+            const newPost = { ...post };
+            const code = "postCode " + new Date() + Math.random().toString(16).slice(2)
             newMedia.video = file;
+            newMedia.videoCode = code;
+            newPost.videoCode = code;
             setMedia(newMedia);
+            setPost(newPost);
             console.log(media, "media");
         } else {
             alert("Please upload image file");
@@ -83,29 +103,41 @@ const AddAPost = () => {
     const handleRemove = (removedElement: String) => {
         console.log(removedElement);
         const newMedia = { ...media };
+        const newPost = { ...post };
         switch (removedElement) {
             case "imageOne":
                 newMedia.imageOne = null;
+                newMedia.imageOneCode = '';
+                newPost.imageOneCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             case "imageTwo":
                 newMedia.imageTwo = null;
+                newMedia.imageTwoCode = '';
+                newPost.imageTwoCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             case "imageThree":
                 newMedia.imageThree = null;
+                newMedia.imageThreeCode = '';
+                newPost.imageThreeCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             case "video":
                 newMedia.video = null;
+                newMedia.videoCode = '';
+                newPost.videoCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             default:
             // code block
         }
         console.log(media, "media");
     };
-    console.log(media.imageOne, "media");
     // const postInfo = {
     //     description,
     //     id,

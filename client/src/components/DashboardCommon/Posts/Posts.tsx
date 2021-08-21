@@ -1,11 +1,30 @@
 // React Bootstrap
-import { useState } from "react";
+// import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 // CSS
 import "./Posts.css";
 
 
 const Posts = () => {
+
+    const id = sessionStorage.getItem("_id");
+    console.log('outer load')
+    useEffect (() => {
+        console.log('loading')
+        fetch("http://localhost:5000/api/post/getPost", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+                id,
+            }),
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {console.log(err)})
+    },[id])
 
     return (
         <Card className="card">
@@ -14,7 +33,8 @@ const Posts = () => {
                     <div className="profile-img">John</div>
                 </div>
                 <div className="col-8 col-sm-6">
-                    <h4>John Doe</h4>
+                    {console.log('inner')}
+                    <h4>John Doe================</h4>
                     <small>18 July 2021</small>
                 </div>
             </Row>
