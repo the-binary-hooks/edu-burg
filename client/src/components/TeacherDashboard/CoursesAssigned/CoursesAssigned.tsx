@@ -53,8 +53,8 @@ const CoursesAssigned = () => {
                     <h1 className="brand-text">Your Courses</h1>
                     <br />
                     <Row>
-                        {courses.map((course) => (
-                            <ListCourse course={course} />
+                        {courses.map((course, index) => (
+                            <ListCourse key={index} course={course} />
                         ))}
                     </Row>
                 </Col>

@@ -35,23 +35,23 @@ const Posts = () => {
     
     const fetchFile = ()=>{
        
-        // for (let i = 0; i < files.length; i++) {
-        //     const element = files[i];
-        //     const formData = new FormData();
-        //     formData.append("code", post.code);
-        //     fetch("http://localhost:5000/api/post/getFile", {
-        //     method: "POST",
-        //     headers: { "content-type": "application/json" },
-        //     body: formData,
-        // })
-        //     .then((res) => res.json())
-        //     .then((result) => {
-        //         console.log(result);
-        //         setPosts(result.data);
-        //     })
-        //     .catch((err) => {console.log(err)})
+        for (let i = 0; i < files.length; i++) {
+            const element = files[i];
+            const formData = new FormData();
+            formData.append("code", element.code);
+            fetch("http://localhost:5000/api/post/getFile", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: formData,
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                console.log(result);
+                setPosts(result.data);
+            })
+            .catch((err) => {console.log(err)})
             
-        // }
+        }
     }
     return (
         <div>
