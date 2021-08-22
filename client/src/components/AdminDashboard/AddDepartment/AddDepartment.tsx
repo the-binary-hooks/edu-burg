@@ -32,6 +32,7 @@ const AddDepartment = () => {
     })
       .then((res) => res.json())
       .then((result) => {
+        console.log(result);
         if (result.success === true) {
           alert("Department Added successfully!!");
           window.location.reload();
