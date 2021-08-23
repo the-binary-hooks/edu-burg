@@ -16,7 +16,8 @@ interface ICourses {
 }
 
 const ListCourse = ({ course }: ICourses) => {
-    console.log(course,'========');
+    console.log(course, "========");
+
     // React Router vars
     const history = useHistory();
     return (
@@ -35,9 +36,7 @@ const ListCourse = ({ course }: ICourses) => {
                             {course.courseTeacher?.teacherName}
                         </p>
                         {course.courseStudents?.map((student, index) => (
-                            <small key={index}>
-                                {student.studentName}
-                            </small>
+                            <small key={index}>{student.studentName}</small>
                         ))}
                     </Card.Text>
                 </Card.Body>
