@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 
@@ -58,7 +59,7 @@ const MakeAdmin = () => {
         };
 
         // Add admin to DB
-        fetch("http://localhost:5000/api/admin/add", {
+        fetch("/api/admin/add", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(admin),
@@ -186,7 +187,7 @@ const MakeAdmin = () => {
                                 </div>
                             </div>
                             <div className="form-group mb-3">
-                                <input
+                                <Form.Control
                                     type="file"
                                     name="admin-image"
                                     id="admin-image"

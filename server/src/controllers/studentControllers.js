@@ -96,10 +96,29 @@ studentControllers.addAStudent = async (req, res, next) => {
 studentControllers.getStudents = async (req, res, next) => {
     try {
         // Get all the students saved to the DB
-        const students = await Student.find({}).populate("semesterResults");
+        const students = await Student.find({})
+            .populate("semesterResults")
+            .populate("courses");
         res.send(students);
     } catch (err) {
         next(new ErrorResponse(err.message));
+    }
+};
+
+studentControllers.getByName = async (req, res, next) => {
+    const searchStr = req.params.searchStr;
+    if (searchStr) {
+        try {
+            // Get all the students saved to the DB
+            const students = await Student.find({
+                studentName: new RegExp(searchStr, "i"),
+            })
+                .populate("semesterResults")
+                .populate("courses");
+            res.send(students);
+        } catch (err) {
+            next(new ErrorResponse(err.message));
+        }
     }
 };
 
@@ -117,6 +136,34 @@ studentControllers.updateStatus = async (req, res, next) => {
     } catch (err) {
         next(new ErrorResponse(err.message));
     }
+};
+
+//Get Courses of a student
+
+studentControllers.getCourses = async(req,res) => {
+    let id = req.params.id;
+    let role = req.body.role;
+    console.log(id,role);
+    if(role = "student"){
+        Student.find({_id: req.params.id},(err,data) => {
+            if(err){
+                res.status(500).json({
+                    error:"There was an server side error"
+                })
+                console.log(err)
+            } else{
+                res.status(200).json({
+                    result: data || "No Course Found",
+                    message: "Get courses successfully"
+                })
+            }
+        })
+    }else{
+        console.log("can't find in student collection")
+    }
+    // res.status(200).json({
+    //     message: "data got successfully"
+    // })
 };
 
 export default studentControllers;

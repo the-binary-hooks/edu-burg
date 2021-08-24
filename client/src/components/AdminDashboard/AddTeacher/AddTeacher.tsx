@@ -48,7 +48,7 @@ const AddTeacher = () => {
             picture: imageURL,
         };
 
-        fetch("http://localhost:5000/api/teacher/add", {
+        fetch("/api/teacher/add", {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(teacher),

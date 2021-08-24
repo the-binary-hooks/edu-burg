@@ -1,6 +1,7 @@
 // React Bootstrap
 import { Col, Container, Row, Table } from "react-bootstrap";
 // Components
+// import Sidebar from "../../DashboardCommon/Sidebar/Sidebar.test"
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
 import CourseStudent from "./CourseStudent/CourseStudent";
 // CSS

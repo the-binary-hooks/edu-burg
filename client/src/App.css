@@ -5,6 +5,7 @@
 
 /* Common Button to be used across the app  */
 .brand-button {
+    color: white !important;
     background-color: #10b981 !important;
     border: none !important;
     width: 100%;
@@ -68,7 +69,7 @@
 .edu-burg-label {
     color: #111827;
 }
-.edu-burg-file-input{
+.edu-burg-file-input {
     cursor: pointer;
     width: 220px;
     height: 58px;
@@ -94,6 +95,6 @@
 /* Responsive Code  */
 @media only screen and (max-width: 400px) {
     .edu-buge-heading-1 {
-      font-size:45px;
+        font-size: 45px;
     }
-  }
+}

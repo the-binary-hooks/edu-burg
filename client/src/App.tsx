@@ -31,6 +31,7 @@ import Profile from "./components/DashboardCommon/Profile/Profile/Profile";
 import Teachers from "./components/AdminDashboard/Teachers/Teachers";
 import Students from "./components/AdminDashboard/Students/Students";
 import SemesterResults from "./components/StudentDashboard/SemesterResults/SemesterResults";
+
 import SubmitAssignment from "./components/StudentDashboard/SubmitAssignment/SubmitAssignment";
 import SingleAssignment from "./components/TeacherDashboard/SingleAssignmentPage/SingleAssignment";
 
@@ -74,28 +75,28 @@ const App = () => {
                 <PrivateRoute path="/publish-result">
                     <PublishResult />
                 </PrivateRoute>
-                <PrivateRoute path='/all-assignments'>
+                <PrivateRoute path="/all-assignments">
                     <AllAssignment />
                 </PrivateRoute>
-                <PrivateRoute path='/single-assignment'>
+                <PrivateRoute path="/single-assignment">
                     <SingleAssignment />
                 </PrivateRoute>
                 {/* Admin Dashboard */}
                 <PrivateRoute path="/add-a-Course">
                     <AddCourse />
                 </PrivateRoute>
-                <Route path="/add-a-teacher">
+                <PrivateRoute path="/add-a-teacher">
                     <AddTeacher />
-                </Route>
+                </PrivateRoute>
                 <Route path="/admission">
                     <Admission />
                 </Route>
                 <Route path="/make-admin">
                     <MakeAdmin />
                 </Route>
-                <PrivateRoute path="/your-posts">
+                <Route path="/your-posts">
                     <NewsFeed />
-                </PrivateRoute>
+                </Route>
                 <PrivateRoute path="/student-reviews">
                     <StudentReview />
                 </PrivateRoute>
@@ -108,9 +109,6 @@ const App = () => {
                 {/* Student Dashboard */}
                 <PrivateRoute path="/semester-results">
                     <SemesterResults />
-                </PrivateRoute>
-                <PrivateRoute path="/submit-assignments">
-                    <SubmitAssignment />
                 </PrivateRoute>
             </Switch>
         </Router>

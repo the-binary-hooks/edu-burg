@@ -88,6 +88,7 @@ authControllers.login = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 } = student;
                 addInfo = {
                     _id,
@@ -106,6 +107,7 @@ authControllers.login = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 };
 
                 sendResponse(addInfo, student, 200, res);
@@ -144,8 +146,6 @@ authControllers.getById = async (req, res, next) => {
     // Read data from request body
     const id = req.params.id;
 
-    console.log(id);
-
     // If any of the id is absent, throw error
     if (!id) {
         return next(new ErrorResponse("Please provide the id", 400));
@@ -159,7 +159,7 @@ authControllers.getById = async (req, res, next) => {
 
         // Find teacher with the id sent
         //  from the teacher collection
-        teacher = await Teacher.findOne({ id });
+        teacher = await Teacher.findOne({ id }).populate("courses");
 
         if (teacher) {
             const {
@@ -172,6 +172,7 @@ authControllers.getById = async (req, res, next) => {
                 picture,
                 status,
                 bio,
+                courses,
             } = teacher;
             addInfo = {
                 _id,
@@ -184,12 +185,15 @@ authControllers.getById = async (req, res, next) => {
                 gender,
                 picture,
                 bio,
+                courses,
             };
             sendResponse(addInfo, teacher, 200, res);
         } else {
             // If no teacher is found, find student with the id sent
             // from the student collection
-            student = await Student.findOne({ id }).populate("semesterResults");
+            student = await Student.findOne({ id })
+                .populate("semesterResults")
+                .populate("courses");
             if (student) {
                 const {
                     _id,
@@ -207,6 +211,7 @@ authControllers.getById = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 } = student;
                 addInfo = {
                     _id,
@@ -225,6 +230,7 @@ authControllers.getById = async (req, res, next) => {
                     picture,
                     bio,
                     semesterResults,
+                    courses,
                 };
 
                 sendResponse(addInfo, student, 200, res);

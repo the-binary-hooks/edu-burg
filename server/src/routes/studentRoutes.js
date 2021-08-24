@@ -11,18 +11,25 @@ import express from "express";
 import studentControllers from "../controllers/studentControllers.js";
 
 // Destructuring controllers
-const { addAStudent, getStudents, updateStatus } = studentControllers;
+const { addAStudent, getStudents, getByName, updateStatus, getCourses } =
+    studentControllers;
 
 // Router Object -- module scaffolding
 let router = express.Router();
 
-// Path => http://localhost:5000/api/student/add
+// Path => /api/student/add
 router.route("/add").post(addAStudent);
 
-// Path => http://localhost:5000/api/student/getAll
+// Path => /api/student/getAll
 router.route("/getAll").get(getStudents);
 
-// Path => http://localhost:5000/api/student/updateStatus/:id
+// Path => /api/student/getByName/:searchStr
+router.route("/getByName/:searchStr").get(getByName);
+
+// Path => /api/student/updateStatus/:id
 router.route("/updateStatus/:id").patch(updateStatus);
+
+// Path => /api/student/getCourses/:id
+router.route("/getCourses/:id").post(getCourses);
 
 export default router;

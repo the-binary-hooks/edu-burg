@@ -10,6 +10,7 @@ const CourseSchema = new mongoose.Schema({
     },
     courseCode: {
         type: String,
+        unique: [true],
         required: [true, "Please provide the course code"],
     },
     courseTeacher: {

@@ -16,10 +16,10 @@ const { login, getById } = authControllers;
 // Router Object -- module scaffolding
 let router = express.Router();
 
-// Path => http://localhost:5000/api/auth/login
+// Path => /api/auth/login
 router.route("/login").post(login);
 
-// Path => http://localhost:5000/api/auth/getById
+// Path => /api/auth/getById
 router.route("/getById/:id").get(getById);
 
 export default router;

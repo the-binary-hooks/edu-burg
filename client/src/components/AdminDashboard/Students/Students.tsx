@@ -59,19 +59,17 @@ const Students = () => {
 
     // Get all students record in the DB
     useEffect(() => {
-        fetch("http://localhost:5000/api/student/getAll")
+        fetch("/api/student/getAll")
             .then((res) => res.json())
             .then((data) => setStudents(data));
     }, []);
 
     // Get all students record in the DB
     useEffect(() => {
-        fetch(`http://localhost:5000/api/auth/getById/${searchStr}`)
+        fetch(`api/student/getByName/${searchStr}`)
             .then((res) => res.json())
-            .then((data) =>console.log(data));
+            .then((data) => setStudents(data));
     }, [searchStr]);
-
-    console.log(students)
 
     return (
         <Container fluid data-testid="container">
@@ -79,7 +77,7 @@ const Students = () => {
                 <Sidebar />
                 <Col md={10}>
                     <Search
-                        placeholder="Search for a student with ID"
+                        placeholder="Search for a student with name"
                         searchStr={searchStr}
                         setSearchStr={setSearchStr}
                     />

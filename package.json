@@ -3,14 +3,21 @@
     "version": "1.0.0",
     "description": "",
     "type": "module",
-    "main": "server/src/index.js",
+    "main": "index.js",
     "scripts": {
         "client": "cd client && npm start",
-        "start": "node server/src/index.ts",
-        "dev": "concurrently -n 'server,client' \"nodemon server/src/index.ts\" \"npm run client\"",
+        "start": "node index.ts",
+        "dev": "concurrently -n 'server,client' \"nodemon index.ts\" \"npm run client\"",
         "server": "nodemon server/index",
-        "build": "tsc -p ./server",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+        "install-client": "cd client && npm install",
+        "build": "cd client && npm run build",
+        "heroku-postbuild": "npm run install-client && npm run build",
+        "push-lamisa": "git push && git checkout main && git merge lamisa && git pull && git push && git checkout lamisa && git pull origin main",
+        "merge-nahid": "git checkout nahid && git pull && git checkout main && git merge nahid && git push && git checkout lamisa && git pull origin main",
+        "merge-fariha": "git checkout fariha && git pull && git checkout main && git merge fariha && git push && git checkout lamisa && git pull origin main",
+        "merge-fozlolhoq": "git checkout fozlolhoq && git pull && git checkout main && git merge fozlolhoq && git push && git checkout lamisa && git pull origin main",
+        "merge-team": "npm run push-lamisa && npm run merge-nahid && npm run merge-fariha && npm run merge-fozlolhoq",
+        "pull-all": "git checkout main && git pull && git checkout nahid && git pull origin main && git checkout fozlolhoq && git pull origin main && git checkout fariha && git pull origin main && git checkout lamisa && git pull origin main"
     },
     "repository": {
         "type": "git",
@@ -41,6 +48,7 @@
     "devDependencies": {
         "@types/express": "^4.17.13",
         "@types/node": "^16.4.3",
+        "@types/react-router-dom": "^5.1.8",
         "concurrently": "^6.2.1",
         "nodemon": "^2.0.12",
         "ts-node": "^10.1.0",

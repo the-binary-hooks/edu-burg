@@ -16,7 +16,7 @@ const { addAAdmin, addCourse } = adminControllers;
 // Router Object -- module scaffolding
 let router = express.Router();
 
-// Path => http://localhost:5000/api/admin/add
+// Path => /api/admin/add
 router.route("/add").post(addAAdmin);
 router.route("/addCourse").post(addCourse);
 

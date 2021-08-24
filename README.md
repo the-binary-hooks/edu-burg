@@ -2,7 +2,7 @@
 
 ### ERP with social media
 
-## Live Site: [https://edu-burg.herokuapp.com/](https://edu-burg.herokuapp.com/)
+## Live Site: [https://edu-burg-erp.herokuapp.com](https://edu-burg-erp.herokuapp.com)
 
 ## How to run the project
 
@@ -14,9 +14,7 @@
 
 ```
 npm i
-cd client
-npm start
-cd ..
+npm run install-client
 npm run dev
 
 ```
