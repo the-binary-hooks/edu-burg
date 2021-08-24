@@ -2,7 +2,8 @@
  * Title: Model of the Post object in Edu Burg ERP
  * Description: Defines the structure of Post object to be saved in the DB
  * Author: A.K.M Fozlol Hoq
- * Date: 16 August, 2021
+ * Created Date: 16 August, 2021
+ * Last Update: 19 August, 2021
  *
  */
 
@@ -18,6 +19,8 @@ const PostSchema = new mongoose.Schema(
         id: {
             type: String,
             required: true,
+            // type: mongoose.Types.ObjectId,
+            // ref: true,
         },
         postID: {
             type: String,

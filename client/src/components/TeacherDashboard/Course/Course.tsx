@@ -1,5 +1,6 @@
+import { useState } from "react";
 // React Bootstrap
-import { Col, Container, Row, Table } from "react-bootstrap";
+import { Col, Container, Row, Table, Button, Modal } from "react-bootstrap";
 // Components
 // import Sidebar from "../../DashboardCommon/Sidebar/Sidebar.test"
 import Sidebar from "../../DashboardCommon/Sidebar/Sidebar";
@@ -8,6 +9,38 @@ import CourseStudent from "./CourseStudent/CourseStudent";
 import "./Course.css";
 
 const Course = () => {
+    const [modalShow, setModalShow] = useState(false);
+
+    function MyVerticallyCenteredModal(props: any) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Why do want drop this course?
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4>Dropping Reason</h4>
+                    <input
+                        type="text"
+                        className="container-fluid"
+                        style={{ minHeight: "150px", border: "1px solid grey" }}
+                        placeholder="Describe your reason"
+                        required
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide}>Submit</Button>
+                </Modal.Footer>
+            </Modal>
+        );
+    }
+
     return (
         <Container fluid>
             <Row>
@@ -71,6 +104,19 @@ const Course = () => {
                             <CourseStudent />
                         </tbody>
                     </Table>
+                    <Button
+                        variant="primary"
+                        onClick={() => setModalShow(true)}
+                    >
+                        Send Course Drop Request
+                    </Button>
+                    <MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
+                    <br />
+                    <br />
+                    <br />
                 </Col>
             </Row>
         </Container>

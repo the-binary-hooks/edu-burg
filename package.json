@@ -17,7 +17,8 @@
         "merge-fariha": "git checkout fariha && git pull && git checkout main && git merge fariha && git push && git checkout lamisa && git pull origin main",
         "merge-fozlolhoq": "git checkout fozlolhoq && git pull && git checkout main && git merge fozlolhoq && git push && git checkout lamisa && git pull origin main",
         "merge-team": "npm run push-lamisa && npm run merge-nahid && npm run merge-fariha && npm run merge-fozlolhoq",
-        "pull-all": "git checkout main && git pull && git checkout nahid && git pull origin main && git checkout fozlolhoq && git pull origin main && git checkout fariha && git pull origin main && git checkout lamisa && git pull origin main"
+        "pull-all": "git checkout main && git pull && git checkout nahid && git pull origin main && git checkout fozlolhoq && git pull origin main && git checkout fariha && git pull origin main && git checkout lamisa && git pull origin main",
+        "push-all": "git checkout main && git push && git checkout nahid && git push && git checkout fozlolhoq && git push && git checkout fariha && git push && git checkout lamisa && git push"
     },
     "repository": {
         "type": "git",
@@ -41,6 +42,7 @@
         "crypto": "^1.0.1",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
+        "express-fileupload": "^1.2.1",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.13.3",
         "recharts": "^2.0.10"

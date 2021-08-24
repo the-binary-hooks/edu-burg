@@ -18,6 +18,7 @@ const {
     updateStatus,
     publishResult,
     getResults,
+    getCourses
 } = teacherControllers;
 
 // Router Object -- module scaffolding
@@ -40,5 +41,8 @@ router.route("/publishResult").post(publishResult);
 
 // Path => /api/teacher/allResults
 router.route("/allResults").get(getResults);
+
+// Path => /api/teacher/getCourses
+router.route("/getCourses/:id").post(getCourses);
 
 export default router;

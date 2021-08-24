@@ -8,58 +8,79 @@ import "./AddAPost.css";
 interface IPost {
     description: string;
     id: string;
-    imageOneCode?: string;
-    imageTwoCode?: string;
-    imageThreeCode?: string;
-    videoCode?: string;
+    imageOneCode: string;
+    imageTwoCode: string;
+    imageThreeCode: string;
+    videoCode: string;
     postID: string;
+    role: string;
+    email: string;
 }
 interface IMedia {
     imageOne?: any;
+    imageOneCode?: string;
     imageTwo?: any;
+    imageTwoCode?: string;
     imageThree?: any;
+    imageThreeCode?: string;
     video?: any;
+    videoCode: string;
 }
 
 const AddAPost = () => {
     // const [ disableButton, setDisableButton]= useState(false);
     const [post, setPost] = useState<IPost>({
         description: "",
-        id: "",
         imageOneCode: "",
         imageTwoCode: "",
         imageThreeCode: "",
         videoCode: "",
         postID: "id" + new Date() + Math.random().toString(16).slice(2),
+        role: sessionStorage.getItem("role") || "N/A",
+        email: sessionStorage.getItem("email") || "N/A",
+        id: sessionStorage.getItem("_id") || "N/A",
     });
     const [media, setMedia] = useState<IMedia>({
         imageOne: null,
+        imageOneCode: '',
         imageTwo: null,
+        imageTwoCode: '',
         imageThree: null,
+        imageThreeCode: '',
         video: null,
+        videoCode: '',
     });
     const [video, setVideo] = useState({});
 
     const handleTextChange = (e: any) => {
-        console.log(e.target.value);
         const newpost = { ...post };
         newpost.description = e.target.value;
         setPost(newpost);
     };
     const handleImageChange = (e: any) => {
-        console.log(e.target.files[0]);
         const file = e.target.files[0];
         if (file.type.startsWith("image/")) {
             const newMedia = { ...media };
+            const newPost = { ...post };
+            const code = "postCode " + new Date() + Math.random().toString(16).slice(2)
             if (!media.imageOne) {
                 newMedia.imageOne = file;
+                newMedia.imageOneCode = code;
+                newPost.imageOneCode = code;
                 setMedia(newMedia);
+                setPost(newPost);
             } else if (!media.imageTwo) {
                 newMedia.imageTwo = file;
+                newMedia.imageTwoCode = code;
+                newPost.imageTwoCode = code;
                 setMedia(newMedia);
+                setPost(newPost);
             } else if (!media.imageThree) {
                 newMedia.imageThree = file;
+                newMedia.imageThreeCode = code;
+                newPost.imageThreeCode = code;
                 setMedia(newMedia);
+                setPost(newPost);
             }
             console.log(media, "media");
         } else {
@@ -68,12 +89,16 @@ const AddAPost = () => {
     };
 
     const handleVideoChange = (e: any) => {
-        console.log(e.target.files[0]);
         const file = e.target.files[0];
         if (file.type.startsWith("video/")) {
             const newMedia = { ...media };
+            const newPost = { ...post };
+            const code = "postCode " + new Date() + Math.random().toString(16).slice(2)
             newMedia.video = file;
+            newMedia.videoCode = code;
+            newPost.videoCode = code;
             setMedia(newMedia);
+            setPost(newPost);
             console.log(media, "media");
         } else {
             alert("Please upload image file");
@@ -83,29 +108,41 @@ const AddAPost = () => {
     const handleRemove = (removedElement: String) => {
         console.log(removedElement);
         const newMedia = { ...media };
+        const newPost = { ...post };
         switch (removedElement) {
             case "imageOne":
                 newMedia.imageOne = null;
+                newMedia.imageOneCode = '';
+                newPost.imageOneCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             case "imageTwo":
                 newMedia.imageTwo = null;
+                newMedia.imageTwoCode = '';
+                newPost.imageTwoCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             case "imageThree":
                 newMedia.imageThree = null;
+                newMedia.imageThreeCode = '';
+                newPost.imageThreeCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             case "video":
                 newMedia.video = null;
+                newMedia.videoCode = '';
+                newPost.videoCode = '';
                 setMedia(newMedia);
+                setPost(newPost);
                 break;
             default:
             // code block
         }
         console.log(media, "media");
     };
-    console.log(media.imageOne, "media");
     // const postInfo = {
     //     description,
     //     id,
@@ -120,28 +157,25 @@ const AddAPost = () => {
     // var id =  "id" + new Date() + Math.random().toString(16).slice(2)
     const handlePost = () => {
         // setDisableButton(true);
-        const id = sessionStorage.getItem("_id");
-        const email = sessionStorage.getItem("email");
-        const role = sessionStorage.getItem("role");
         // body: JSON.stringify({ userName: userNameInput, email: email }),
+        const formData = new FormData();
+          formData.append("description", post.description);
+          formData.append("imageOneCode", post.imageOneCode);
+          formData.append("imageTwoCode",post.imageTwoCode);
+          formData.append("imageThreeCode",post.imageThreeCode);
+          formData.append("videoCode",post.videoCode);
+          formData.append("imageOne", media.imageOne);
+          formData.append("imageTwo", media.imageTwo);
+          formData.append("imageThree", media.imageThree);
+          formData.append("imageThree", media.imageThree);
+          formData.append("role", post.role);
+          formData.append("postID", post.postID);
+          formData.append("email", post.email);
+          formData.append("id", post.id);
         fetch("http://localhost:5000/api/post/addPost", {
             method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-                description: post.description,
-                id,
-                email,
-                imageOneCode: post.imageOneCode,
-                imageTwoCode: post.imageTwoCode,
-                role: role,
-                imageThreeCode: post.imageThreeCode,
-                videoCode: post.videoCode,
-                postID: post.postID,
-                imageOne: media.imageOne,
-                imageTwo: media.imageTwo,
-                imageThree: media.imageThree,
-                video: media.video,
-            }),
+            // headers: { "content-type": "application/json" },
+            body: formData
         })
             .then((res) => res.json())
             .then((result) => {
