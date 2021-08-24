@@ -1,24 +1,24 @@
-/*
- * Title: Controllers of the post router
- * Description: declares functions to add a post to the DB,
- * Author: A.K.M Fozlol Hoq
- * Created Date: 16 August, 2021 
- * Last Update: 19 August, 2021 
- *
- */
+// /*
+//  * Title: Controllers of the post router
+//  * Description: declares functions to add a post to the DB,
+//  * Author: A.K.M Fozlol Hoq
+//  * Created Date: 16 August, 2021 
+//  * Last Update: 19 August, 2021 
+//  *
+//  */
 
-// Dependencies
-// Models
-import Post from "../models/Post.js";
-import File from "../models/File.js";
-import Teacher from "../models/Teacher.js";
-import Student from "../models/Student.js";
+// // Dependencies
+// // Models
 import Admin from "../models/Admin.js";
-
+import File from "../models/File.js";
+import Post from "../models/Post.js";
+import Student from "../models/Student.js";
+import Teacher from "../models/Teacher.js";
 // Handling errors
 import ErrorResponse from "../utils/errorResponse.js";
 
-// Post Controllers Object --- module scaffolding
+
+// // Post Controllers Object --- module scaffolding
 const postControllers = {};
 
 
