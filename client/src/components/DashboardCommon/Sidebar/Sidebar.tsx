@@ -102,37 +102,36 @@ const Sidebar = () => {
                   "Admission",
                   "Add A Course",
                   "Add Departments",
-                  "News Feed",
                   "Make Admin",
                   "Student Reviews",
-                  "Your Posts",
-                  "Chats",
                   "Teachers",
                   "Students",
+                  "Your Posts",
+                  "News Feed",
+                  "Chats",
               ]
             : role === "teacher"
             ? [
                   "Home",
                   "Profile",
-                  "Followers",
                   "Courses",
-                  "Your Posts",
-                  "Chats",
                   "Publish Result",
+                  "Your Posts",
                   "News Feed",
+                  "Followers",
+                  "Chats",
               ]
             : [
                   "Home",
                   "Profile",
                   "Semester Results",
-                  "Followers",
                   "Courses",
-                  "Your Posts",
-                  "Chats",
                   "Payment history",
-                  "News Feed",
                   "Submit Assignments",
-                  "Payment History",
+                  "Your Posts",
+                  "News Feed",
+                  "Followers",
+                  "Chats",
               ];
 
     return (
