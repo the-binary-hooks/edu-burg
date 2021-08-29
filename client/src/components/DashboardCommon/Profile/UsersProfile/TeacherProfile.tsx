@@ -69,8 +69,8 @@ const TeacherProfile = () => {
                     ? "active"
                     : "inactive"
                 : e.target.value === "1"
-                ? "inactive"
-                : "active";
+                    ? "inactive"
+                    : "active";
         fetch(`/api/teacher/updateStatus/${id}`, {
             method: "PATCH",
             headers: {
@@ -94,46 +94,52 @@ const TeacherProfile = () => {
                 <Col md={10} style={{ textAlign: "center" }}>
                     <br />
                     <Container>
-                        <img
-                            src="https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
-                            alt="profilePic"
-                            className="profile-pic"
-                        />
-                        <p>{err}</p>
-                        <h4 className="brand-text">{teacher.teacherName}</h4>
-                        {sessionStorage.getItem("role") === "admin" ? (
-                            <Form.Select
-                                aria-label="Active"
-                                onChange={(event) =>
-                                    handleStatusChange(event, teacher.id)
-                                }
-                            >
-                                <option value="1">
-                                    {teacher.status === "active"
-                                        ? "Active"
-                                        : "Inactive"}
-                                </option>
-                                <option value="2">
-                                    {teacher.status === "inactive"
-                                        ? "Active"
-                                        : "Inactive"}
-                                </option>
-                            </Form.Select>
-                        ) : (
-                            <h6>{teacher.status}</h6>
-                        )}
-                        <br />
-                        <h6>Department: {teacher.department}</h6>
-                        <p>{teacher.bio}</p>
-                        <small>{teacher.email}</small>
-                        <br />
-                        <small>{teacher.gender}</small>
-                        <Button className="brand-button">
-                            <FontAwesomeIcon icon={faPlus} /> Follow
-                        </Button>
+                        <div className="row justify-content-center">
+                            <div className=' col-sm-5 col-md-4 col-lg-3 text-start '>
+                                <img
+                                    src="https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
+                                    alt="profilePic"
+                                    className="profile-pic" style={{width: '95%'}}
+                                />
+                            </div>
+                            <div className='col-sm-6 col-md-5 col-lg-6 '>
+                                <p>{err}</p>
+                                <h4 className="brand-text mt-5">{teacher.teacherName}</h4>
+                                {sessionStorage.getItem("role") === "admin" ? (
+                                    <Form.Select
+                                        aria-label="Active"
+                                        onChange={(event) =>
+                                            handleStatusChange(event, teacher.id)
+                                        }
+                                    >
+                                        <option value="1">
+                                            {teacher.status === "active"
+                                                ? "Active"
+                                                : "Inactive"}
+                                        </option>
+                                        <option value="2">
+                                            {teacher.status === "inactive"
+                                                ? "Active"
+                                                : "Inactive"}
+                                        </option>
+                                    </Form.Select>
+                                ) : (
+                                    <h6>{teacher.status}</h6>
+                                )}
+                                <br />
+                                <h6>Department: {teacher.department}</h6>
+                                <p>{teacher.bio}</p>
+                                <small>{teacher.email}</small>
+                                <br />
+                                <small>{teacher.gender}</small>
+                            </div>
+
+
+                        </div>
+
                     </Container>
 
-                    <Table responsive="sm">
+                    <Table responsive="sm" style={{marginTop: "50px"}}>
                         <thead>
                             <tr className="brand-text">
                                 <th>Courses</th>
@@ -167,11 +173,24 @@ const TeacherProfile = () => {
                     </Table>
                     <br />
                     <br />
-                    <h6>Rate this Teacher</h6>
-                    <Form.Control type="text" placeholder="5.00" />
+                    {/* <h6>Rate this Teacher</h6> */}
+                    <Form>
+                        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                            <Form.Label column sm="2">
+                                Rate this Teacher
+                            </Form.Label>
+                            <Col xs={7}>
+                                <Form.Control type="text" placeholder="5.00" />
+                            </Col>
+                            <Col xs="auto" className="rating-button my-1">
+                                <Button className="brand-button" style={{ marginTop: 0 }}>Submit</Button>
+                            </Col>
+                        </Form.Group>
+                    </Form>
+                    {/* <Form.Control type="text" placeholder="5.00" />
                     <div className="rating-button">
                         <Button className="brand-button w-25">Submit</Button>
-                    </div>
+                    </div> */}
                 </Col>
             </Row>
         </Container>
