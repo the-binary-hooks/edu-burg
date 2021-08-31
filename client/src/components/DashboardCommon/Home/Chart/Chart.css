@@ -4,3 +4,6 @@
 .recharts-surface{
     width:100% !important;
 }
+.recharts-legend-wrapper{
+    bottom: -25px !important;
+}
