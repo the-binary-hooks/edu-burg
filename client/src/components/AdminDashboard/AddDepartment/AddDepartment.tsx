@@ -38,6 +38,7 @@ const AddDepartment = () => {
           window.location.reload();
         } else {
           setError(result.message);
+          alert(error)
         }
       });
   };
@@ -102,7 +103,7 @@ const AddDepartment = () => {
                 )}
               </div>
               <div className="form-group mt-3">
-                <button type="submit" className="btn btn-primary d-block w-100">
+                <button type="submit" className="btn brand-button d-block w-100">
                   Add Course
                 </button>
               </div>
