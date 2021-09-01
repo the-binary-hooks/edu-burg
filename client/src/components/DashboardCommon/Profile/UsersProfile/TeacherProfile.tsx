@@ -94,7 +94,7 @@ const TeacherProfile = () => {
                 <Col md={10} style={{ textAlign: "center" }}>
                     <br />
                     <Container>
-                        <div className="row justify-content-center">
+                        <div className="row justify-content-center ">
                             <div className=' col-sm-5 col-md-4 col-lg-3 text-start '>
                                 <img
                                     src="https://image.shutterstock.com/image-vector/man-shirt-tie-businessman-avatar-260nw-548848999.jpg"
