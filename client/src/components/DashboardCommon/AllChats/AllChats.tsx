@@ -1,5 +1,5 @@
 // React Bootstrap
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 
 // React Router
 import { Link } from "react-router-dom";
@@ -10,12 +10,36 @@ import Sidebar from "../Sidebar/Sidebar";
 // CSS
 import "./AllChats.css";
 
+// icon
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 const AllChats = () => {
     return (
         <Container fluid>
             <Row>
                 <Sidebar />
                 <Col md={10}>
+                <div style={{marginTop: '10px'}}>
+                        <Form>
+                            <Row className="align-items-center justify-content-center">
+                                <Col xs="auto">
+                                    <Form.Label htmlFor="inlineFormInputGroup" visuallyHidden>
+                                        Search 
+                                    </Form.Label>
+                                    <InputGroup className="mb-2">
+                                        <InputGroup.Text><FontAwesomeIcon icon={faSearch} /></InputGroup.Text>
+                                        <FormControl id="inlineFormInputGroup" placeholder="Search" />
+                                    </InputGroup>
+                                </Col>
+                                <Col xs="auto">
+                                    <Button type="submit" className="mb-2 brand-button">
+                                        SMS
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </div>
                     <div className="chat-container">
                         <Link to={`/chat/:id`} className="react-link">
                             <div className="chat">

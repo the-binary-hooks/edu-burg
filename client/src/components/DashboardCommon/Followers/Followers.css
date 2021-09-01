@@ -1,7 +1,7 @@
 .follower-container {
     width: 85%;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px gray;
+    /* border-radius: 5px; */
+    /* box-shadow: 1px 1px 2px gray; */
     margin-left: 10%;
     margin-bottom: 1%;
     padding: 1%;
@@ -16,6 +16,7 @@
 .follow-button {
     margin-top: 50% !important;
 }
+
 
 @media (max-width: 760px) {
     .follower-container {
